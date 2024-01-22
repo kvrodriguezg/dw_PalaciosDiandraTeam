@@ -53,7 +53,7 @@
             <!-- list item -->
             <div class="list">
                 <div class="item">
-                    <img src="./img/foto1.png">
+                    <img src="./img/lab1.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./img/foto2.png">
+                    <img src="./img/lab2.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./img/foto3.jpg">
+                    <img src="./img/lab3.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./img/foto4.png">
+                    <img src="./img/lab4.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -88,7 +88,7 @@
             <!-- list thumnail -->
             <div class="thumbnail">
                 <div class="item">
-                    <img src="./img/foto1.png">
+                    <img src="./img/lab1.jpg">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./img/foto2.png">
+                    <img src="./img/lab2.jpg">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./img/foto3.jpg">
+                    <img src="./img/lab3.jpg">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="./img/foto4.png">
+                    <img src="./img/lab4.jpg">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
