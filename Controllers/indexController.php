@@ -19,4 +19,6 @@ if (isset($_POST['crearTabla'])) {
     header('Location: ../index.php');
 }
 
-require_once("../index.php");
+
+require_once ("../index.php");
+require_once ("../css/style.css");
