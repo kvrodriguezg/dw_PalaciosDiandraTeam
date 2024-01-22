@@ -23,6 +23,5 @@ if (isset($_POST['crearTabla']))
 }
 
 
-
-
 require_once ("../index.php");
+require_once ("../css/style.css");
