@@ -1,6 +1,6 @@
 <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <div class="container">
-            <a class="navbar-brand" href="../index.php">
+            <a class="navbar-brand" href="../controllers/indexController.php">
                 <img src="../img/logo_labmuest.png" alt="" width="110" height="35">
             </a>
             <nav class="nav">
