@@ -16,13 +16,7 @@ foreach ($tablas as $tabla) {
 if (isset($_POST['crearTabla'])) {
     $existe->crearTablas();
     $validacionExistencia = true;
-<<<<<<< HEAD
-    echo '<div class="alert alert-success" role="alert">
-    Tablas creadas con Exito!!
-    </div>';
-=======
     header('Location: ../index.php');
->>>>>>> 3cc9c6b3dcbf310c4dbd5fffbbf88706eae65b57
 }
 
 require_once("../index.php");

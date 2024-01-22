@@ -26,17 +26,10 @@
                     </div>
                 </ul>
             </nav>
-<<<<<<< HEAD
             <?php
             $validacionExistencia = '';
             if (!$validacionExistencia) {
                 echo '
-=======
-            <?php 
-            $validacionExistencia = '';
-            if (!$validacionExistencia)
-            { echo '
->>>>>>> 3cc9c6b3dcbf310c4dbd5fffbbf88706eae65b57
                 <nav class="nav">
                 <ul class="nav">
                     <div class="m-1">
