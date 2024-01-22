@@ -14,7 +14,7 @@
 
 <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <div class="container">
-            <a class="navbar-brand" href="../controllers/indexController.php">
+            <a class="navbar-brand" href="../index.php">
             <img src="../img/logo_labmuest.png" alt="" width="110" height="35">
             </a>
             <nav class="nav">
@@ -67,7 +67,7 @@
     
             <div class="m-0 row justify-content-center align-items-center">
                 <div class="col-auto p-5 text-center">
-                    <img class="img-login" src="http://localhost/integrativagrupodiandra2.0/img/logo_labmuest.png" alt="" width="300" >
+                    <img class="img-login" src="./img/logo_labmuest.png" alt="" width="300" >
                 </div>
             </div>
             <h1 style="text-align: center">Iniciar Sesión</h1><br><br>

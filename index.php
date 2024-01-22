@@ -9,7 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Pagina De Inicio</title>
 </head>
 
@@ -17,16 +17,18 @@
     <section class="navbar fixed-top" style="background-color: #0cb9f23c;">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../img/logo_labmuest.png" alt="" width="190" height="50">
+                <img src="./img/logo_labmuest.png" alt="" width="190" height="50">
             </a>
             <nav class="nav">
                 <ul class="nav">
                     <div class="m-1">
-                        <a href="../Views/login.php" class="btn w-100 m-1 btn-primary btn-sm ">Inicio de Sesión</a>
+                        <a href="Views/login.php" class="btn w-100 m-1 btn-primary btn-sm ">Inicio de Sesión</a>
                     </div>
                 </ul>
             </nav>
-            <?php if (!$validacionExistencia)
+            <?php 
+            $validacionExistencia = '';
+            if (!$validacionExistencia)
             { echo '
                 <nav class="nav">
                 <ul class="nav">
@@ -51,7 +53,7 @@
             <!-- list item -->
             <div class="list">
                 <div class="item">
-                    <img src="../img/foto1.png">
+                    <img src="./img/foto1.png">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -59,7 +61,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../img/foto2.png">
+                    <img src="./img/foto2.png">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -67,7 +69,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../img/foto3.jpg">
+                    <img src="./img/foto3.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -75,7 +77,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../img/foto4.png">
+                    <img src="./img/foto4.png">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
@@ -86,7 +88,7 @@
             <!-- list thumnail -->
             <div class="thumbnail">
                 <div class="item">
-                    <img src="../img/foto1.png">
+                    <img src="./img/foto1.png">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -94,7 +96,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../img/foto2.png">
+                    <img src="./img/foto2.png">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -102,7 +104,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../img/foto3.jpg">
+                    <img src="./img/foto3.jpg">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -110,7 +112,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="../img/foto4.png">
+                    <img src="./img/foto4.png">
                     <div class="content">
                         <div class="title">
                             LABORATORIO
@@ -134,14 +136,14 @@
         <h2 class="titulo">¿Qué dicen nuestros clientes?</h2>
         <div class="cards">
             <div class="card">
-                <img src="../img/profe1.jpeg" alt="">
+                <img src="./img/profe1.jpeg" alt="">
                 <div class="contenido-texto-card">
                     <h4>Luis Yañez</h4>
                     <p>Maravilloso trabajo, muy profesionales en sus servicios de laboratorios.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="../img/profe2.jpeg" alt="">
+                <img src="./img/profe2.jpeg" alt="">
                 <div class="contenido-texto-card">
                     <h4>Ramon Vasquez</h4>
                     <p>Responsables y compromiso en sus labores, muy atentos con sus clientes.</p>
@@ -156,7 +158,7 @@
                 <div class="box">
                     <figure>
                         <a href="#">
-                            <img src="../img/logo_labmuest.png" alt="Logo de SLee Dw">
+                            <img src="./img/logo_labmuest.png" alt="Logo de SLee Dw">
                         </a>
                     </figure>
                 </div>
