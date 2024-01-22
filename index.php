@@ -26,10 +26,10 @@
                     </div>
                 </ul>
             </nav>
-            <?php 
+            <?php
             $validacionExistencia = '';
-            if (!$validacionExistencia)
-            { echo '
+            if (!$validacionExistencia) {
+                echo '
                 <nav class="nav">
                 <ul class="nav">
                     <div class="m-1">
@@ -40,7 +40,7 @@
                     </div>
                 </ul>
             </nav>';
-            }?>
+            } ?>
         </div>
         <style>
             .icono {
