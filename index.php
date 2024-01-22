@@ -33,7 +33,7 @@
                 <nav class="nav">
                 <ul class="nav">
                     <div class="m-1">
-                        <form method="post" action="../Controllers/indexController.php">
+                        <form method="post" action="./Controllers/indexController.php">
                             <input type="hidden" name="crearTabla" value="crear">
                             <button class="btn w-100 m-1 btn-primary btn-sm ">Crear Tabla</button>
                         </form>

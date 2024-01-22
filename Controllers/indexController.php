@@ -19,6 +19,7 @@ if (isset($_POST['crearTabla']))
 {
     $existe->crearTablas();
     $validacionExistencia = true;
+    header('Location: ../index.php');
 }
 
 
