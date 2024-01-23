@@ -2,7 +2,7 @@
 
 function Conectarse()
 {
-    if (!($link = mysqli_connect("localhost", "root", ""))) {
+    if (!($link = mysqli_connect("localhost", "root", "",))) {
         echo "Error 1";
         exit();
     }
