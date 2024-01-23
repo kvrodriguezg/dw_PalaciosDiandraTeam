@@ -1,9 +1,12 @@
 <?php include "../Views/Shared/head.php" ?>
 <script src="../../js/diagnostico.js"></script>
-
+<?php include "../Models/conexion.php" ?>
 <?php include "menudiagnostico.php" ?>
+<?php
+$query = "SELECT * FROM esta"
+?>
 
-<body class="">
+<body>
     <div style="height: 70px"></div><br><br>
     <h1 class="display-2 text-center">Diagnósticos</h1><br><br>
     <section style="margin: 10px;">
@@ -44,8 +47,8 @@
                     <td>12-12-2024</td>
                     <td>Listo para Diagnostico</td>
                     <form>
-                        <td>
-                            <select class="form-select" style="width: 62px" aria-label="Default select example" id="estado" name="estado">
+                        <td>Por Diagnosticar
+                            <!-- <select class="form-select" style="width: 62px" aria-label="Default select example" id="estado" name="estado">
                                 <option value="Z">- POR DIAGNOSTICAR</option>
                                 <option value="A">A - NEGATIVO</option>
                                 <option value="B">B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
@@ -53,15 +56,13 @@
                                 <option value="D">D - POSIBLE ADENOCARCINOMA</option>
                                 <option value="E">E - CANCER EPIDERMOIDE</option>
                                 <option value="F">F - MUESTRA ATROFICA</option>
-                            </select>
+                            </select> -->
                         </td>
                         <td>
-                            <input type="hidden" name="enviarRegistro" value="enviado">
-                            <button type="submit" id="btnEnviar" class="btn btn-warning">editar</button>
+                            <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
                         </td>
                         <td>
-                            <input type="hidden" name="enviarRegistro" value="enviado">
-                            <button type="submit" id="btnEnviar" class="btn btn-success">Enviar a Registro</button>
+                            <a href="" class="btn w-100 m-1 btn-success">Enviar a Registro</a>
                         </td>
                     </form>
                 </tr>

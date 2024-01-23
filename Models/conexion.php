@@ -1,7 +1,7 @@
 <?php
 function Conectarse()
 {
-    if (!($link = mysqli_connect("localhost", "root", ""))) {
+    if (!($link = mysqli_connect("localhost", "root", "", "bdddiandrapalacios"))) {
         echo "ERROR 1";
         exit();
     }
