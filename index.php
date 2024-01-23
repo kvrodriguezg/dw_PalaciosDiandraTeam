@@ -64,7 +64,7 @@
                     <img src="./img/lab2.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
-                        <div class="title">LABORATORIO</div>
+                        <div class="title">CENTRO DE MUESTRAS</div>
                         <div class="topic">CLÍNICO</div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <img src="./img/lab3.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
-                        <div class="title">LABORATORIO</div>
+                        <div class="title">CENTRO DE MICROSCOPIOS</div>
                         <div class="topic">CLÍNICO</div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     <img src="./img/lab4.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
-                        <div class="title">LABORATORIO</div>
+                        <div class="title">CENTRO DE DIAGNOSTICO</div>
                         <div class="topic">CLÍNICO</div>
                     </div>
                 </div>

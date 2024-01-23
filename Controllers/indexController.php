@@ -15,8 +15,6 @@ foreach ($tablas as $tabla) {
 if (isset($_POST['crearTabla'])) {
     $existe->crearTablas();
     $validacionExistencia = true;
-    echo '<div class="alert alert-success" role="alert">
-    Base de Dato Creada Exitosamente!!
-  </div>';
+    echo '<div class="alert alert-success d-flex aling-items-center" role="alert">Base de Dato Creada Exitosamente!!</div>';
     return ("../index.php");
 }
