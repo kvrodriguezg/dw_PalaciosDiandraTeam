@@ -58,8 +58,16 @@
                     <td>glicemia</td>
                     <td>Pendiente</td>
                     <td>
-                        <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
+                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
                     </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Alexis Tobar</td>
+                    <td>17426433-3</td>
+                    <td>12-12-2024</td>
+                    <td>12-12-2024</td>
+                    <td>glicemia</td>
+                    <td>Pendiente</td>
                     <td>
                         <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
                     </td>
@@ -72,9 +80,6 @@
                     <td>glicemia</td>
                     <td>Pendiente</td>
                     <td>
-                        <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
-                    </td>
-                    <td>
                         <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
                     </td>
                 </tr>
@@ -86,9 +91,6 @@
                     <td>glicemia</td>
                     <td>Pendiente</td>
                     <td>
-                        <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
-                    </td>
-                    <td>
                         <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
                     </td>
                 </tr>
@@ -99,23 +101,6 @@
                     <td>12-12-2024</td>
                     <td>glicemia</td>
                     <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
-                    </td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>Alexis Tobar</td>
-                    <td>17426433-3</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                    <td>glicemia</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
-                    </td>
                     <td>
                         <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
                     </td>

@@ -1,9 +1,9 @@
 <?php include "../Views/Shared/head.php" ?>
 <script src="../../js/diagnostico.js"></script>
 
-    <?php include "menudiagnostico.php" ?>
-    
-<body class="container">
+<?php include "menudiagnostico.php" ?>
+
+<body class="">
     <div style="height: 70px"></div><br><br>
     <h1 class="display-2 text-center">Diagnósticos</h1><br><br>
     <section style="margin: 10px;">
@@ -15,7 +15,7 @@
         <table id="tablaDiagnostico" class="text-center tabla table">
             <thead>
                 <tr>
-                <th>Seleccionar</th>
+                    <th>Seleccionar</th>
                     <th>Nombre Paciente</th>
                     <th>Rut</th>
                     <th>Domicilio</th>
@@ -29,7 +29,7 @@
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                <td>
+                    <td>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
                             <label class="form-check-label" for="flexCheckIndeterminate">
@@ -57,13 +57,18 @@
                         </td>
                         <td>
                             <input type="hidden" name="enviarRegistro" value="enviado">
+                            <button type="submit" id="btnEnviar" class="btn btn-warning">editar</button>
+                        </td>
+                        <td>
+                            <input type="hidden" name="enviarRegistro" value="enviado">
                             <button type="submit" id="btnEnviar" class="btn btn-success">Enviar a Registro</button>
+                        </td>
                     </form>
-                    </td>
                 </tr>
             </tbody>
         </table>
     </section>
 </body>
 <?php include "../views/Shared/scripts.php" ?>
+
 </html>

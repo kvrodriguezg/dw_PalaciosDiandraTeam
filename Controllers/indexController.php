@@ -14,7 +14,9 @@ foreach ($tablas as $tabla) {
 //Creacion de tablas si no existen.
 if (isset($_POST['crearTabla'])) {
     $existe->crearTablas();
-    echo "<script>alert('Creacion de Tablas')</script>";
     $validacionExistencia = true;
+    echo '<div class="alert alert-success" role="alert">
+    Base de Dato Creada Exitosamente!!
+  </div>';
+    return ("../index.php");
 }
-
