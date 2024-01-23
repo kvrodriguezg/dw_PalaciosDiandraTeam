@@ -4,19 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/prueba.css">
     <title>Pagina De Inicio</title>
 </head>
 
 <body>
+    <!-- SECCION DEL NAVEGADOR NAVBAR -->
     <section class="navbar fixed-top" style="background-color: #0cb9f23c;">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="./img/logo_labmuest.png" alt="" width="190" height="50">
             </a>
             <nav class="nav">
@@ -48,6 +51,7 @@
             }
         </style>
     </section>
+    <!-- SECCION DE SLIDER O CARRUSEL DE JAVASCRIPT -->
     <section>
         <div class="carousel">
             <!-- list item -->
@@ -64,24 +68,24 @@
                     <img src="./img/lab2.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
-                        <div class="title">CENTRO DE MUESTRAS</div>
-                        <div class="topic">CLÍNICO</div>
+                        <div class="title">UNIDAD DE</div>
+                        <div class="topic">MUESTRAS</div>
                     </div>
                 </div>
                 <div class="item">
                     <img src="./img/lab3.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
-                        <div class="title">CENTRO DE MICROSCOPIOS</div>
-                        <div class="topic">CLÍNICO</div>
+                        <div class="title">RESULTADO DE</div>
+                        <div class="topic">EXÁMENES</div>
                     </div>
                 </div>
                 <div class="item">
                     <img src="./img/lab4.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
-                        <div class="title">CENTRO DE DIAGNOSTICO</div>
-                        <div class="topic">CLÍNICO</div>
+                        <div class="title">PREPARACIÓN DE</div>
+                        <div class="topic">EXÁMENES</div>
                     </div>
                 </div>
             </div>
@@ -99,7 +103,7 @@
                     <img src="./img/lab2.jpg">
                     <div class="content">
                         <div class="title">
-                            LABORATORIO
+                            MUESTRAS
                         </div>
                     </div>
                 </div>
@@ -107,7 +111,7 @@
                     <img src="./img/lab3.jpg">
                     <div class="content">
                         <div class="title">
-                            LABORATORIO
+                            RESULTADO
                         </div>
                     </div>
                 </div>
@@ -115,7 +119,7 @@
                     <img src="./img/lab4.jpg">
                     <div class="content">
                         <div class="title">
-                            LABORATORIO
+                            PREPARACIÓN
                         </div>
                     </div>
                 </div>
@@ -132,7 +136,7 @@
             <div class="time"></div>
         </div>
     </section>
-
+    <!-- SECCION DEL AREA DE OPINION DE CLIENTES -->
     <section class="clientes contenedor">
         <h2 class="titulo">¿Qué dicen nuestros clientes?</h2>
         <div class="cards">
@@ -152,7 +156,62 @@
             </div>
         </div>
     </section>
+    <!--SECCION DE SLIDER 2 CON IMAGENES CREADAS PARA EL PROYECTO-->
+    <section>
+        <div class="carruseles1">
+            <div class="carruseles2">
+                <div>
+                    <h2>pruebas</h2>
+                    <div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati beatae accusantium, corporis nostrum culpa repellendus enim asperiores, facilis explicabo ad deserunt natus. Nobis asperiores ad placeat quam. Cupiditate sunt praesentium perferendis, culpa vel fuga, unde quae, perspiciatis tempore a magnam. Placeat suscipit praesentium inventore nesciunt vel quis! Animi culpa illum ad sequi, eveniet natus perferendis voluptatibus sed aut in. Reprehenderit explicabo distinctio vitae sint ad quos tempore maiores vero ab quaerat numquam, doloribus sit accusantium ipsum debitis saepe facere minima eligendi illo. Quisquam cupiditate excepturi quaerat, laborum eius veniam corrupti et, officiis maxime fugiat sint consequatur quas ipsam illo natus?</p>
+                    </div>
+                </div>
 
+                <div class="container-carousel">
+                    <div class="carruseles" id="slider">
+                        <section class="slider-section">
+                            <img src="img/slider1.PNG">
+                        </section>
+                        <section class="slider-section">
+                            <img src="img/slider2.PNG">
+                        </section>
+                        <section class="slider-section">
+                            <img src="img/slider3.PNG">
+                        </section>
+                        <section class="slider-section">
+                            <img src="img/slider4.PNG">
+                        </section>
+                        <section class="slider-section">
+                            <img src="img/slider5.PNG">
+                        </section>
+                        <section class="slider-section">
+                            <img src="img/slider6.PNG">
+                        </section>
+                    </div>
+                    <div class="btn-left"><i class='bx bx-chevron-left'></i></div>
+                    <div class="btn-right"><i class='bx bx-chevron-right'></i></div>
+                </div>
+
+                <div>
+                    <h2>pruebas</h2>
+                    <div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati beatae accusantium, corporis nostrum culpa repellendus enim asperiores, facilis explicabo ad deserunt natus. Nobis asperiores ad placeat quam. Cupiditate sunt praesentium perferendis, culpa vel fuga, unde quae, perspiciatis tempore a magnam. Placeat suscipit praesentium inventore nesciunt vel quis! Animi culpa illum ad sequi, eveniet natus perferendis voluptatibus sed aut in. Reprehenderit explicabo distinctio vitae sint ad quos tempore maiores vero ab quaerat numquam, doloribus sit accusantium ipsum debitis saepe facere minima eligendi illo. Quisquam cupiditate excepturi quaerat, laborum eius veniam corrupti et, officiis maxime fugiat sint consequatur quas ipsam illo natus?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- SECCION DE UBICACION DEL MAPA -->
+    <section>
+        <div>
+            <h2 class="titulo_mapa">Nuestra Ubicación</h2>
+            <div>
+                <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.4449496667082!2d-70.64978391201363!3d-33.4488812168826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c50bb33cf719%3A0x5b3aea7806cdf0b8!2sInstituto%20Profesional%20Los%20Leones!5e0!3m2!1sen!2scl!4v1706039742982!5m2!1sen!2scl" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    <!-- SECCION DEL FOOTER O PIE DE PAGINA -->
     <section class="footer">
         <footer class="pie-pagina">
             <div class="grupo-1">
@@ -188,11 +247,13 @@
         </footer>
     </section>
 
-
+    <script src="./js/carrusel.js"></script>
     <script src="./js/app.js"></script>
-    <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="./js/slider.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>
