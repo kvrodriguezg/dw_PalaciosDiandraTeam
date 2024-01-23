@@ -53,7 +53,7 @@
             <!-- list item -->
             <div class="list">
                 <div class="item">
-                    <img src="./img/foto1.png">
+                    <img src="./img/lab1.jpg">
                     <div class="content">
                         <div class="author">LABMUEST</div>
                         <div class="title">LABORATORIO</div>
