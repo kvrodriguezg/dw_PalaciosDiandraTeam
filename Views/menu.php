@@ -1,15 +1,15 @@
 <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
-        <div class="container">
-            <a class="navbar-brand" href="../controllers/indexController.php">
-                <img src="../img/logo_labmuest.png" alt="" width="110" height="35">
-            </a>
-            <nav class="nav">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="../index.php"> <i class="fa-solid fa-stethoscope"></i>  Cerrar Sesión</a>
-                    </li>                  
+    <div class="container">
+        <a class="navbar-brand" href="../index.php">
+            <img src="../img/logo_labmuest.png" alt="" width="110" height="35">
+        </a>
+        <nav class="nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-blue" href="../index.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesión</a>
+                </li>
 
-                </ul>
-            </nav>
-        </div>
-    </header>
+            </ul>
+        </nav>
+    </div>
+</header>
