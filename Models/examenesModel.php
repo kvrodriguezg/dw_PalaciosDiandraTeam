@@ -19,17 +19,20 @@ class examenesModel
 
     public function obtenerDomicilioPaciente($rut)
     {
-        $query = "SELECT DomicilioPaciente FROM Pacientes WHERE rut='$rut';";
+        $query = "SELECT DomicilioPaciente FROM Pacientes WHERE RutPaciente='$rut';";
         $result = mysqli_query($this->db, $query);
         if ($result ) {
             $row = mysqli_fetch_array($result);
             return $row['DomicilioPaciente'] ;
         }
+        else{
+            echo "error". mysqli_error($this->db);
+        }
     }
 
     public function obtenerNombrePaciente($rut)
     {
-        $query = "SELECT NombrePaciente FROM Pacientes WHERE rut='$rut';";
+        $query = "SELECT NombrePaciente FROM Pacientes WHERE RutPaciente='$rut';";
         $result = mysqli_query($this->db, $query);
         if ($result ) {
             $row = mysqli_fetch_array($result);
@@ -39,7 +42,7 @@ class examenesModel
 
     public function obtenerCentroMedico($idCentroMedico)
     {
-        $query = "SELECT NombreCentro FROM centrosmedicos WHERE IDCentroMedico ='$idCentroMedico';";
+        $query = "SELECT NombreCentro FROM centrosmedicos WHERE IDCentroMedico =$idCentroMedico;";
         $result = mysqli_query($this->db, $query);
         if ($result ) {
             $row = mysqli_fetch_array($result);
