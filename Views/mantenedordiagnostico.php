@@ -1,7 +1,7 @@
 <?php include("../Models/conex.php") ?>
 <?php
 //crear y selecionar la query
-$query = "SELECT * FROM diagnosticos ORDER BY id DESC";
+$query = "SELECT * FROM diagnosticos ORDER BY CodigoDiagnosticos DESC";
 $diagnosticos = mysqli_query($conexion, $query);
 ?>
 
@@ -53,7 +53,7 @@ $diagnosticos = mysqli_query($conexion, $query);
                         <td><?php echo $fila['CodigoDiagnosticos'] ?></td>
                         <td><?php echo $fila['Codigo'] ?></td>
                         <td><?php echo $fila['Diagnostico'] ?></td>
-                        <td><?php echo $fila['descripcion'] ?>>/td>
+                        <td><?php echo $fila['descripcion'] ?>>
                         <td>
                             <a href="editardiagnostico.php" class="btn w-100 m-1 btn-primary">editar</a>
                             <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
