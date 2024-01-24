@@ -8,13 +8,13 @@ if (isset($_POST['crearRegistro'])) {
     if (!isset($codigo) || $codigo == '' || !isset($diagnostico) || $diagnostico == '' || !isset($descripcion) || $descripcion == '') {
         echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">Algunos Campos Estan Vacios</div>';
     } else {
-        $query = "INSERT INTO diagnosticos(Codigo,Diagnostico,descripcion)VALUES('$codigo' , '$diagnostico' , '$descripcion')";
-        if (!mysqli_query($conexion, $query)) {
+        $query2 = "INSERT INTO diagnosticos(Codigo, Diagnostico, descripcion)VALUES('$codigo' , '$diagnostico' , '$descripcion')";
+        if (!mysqli_query($conexion, $query2)) {
             die('Error: ' . mysqli_error($conexion));
             echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">No se Pudo Crear el Registro</div>';
         } else {
             echo '<div class="alert alert-success d-flex aling-items-center" role="alert">Registro Creardo Exitosamente</div>';
-            header('Location:../Views/mantenedordiagnostico.php');
+            header('Location:./Views/mantenedordiagnostico.php');
             exit();
         }
     }

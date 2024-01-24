@@ -1,7 +1,7 @@
 <?php include("../Models/conex.php") ?>
 <?php
 //crear y selecionar la query
-$query = "SELECT * FROM diagnosticos ORDER BY CodigoDiagnosticos DESC";
+$query = "SELECT * FROM diagnosticos ORDER BY IDDiagnosticos DESC";
 $diagnosticos = mysqli_query($conexion, $query);
 ?>
 
@@ -50,7 +50,7 @@ $diagnosticos = mysqli_query($conexion, $query);
                 <?php while ($fila = mysqli_fetch_assoc($diagnosticos)) : ?>
 
                     <tr class="table table-striped">
-                        <td><?php echo $fila['CodigoDiagnosticos'] ?></td>
+                        <td><?php echo $fila['IDDiagnosticos'] ?></td>
                         <td><?php echo $fila['Codigo'] ?></td>
                         <td><?php echo $fila['Diagnostico'] ?></td>
                         <td><?php echo $fila['descripcion'] ?>>
