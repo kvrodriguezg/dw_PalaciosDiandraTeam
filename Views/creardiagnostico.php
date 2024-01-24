@@ -14,7 +14,7 @@ if (isset($_POST['crearRegistro'])) {
             echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">No se Pudo Crear el Registro</div>';
         } else {
             echo '<div class="alert alert-success d-flex aling-items-center" role="alert">Registro Creardo Exitosamente</div>';
-            header('Location:./Views/mantenedordiagnostico.php');
+            header('Location:../Views/mantenedordiagnostico.php');
             exit();
         }
     }

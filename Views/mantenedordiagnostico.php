@@ -40,7 +40,7 @@ $diagnosticos = mysqli_query($conexion, $query);
             </style>
             <thead>
                 <tr>
-                    <th>IDDiagnóstico</th>
+                    <th>ID Diagnóstico</th>
                     <th>Código </th>
                     <th>Diagnóstico </th>
                     <th>Descripción </th>
@@ -53,7 +53,7 @@ $diagnosticos = mysqli_query($conexion, $query);
                         <td><?php echo $fila['IDDiagnosticos'] ?></td>
                         <td><?php echo $fila['Codigo'] ?></td>
                         <td><?php echo $fila['Diagnostico'] ?></td>
-                        <td><?php echo $fila['descripcion'] ?>>
+                        <td><?php echo $fila['Descripcion'] ?>>
                         <td>
                             <a href="editardiagnostico.php" class="btn w-100 m-1 btn-primary">editar</a>
                             <a href="" class="btn w-100 m-1 btn-danger">borrar</a>

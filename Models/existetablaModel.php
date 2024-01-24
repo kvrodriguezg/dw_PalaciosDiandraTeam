@@ -35,6 +35,6 @@ class ExisteTabla
         $this->crearTabla("Pacientes", "IDPaciente INT PRIMARY KEY AUTO_INCREMENT, NombrePaciente VARCHAR(100) NOT NULL, RutPaciente VARCHAR(12) NOT NULL, DomicilioPaciente VARCHAR(200) NOT NULL");
         $this->crearTabla("Diagnosticos", "IDDiagnosticos INT PRIMARY KEY AUTO_INCREMENT, Codigo VARCHAR(10) NOT NULL, Diagnostico VARCHAR(255) NOT NULL, Descripcion VARCHAR(255) NOT NULL");
         $this->crearTabla("Estados", "IDEstados INT PRIMARY KEY AUTO_INCREMENT, NombreEstado VARCHAR(100) NOT NULL");
-        $this->crearTabla("Examenes", "IDExamen INT PRIMARY KEY AUTO_INCREMENT, NombreExamen VARCHAR(100) NOT NULL, IDPaciente INT NOT NULL, IDCentroSolicitante INT NOT NULL, CodigoDiagnosticos VARCHAR(5), FechaTomaMuestra DATE NOT NULL, FechaRecepcion DATE NOT NULL, Fechatincion DATE, Fechadiagnostico DATE, FOREIGN KEY (CodigoDiagnosticos) REFERENCES Diagnosticos(CodigoDiagnosticos), FOREIGN KEY (IDCentroSolicitante) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (IDPaciente) REFERENCES Pacientes(IDPaciente)");
+        $this->crearTabla("Examenes", "IDExamen INT PRIMARY KEY AUTO_INCREMENT, NombreExamen VARCHAR(100) NOT NULL, IDPaciente INT NOT NULL, IDCentroSolicitante INT NOT NULL, IDDiagnosticos INT NOT NULL, FechaTomaMuestra DATE NOT NULL, FechaRecepcion DATE NOT NULL, Fechatincion DATE, Fechadiagnostico DATE, FOREIGN KEY (IDDiagnosticos) REFERENCES Diagnosticos(IDDiagnosticos), FOREIGN KEY (IDCentroSolicitante) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (IDPaciente) REFERENCES Pacientes(IDPaciente)");
     }
 }
