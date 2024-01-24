@@ -21,6 +21,21 @@ include("menuadministrador.php");
 <h1>Listado de Usuarios</h1><br>
 <a href="creacionusuarios.php" class="btn  btn-primary">Crear Usuario</a>
 <br><br><br>
+<?php
+            require_once("../Controllers/perfilesController.php");
+            if (!$crearperfiles) {
+                echo '
+                <nav class="nav">
+                <ul class="nav">
+                    <div class="m-1">
+                        <form method="post" action="mantenedorusuarios.php">
+                            <input type="hidden" name="crearPerfiles" value="crear">
+                            <button class="btn w-100 m-1 btn-primary btn-sm ">Crear PERFILES</button>
+                        </form>
+                    </div>
+                </ul>
+            </nav>';
+            }?>
 <section style="margin: 10px;">
     <table id="tableUsers" class="tabla table">
     <style>
