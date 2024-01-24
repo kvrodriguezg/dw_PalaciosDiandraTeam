@@ -60,8 +60,19 @@ if (isset($_POST['crearRegistro'])) {
 
         <div class="row">
             <div class="col">
-                <label for="nombre" style="text-align: center;">Diagnóstico</label>
-                <input type="text" class="form-control" name="diagnostico">
+                <label for="rut">Diagnostico</label>
+                <td>
+                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="estado" name="diagnostico">
+                        <option>- POR DIAGNOSTICAR</option>
+                        <option>A - NEGATIVO</option>
+                        <option>B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
+                        <option>C - MUESTRA PRESENTA INFECCION</option>
+                        <option>D - POSIBLE ADENOCARCINOMA</option>
+                        <option>E - CANCER EPIDERMOIDE</option>
+                        <option>F - MUESTRA ATROFICA</option>
+                    </select>
+                </td>
+
             </div>
         </div>
 
