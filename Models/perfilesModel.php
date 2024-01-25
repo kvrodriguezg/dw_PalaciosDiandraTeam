@@ -64,19 +64,21 @@ class perfiles
 
         }
     }
-
-    public function modificarPerfil($idperfil,$nombrePerfil){
-        $query="Update from perfiles set nombrePerfil = ? WHERE idPerfil=?;";
-        if ($stmt = mysqli_prepare($this->db, $query)) {
-            mysqli_stmt_bind_param($stmt, "is", $idPerfil,$nombrePerfil);
-            if (mysqli_stmt_execute($stmt)) {
-                return true;
+    public function modificarPerfil($idperfil, $nombrePerfil)
+    {
+        $query = "UPDATE perfiles SET TipoPerfil = ? WHERE IDPerfil = ?;"; // LA CONSULTA QUE QUIERO EJECUTAR
+        if ($stmt = mysqli_prepare($this->db, $query)) { // LE AVISO AL EDITOR QUE LE ENVIARE UNA CONSULTA PREPARADA
+            mysqli_stmt_bind_param($stmt, "si", $nombrePerfil, $idperfil); // LE INDICO A LA CONSULTA PREPARADA STMT 
+                                                                                //QUE DATOS NECESITO QUE VALIDE
+            if (mysqli_stmt_execute($stmt)) { //EJECUTO LA CONSULTA PREPARADA YA CON LOS DATOS QUE LE ENVIE
+                return true; //SI TODO VA BIEN, SE EJECUTA Y RETORNA TRUE
             } else {
-                return false;
+                return false; // SI HAY ALGO RARO EN LA CONSULTA RETORNA FALSE
             }
-
         }
     }
+    
+    
 
     public function verPerfiles(){
         $consulta = mysqli_query($this->db, "select * from perfiles");

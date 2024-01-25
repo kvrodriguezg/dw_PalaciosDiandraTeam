@@ -1,10 +1,26 @@
 <?php
+$op = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    if(!isset($_POST['IDPerfil']))  {$IDPerfil='';   }else{$IDPerfil=$_POST['IDPerfil'];}
-    if(!isset($_POST['tipoPerfil']))  {$tipoPerfil='';   }else{$tipoPerfil=$_POST['tipoPerfil'];}
-    if(!isset($_POST['op']))  {$op='';   }else{$op=$_POST['op'];}
 
+    if (!isset($_POST['IDPerfil'])) {
+        $IDPerfil = '';
+    } else {
+        $IDPerfil = $_POST['IDPerfil'];
+    }
+    if (!isset($_POST['TipoPerfil'])) {
+        $TipoPerfil = '';
+    } else {
+        $TipoPerfil = $_POST['TipoPerfil'];
+    }
+    if (!isset($_POST['op'])) {
+        $op = '';
+    } else {
+        $op = $_POST['op'];
+    }
+    if ($op == 'EDITAR') {
+        header("Location: editarperfil.php?IDPerfil=$IDPerfil&TipoPerfil=$TipoPerfil");
+        exit();
+    }
 }
 ?>
 
@@ -18,9 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 
@@ -67,7 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <tr>
                     <th>ID Perfil</th>
                     <th>Tipo Perfil</th>
-                    <th>Acciones</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
 
                 </tr>
             </thead>
@@ -83,19 +99,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <?php echo $registro['TipoPerfil']; ?>
                         </td>
                         <td>
-                            <a href="editarlaboratorio.php" class="btn m-1 btn-primary">editar</a>
+
+                            <form method="POST">
+                                <input type="hidden" name="op" value="EDITAR">
+                                <input type="hidden" name="IDPerfil" value="<?php echo $registro['IDPerfil'] ?>">
+                                <input type="hidden" name="TipoPerfil" value="<?php echo $registro['TipoPerfil'] ?>">
+                                <button type="submit" class="btn btn-primary">EDITAR</button>
+                            </form>
+                        </td>
+                        <td>
                             <form method="post" action="mantenedorPerfiles.php">
                                 <input type="hidden" name="op" value="eliminar">
                                 <input type="hidden" name="IDPerfil" value="<?php echo $registro['IDPerfil'] ?>">
-                                <input class="btn m-1 btn-danger" type="submit" value="ELIMINAR">
+                                <input class="btn btn-danger" type="submit" value="ELIMINAR">
                             </form>
                         </td>
                     </tr>
                     <?php
-                }    if($op=="ELIMINAR"){
+                }
+                if ($op == "ELIMINAR") {
 
                     require_once("../Controllers/perfilesController.php");
                 }
+
                 ?>
             </tbody>
         </table>

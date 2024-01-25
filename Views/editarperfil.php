@@ -1,19 +1,21 @@
 <?php
-$op = "";
+$IDPerfil = $_GET['IDPerfil'] ?? '';
+$TipoPerfil = $_GET['TipoPerfil'] ?? '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $tipoPerfil = $_POST['tipoPerfil'] ?? '';
-    $op = $_POST['op'] ?? '';
+    $IDPerfil = $_POST['IDPerfil'] ?? '';
+    $TipoPerfil = $_POST['TipoPerfil'] ?? '';
+    $op = $_POST['modificar'] ?? ''; 
 
-
-    if ($op == "GUARDAR") {
+    if ($op == "Modificar") {
         require_once("../Controllers/perfilesController.php");
+        exit();
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <title>Mantenedor</title>
 </head>
-
 <body>
     <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <?php
@@ -34,31 +35,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
     </header>
     <br><br>
-    <?php
 
-    ?>
-
-    <form method="POST" class="form" action="crearperfil.php" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Crear Perfil</h2><br>
-        <br>
+    <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+        <h2 style="text-align: center;">Editar Perfil</h2><br> <?php echo "op = $op, ID =  $IDPerfil, Tipo = $TipoPerfil" ?>
         <div class="row">
             <div class="col">
-                <label for="tipoPerfil">Nombre perfil:</label> <br><br>
-                <input type="text" name="tipoPerfil" placeholder="tipoPerfil">
-                <input type="hidden" name="op" value="GUARDAR">
+                <label for="IDPerfil">ID Perfil</label><br>
+                <input type="text" class="form-control" name="IDPerfil" value="<?php echo $IDPerfil ?>">
+                <label for="TipoPerfil">Nombre Perfil</label><br>
+                <input type="text" class="form-control" name="TipoPerfil" value="<?php echo $TipoPerfil ?>">
+                <input type="hidden" name="op" value="Modificar">
             </div>
         </div>
-
         <br><br><br>
-        <input class="btn w-100 m-1 btn-primary btn-sm" name="crearperfilbtn" type="submit" value="INSERTAR" />
+        <input class="btn w-100 m-1 btn-primary btn-sm" name="modificar" type="submit" value="Modificar" />
     </form>
 
-    <?php
-    if ($op == "GUARDAR") {
-
-        require_once("../Controllers/perfilesController.php");
-    }
-    ?>
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
