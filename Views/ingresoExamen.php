@@ -18,17 +18,17 @@
     <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <?php
         include("menurecepcionista.php");
+        include("../Controllers/ExamenController.php");
         ?>
     </header>
     <br><br><br><br><br>
     <h2 style="text-align: center;">Ingresar nueva orden</h2>
-    <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-
+    <form method="POST" class="form" style="padding: 100px 300px 0 300px;" action="ingresoExamen.php">
 
         <div class="row">
             <div class="col">
                 <label for="nombrePaciente">Nombre Paciente</label>
-                <input type="text" class="form-control" name="nombrePaciente">
+                <input type="text" class="form-control" name="nombre">
             </div>
             <div class="col">
                 <label for="rut">Rut</label>
@@ -77,8 +77,9 @@
 
 
         <br>
-
-        <button type="submit" class="btn btn-primary w-100 center-block" name="crearRegistro">Registrar</button>
+        <input type="hidden" name="ingreso" value="ingresado">
+        <input type="submit" class="btn btn-primary w-100 center-block" name="btnregistrar" value="Registrar">
+        
     </form>
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
