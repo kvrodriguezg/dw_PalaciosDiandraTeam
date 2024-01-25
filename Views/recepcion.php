@@ -52,7 +52,7 @@
                     <th>Examen</th>
                     <th>F. Toma de Muestra</th>
                     <th>F. de Tinción</th>
-                    <th>F. Fiagnostico</th>
+                    <th>F. Diagnóstico</th>
                     <th>Diagnóstico</th>
                     <th>Cod. Diagnóstico</th>
                     <th>Estado</th>
@@ -69,18 +69,21 @@
                                 </label>
                             </div>
                         </td>
-                        <td><?php $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
-                        <td><?php $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
-                        <td><?php $examen->obtenerCentroMedico($row['IDCentroSolicitante'])?></td>
-                        <td><?php $row['NombreExamen']?></td>
-                        <td>12-12-2024</td>
-                        <td>13-12-2024</td>
-                        <td>14-12-2024</td>
-                        <td>MUESTRA INADECUADA, VOLVER A TOMAR</td>
-                        <td>B</td>
+                        <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
+                        <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
+                        <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante'])?></td>
+                        <td><?php echo $row['NombreExamen']?></td>
+                        <td><?php echo $row['FechaTomaMuestra']?></td>
+                        <td><?php echo $row['Fechatincion']?></td>
+                        <td><?php echo $row['Fechadiagnostico']?></td>
+                        <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
+                        <td><?php echo $row['CodigoDiagnosticos']; ?></td>
                         <td>
                             <div class="col">
                                 <div class="dropdown">
+                                    <select>
+                                        
+                                    </select>
                                     <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Seleccionar Estado
                                     </button>
