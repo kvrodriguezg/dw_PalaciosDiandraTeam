@@ -1,3 +1,38 @@
+<?php
+include '../Models/conex.php';
+//OBTENER EL ID ENVIADO DEL MANTENEDOR 
+$idRegistro = $_GET['IDDiagnosticos'];
+
+$query = "SELECT * FROM diagnosticos where IDDiagnosticos='" . $idRegistro . "'";
+$diagnos = mysqli_query($conexion, $query) or die(mysqli_error($conexion));
+$fila = mysqli_fetch_assoc($diagnos);
+
+if (isset($_POST['editarRegistro'])) {
+    $codigo = mysqli_real_escape_string($conexion, $_POST['codigo']);
+    $diagnostico = mysqli_real_escape_string($conexion, $_POST['diagnostico']);
+    $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
+
+    if (!isset($codigo) || $codigo == '' || !isset($diagnostico) || $diagnostico == '' || !isset($descripcion) || $descripcion == '') {
+        echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">Algunos Campos Estan Vacios</div>';
+    } else {
+        $query = "UPDATE diagnosticos set Codigo='$codigo',Diagnostico='$diagnostico',Descripcion='$descripcion' where 
+        IDDiagnosticos='$idRegistro'";
+
+        if (!mysqli_query($conexion, $query)) {
+            die('Error: ' . mysqli_error($conexion));
+            echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">No se Pudo Editar el Registro</div>';
+        } else {
+            echo '<script language="javascript">alert("juas");</script>';
+            header('Location:../Views/mantenedordiagnostico.php');
+            exit();
+        }
+    }
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +44,7 @@
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-    <title>Mantenedor</title>
+    <title>editar usuarios</title>
 </head>
 
 <body>
@@ -21,20 +56,22 @@
     <br><br>
 
 
-    <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+    <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>" class="form" style="padding: 100px 300px 0 300px;">
         <h2 style="text-align: center;">Editar Diagnóstico</h2><br>
         <div class="row">
             <div class="col">
-                <label for="rut">Código</label>
-                <input type="text" class="form-control" name="codigo" placeholder="Ingrese Nuevo codigo" readonly>
+                <label for="rut" style="text-align: center;">Código</label>
+                <input type="text" class="form-control" name="codigo" value="<?php echo $fila['Codigo']; ?>">
             </div>
         </div>
+
         <br>
+
         <div class="row">
             <div class="col">
                 <label for="rut">Diagnostico</label>
                 <td>
-                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="estado" name="diagnostico">
+                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="estado" name="diagnostico" value="<?php echo $fila['Diagnostico']; ?>">
                         <option>- POR DIAGNOSTICAR</option>
                         <option>A - NEGATIVO</option>
                         <option>B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
@@ -47,18 +84,19 @@
 
             </div>
         </div>
+
         <br>
+
         <div class="row">
             <div class="col">
-                <label for="rut">Descripción</label>
-                <input type="text" class="form-control" name="descripcion" placeholder="Ingrese Descripcion">
+                <label for="materno" style="text-align: center;">Descripción</label>
+                <input type="text" class="form-control" name="descripcion" value="<?php echo $fila['Descripcion']; ?>">
             </div>
         </div>
 
-        </div>
+        <br>
 
-        <br><br><br>
-        <a href="creacionusuarios.php" class="btn btn-primary w-100 center-block">Guardar</a>
+        <button type="submit" class="btn btn-primary w-100 center-block" name="editarRegistro">Guardar</button>
     </form>
 
 

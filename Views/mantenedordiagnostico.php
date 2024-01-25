@@ -53,10 +53,10 @@ $diagnosticos = mysqli_query($conexion, $query);
                         <td><?php echo $fila['IDDiagnosticos'] ?></td>
                         <td><?php echo $fila['Codigo'] ?></td>
                         <td><?php echo $fila['Diagnostico'] ?></td>
-                        <td><?php echo $fila['Descripcion'] ?>>
+                        <td><?php echo $fila['Descripcion'] ?>
                         <td>
-                            <a href="editardiagnostico.php" class="btn w-100 m-1 btn-primary">editar</a>
-                            <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
+                            <a href="editardiagnostico.php?IDDiagnosticos=<?php echo $fila['IDDiagnosticos']; ?>" class="btn w-100 m-1 btn-primary">editar</a>
+                            <a href="borrardiagnostico.php?IDDiagnosticos=<?php echo $fila['IDDiagnosticos']; ?>" class="btn w-100 m-1 btn-danger">borrar</a>
                         </td>
                     </tr>
 
