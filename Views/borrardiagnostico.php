@@ -12,10 +12,10 @@ if (isset($_POST['borrarRegistro'])) {
 
     if (!mysqli_query($conexion, $query)) {
         die('Error: ' . mysqli_error($conexion));
-        echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">No se Pudo Borrar el Registro</div>';
+        $error = "No se Pudo Borrar el Registro";
     } else {
-        echo '<script language="javascript">alert("juas");</script>';
-        header('Location:../Views/mantenedordiagnostico.php');
+        $mensaje = "Registro Borrado Exitosamente";
+        header('Location:../Views/mantenedordiagnostico.php?mensaje=' . urldecode($mensaje));
         exit();
     }
 }

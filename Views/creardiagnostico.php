@@ -6,15 +6,15 @@ if (isset($_POST['crearRegistro'])) {
     $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
 
     if (!isset($codigo) || $codigo == '' || !isset($diagnostico) || $diagnostico == '' || !isset($descripcion) || $descripcion == '') {
-        echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">Algunos Campos Estan Vacios</div>';
+        $error = "Algunos Campos Estan Vacios";
     } else {
         $query = "INSERT INTO diagnosticos(Codigo, Diagnostico, Descripcion)VALUES('$codigo' , '$diagnostico' , '$descripcion')";
         if (!mysqli_query($conexion, $query)) {
             die('Error: ' . mysqli_error($conexion));
-            echo '<div class="alert alert-danger d-flex aling-items-center" role="alert">No se Pudo Crear el Registro</div>';
+            $error = "No se Pudo Crear el Registro";
         } else {
-            echo '<div class="alert alert-success d-flex aling-items-center" role="alert">Registro Creardo Exitosamente</div>';
-            header('Location:../Views/mantenedordiagnostico.php');
+            $mensaje = "Registro Creardo Exitosamente";
+            header('Location:../Views/mantenedordiagnostico.php?mensaje=' . urldecode($mensaje));
             exit();
         }
     }
@@ -47,9 +47,16 @@ if (isset($_POST['crearRegistro'])) {
     <br><br>
 
 
+
     <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>" class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Crear Diagnóstico</h2><br>
+        <?php if (isset($error)) : ?>
+            <h4 class="alert alert-danger" role="alert" style="font-size: 15px;"><?php echo $error; ?></h4>
+        <?php endif ?>
+        <div>
+            <h2 style="text-align: center;">Crear Diagnóstico</h2><br>
+        </div>
         <div class="row">
+
             <div class="col">
                 <label for="rut" style="text-align: center;">Código</label>
                 <input type="text" class="form-control" name="codigo">
