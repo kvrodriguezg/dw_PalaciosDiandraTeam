@@ -23,6 +23,12 @@ include("menuadministrador.php");
 
 <form method="POST"  class="form" style="padding: 100px 300px 0 300px;">
 <h2 style="text-align: center;">Crear usuario</h2><br>
+//llamo a la conexion y mi controlador
+<?php
+include "Models/conexion.php";
+include "Controllers/registro_usuarios.php";
+
+?>
     <div class="row">
         <div class="col">
             <label for="rut"> Nombre Completo</label>
