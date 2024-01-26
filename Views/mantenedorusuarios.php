@@ -1,3 +1,7 @@
+<?php
+require_once("../Controllers/usuariosController.php")
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    
+    <script src="https://kit.fontawesome.com/9d79c138c5.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
@@ -18,7 +22,7 @@ include("menuadministrador.php");
     </header>
 <br><br><br><br><br>
 <body class="container">
-<h1>Listado de Usuarios</h1><br>
+<h1>Listado de vista de Angelo</h1><br>
 <a href="creacionusuarios.php" class="btn  btn-primary">Crear Usuario</a>
 <br><br><br>
 <section style="margin: 10px;">
@@ -38,63 +42,45 @@ include("menuadministrador.php");
             <th>Clave </th>
             <th>Perfil</th>
             <th>Centro Medico</th>
-    
+            <th>             </th>
+            <th>             </th>
         </tr>
+        
+
         </thead>
         <tbody>
-            <tr class="table table-striped" >
-                <td>1</td>
-                <td>luis yañez</td>
-                <td>lyanez</td>
-                <td>lyanez@laboratorio.cl</td>
-                <td>17426433-5</td>
-                <td>lyanez17426433-5</td>
-                <td>administrador</td>
-                <td>N/A</td>
-                <td>
-                <a href="editarusuario.php" class="btn w-100 m-1 btn-primary">editar</a>
-                <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                </td>
-                <td>
+            <tr>
+           <?php
+            foreach($listusuarios as $usu){ 
+                ?>
+            <td><?php echo $usu['IDUsuario']; ?></td>
+            <td><?php echo $usu['Nombre']; ?></td>
+            <td><?php echo $usu['Correo']; ?></td>
+            <td><?php echo $usu['Rut']; ?></td>
+            <td><?php echo $usu['Clave']; ?></td>
+            <td><?php echo $usu['IDPerfil']; ?></td>
+            <td><?php echo $usu['IDCentroMedico']; ?></td>
+            <td></td>
+            <td><a href =""><i class="fa-solid fa-pen-to-square"></i></a></td>
+            
+<form method="POST">
+    <input type="hidden" name="op" value="EDITAR">
+    <input type="hidden" name="IDPerfil" value="<?php echo $registro['IDPerfil'] ?>">
+    <input type="hidden" name="TipoPerfil" value="<?php echo $registro['TipoPerfil'] ?>">
     
-    
-                </td>
-            </tr>
-            <tr class="table table-striped" >
-                <td>2</td>
-                <td>luis yañez</td>
-                <td>lyanez</td>
-                <td>lyanez@laboratorio.cl</td>
-                <td>17426433-5</td>
-                <td>lyanez17426433-5</td>
-                <td>Recepcionista</td>
-                <td>N/A</td>
-                <td>
-                <a href="editarusuario.php" class="btn w-100 m-1 btn-primary">editar</a>
-                <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                </td>
-                <td>
-    
-    
-                </td>
-            </tr>
-            <tr class="table table-striped" >
-                <td>3</td>
-                <td>luis yañez</td>
-                <td>lyanez</td>
-                <td>lyanez@laboratorio.cl</td>
-                <td>17426433-5</td>
-                <td>lyanez17426433-5</td>
-                <td>Centro Médico</td>
-                <td>Laguna Azul</td>
-                <td>
-                <a href="editarusuario.php" class="btn w-100 m-1 btn-primary">editar</a>
-                <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                </td>
-                <td>
-    
-    
-                </td>
+</form>
+</td>
+<td>
+<form method="post" action="mantenedorPerfiles.php">
+    <input type="hidden" name="op" value="eliminar">
+    <input type="hidden" name="IDPerfil" value="<?php echo $registro['IDPerfil'] ?>">
+    <input class="btn btn-danger" type="submit" value="ELIMINAR">
+</form>
+</td>
+
+        <?php
+            }
+           ?>
             </tr>
         </tbody>
     </table>
