@@ -71,4 +71,15 @@ class examenesModel
         }
 
     }
+
+    public function obtenerEstados($perfil)
+    {
+        $query = "SELECT * FROM estados WHERE IDPerfil = (SELECT IDPerfil FROM perfiles WHERE TipoPerfil= '$perfil')";
+        $result = mysqli_query($this->db, $query);
+        if ($result ) {
+            return $result ;
+        }
+    }
+
+    
 }
