@@ -1,4 +1,18 @@
+<?php
 
+$AgregaNEstado='';
+$AgregaPerfEstado='';
+$sw = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if(!isset($_POST['AgregaNEstado']))	    {$AgregaNEstado='';       }else{$AgregaNEstado=$_POST['AgregaNEstado'];}
+    if(!isset($_POST['IDEstado']))	        {$IDEstado='';            }else{$IDEstado=$_POST['IDEstado'];}
+    if(!isset($_POST['AgregaPerfEstado']))  {$AgregaPerfEstado='';    }else{$AgregaPerfEstado=$_POST['AgregaPerfEstado'];}
+    if(!isset($_POST['sw']))                {$sw='';                  }else{$sw=$_POST['sw'];}
+
+}
+    $IDEstado = $_GET['IDEstado'];
+?>
 
 
 <!DOCTYPE html>
@@ -22,39 +36,26 @@ include("menuadministrador.php");
 <br><br>
 
 
-<form method="POST"  class="form" style="padding: 100px 300px 0 300px;">
-<h2 style="text-align: center;">Editar Estado</h2><br>
-    <div class="row">
-        <div class="col">
-            <label for="rut">Estado</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Recepcionado">
+<form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+        <h2 style="text-align: center;">Modificar Estado</h2><br>
+        <div class="row">
+            <div class="col">
+                <label for="rut" style="text-align: center;">Estado:</label>
+                <input type="text" class="form-control" name="AgregaNEstado" value="<?php echo "$AgregaNEstado"; ?>"><br>
+                <label  style="text-align: center;">Perfil:</label>
+                <input type="text" class="form-control" name="AgregaPerfEstado" value="<?php echo "$AgregaPerfEstado"; ?>">
+                <input type="hidden" name="IDEstado" value="<?php echo $IDEstado; ?>">
+                <input type="hidden" name="sw" value="Modificar"><br>
+                <input type="submit" class="btn btn-primary w-100 center-block" name="ModificarRegistro" value="Modificar">
         </div>
-    </div>
+    </form>
 
-    <br>
+    <?php
 
-    <div class="row">
-        <div class="col">
-            <label for="clave">Perfil</label>
-            <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrador
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Administrador</a>
-                    <a class="dropdown-item" href="#">Recepcionista</a>
-                    <a class="dropdown-item" href="#">Tecnico Tinción</a>
-                    <a class="dropdown-item" href="#">Tecnico Diagnóstico</a>
-                    <a class="dropdown-item" href="#">Centro Médico</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <br><br><br>
-    <a href="creacionusuarios.php" class="btn btn-primary w-100 center-block" >Guardar</a>
-</form>
+if ($sw == "Modificar") {
+    require_once("../Controllers/EstadoController.php");       
+}
+?>
 
 
 <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
