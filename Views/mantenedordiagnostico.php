@@ -39,35 +39,45 @@ $diagnosticos = mysqli_query($conexion, $query);
     <h1>Listado de Diagnosticos</h1><br>
     <a href="creardiagnostico.php" class="btn  btn-primary">Crear Diagnóstico</a>
     <br><br><br>
-    <section style="margin: 10px;">
-        <table id="tableUsers" class="tabla table">
-            <style>
-                .tabla {
-                    width: 100%;
-                }
-            </style>
-            <thead>
-                <tr>
-                    <th>Código </th>
-                    <th>Descripción </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($fila = mysqli_fetch_assoc($diagnosticos)) : ?>
+    <div class="seccion_mantenedor">
+        <style>
+            .tablas_mantenedor {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-                    <tr class="table table-striped">
-                        <td><?php echo $fila['Codigo'] ?></td>
-                        <td><?php echo $fila['descripcion'] ?>
-                        <td>
-                            <a href="editardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-100 m-1 btn-primary">editar</a>
-                            <a href="borrardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-100 m-1 btn-danger">borrar</a>
-                        </td>
+            .seccion_mantenedor {
+                padding-left: 270px;
+            }
+        </style>
+        <section class="tablas_mantenedor">
+            <table id="tableUsers" class="tabla table">
+
+                <thead>
+                    <tr>
+                        <th>Código </th>
+                        <th>Descripción </th>
                     </tr>
+                </thead>
+                <tbody>
+                    <?php while ($fila = mysqli_fetch_assoc($diagnosticos)) : ?>
 
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </section>
+                        <tr class="table ">
+                            <td><?php echo $fila['Codigo'] ?></td>
+                            <td><?php echo $fila['descripcion'] ?>
+
+                            <td>
+                                <a href="editardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-30 m-1 btn-primary">editar</a>
+                                <a href="borrardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-30 m-1 btn-danger">borrar</a>
+                            </td>
+                        </tr>
+
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </section>
+    </div>
 
 
 

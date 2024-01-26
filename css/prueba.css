@@ -504,5 +504,10 @@
 
 }
 
-
+.container_tabla{
+    background-color: #0979b0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
