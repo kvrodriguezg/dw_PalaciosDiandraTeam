@@ -1,22 +1,21 @@
 <?php
 include '../Models/conex.php';
 //OBTENER EL ID ENVIADO DEL MANTENEDOR 
-$idRegistro = $_GET['IDDiagnosticos'];
+$idRegistro = $_GET['Codigo'];
 
-$query = "SELECT * FROM diagnosticos where IDDiagnosticos='" . $idRegistro . "'";
+$query = "SELECT * FROM diagnosticos where Codigo='" . $idRegistro . "'";
 $diagnos = mysqli_query($conexion, $query) or die(mysqli_error($conexion));
 $fila = mysqli_fetch_assoc($diagnos);
 
 if (isset($_POST['editarRegistro'])) {
     $codigo = mysqli_real_escape_string($conexion, $_POST['codigo']);
-    $diagnostico = mysqli_real_escape_string($conexion, $_POST['diagnostico']);
     $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
 
-    if (!isset($codigo) || $codigo == '' || !isset($diagnostico) || $diagnostico == '' || !isset($descripcion) || $descripcion == '') {
+    if (!isset($codigo) || $codigo == '' || !isset($descripcion) || $descripcion == '') {
         $error = "Algunos Campos Estan Vacios";
     } else {
-        $query = "UPDATE diagnosticos set Codigo='$codigo',Diagnostico='$diagnostico',Descripcion='$descripcion' where 
-        IDDiagnosticos='$idRegistro'";
+        $query = "UPDATE diagnosticos set Codigo='$codigo',Descripcion='$descripcion' where 
+        Codigo='$idRegistro'";
 
         if (!mysqli_query($conexion, $query)) {
             die('Error: ' . mysqli_error($conexion));
@@ -63,36 +62,17 @@ if (isset($_POST['editarRegistro'])) {
         <div class="row">
             <div class="col">
                 <label for="rut" style="text-align: center;">Código</label>
-                <input type="text" class="form-control" name="codigo" value="<?php echo $fila['Codigo']; ?>">
+                <input type="text" class="form-control" name="codigo" value="<?php echo $fila['Codigo']; ?>" readonly>
             </div>
         </div>
 
         <br>
-
-        <div class="row">
-            <div class="col">
-                <label for="rut">Diagnostico</label>
-                <td>
-                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="estado" name="diagnostico" value="<?php echo $fila['Diagnostico']; ?>">
-                        <option>- POR DIAGNOSTICAR</option>
-                        <option>A - NEGATIVO</option>
-                        <option>B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
-                        <option>C - MUESTRA PRESENTA INFECCION</option>
-                        <option>D - POSIBLE ADENOCARCINOMA</option>
-                        <option>E - CANCER EPIDERMOIDE</option>
-                        <option>F - MUESTRA ATROFICA</option>
-                    </select>
-                </td>
-
-            </div>
-        </div>
-
         <br>
 
         <div class="row">
             <div class="col">
                 <label for="materno" style="text-align: center;">Descripción</label>
-                <input type="text" class="form-control" name="descripcion" value="<?php echo $fila['Descripcion']; ?>">
+                <input type="text" class="form-control" name="descripcion" value="<?php echo $fila['descripcion']; ?>">
             </div>
         </div>
 

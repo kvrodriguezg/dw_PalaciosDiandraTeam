@@ -2,13 +2,12 @@
 include '../Models/conex.php';
 if (isset($_POST['crearRegistro'])) {
     $codigo = mysqli_real_escape_string($conexion, $_POST['codigo']);
-    $diagnostico = mysqli_real_escape_string($conexion, $_POST['diagnostico']);
     $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
 
-    if (!isset($codigo) || $codigo == '' || !isset($diagnostico) || $diagnostico == '' || !isset($descripcion) || $descripcion == '') {
+    if (!isset($codigo) || $codigo == '' || !isset($descripcion) || $descripcion == '') {
         $error = "Algunos Campos Estan Vacios";
     } else {
-        $query = "INSERT INTO diagnosticos(Codigo, Diagnostico, Descripcion)VALUES('$codigo' , '$diagnostico' , '$descripcion')";
+        $query = "INSERT INTO diagnosticos(Codigo, Descripcion)VALUES('$codigo', '$descripcion')";
         if (!mysqli_query($conexion, $query)) {
             die('Error: ' . mysqli_error($conexion));
             $error = "No se Pudo Crear el Registro";
@@ -58,28 +57,8 @@ if (isset($_POST['crearRegistro'])) {
         <div class="row">
 
             <div class="col">
-                <label for="rut" style="text-align: center;">Código</label>
+                <label for="rut" style="text-align: center;" readonly>Código</label>
                 <input type="text" class="form-control" name="codigo">
-            </div>
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col">
-                <label for="rut">Diagnostico</label>
-                <td>
-                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="estado" name="diagnostico">
-                        <option>- POR DIAGNOSTICAR</option>
-                        <option>A - NEGATIVO</option>
-                        <option>B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
-                        <option>C - MUESTRA PRESENTA INFECCION</option>
-                        <option>D - POSIBLE ADENOCARCINOMA</option>
-                        <option>E - CANCER EPIDERMOIDE</option>
-                        <option>F - MUESTRA ATROFICA</option>
-                    </select>
-                </td>
-
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 <?php include("../Models/conex.php") ?>
 <?php
 //crear y selecionar la query
-$query = "SELECT * FROM diagnosticos ORDER BY IDDiagnosticos DESC";
+$query = "SELECT * FROM diagnosticos ORDER BY Codigo DESC";
 $diagnosticos = mysqli_query($conexion, $query);
 ?>
 
@@ -48,9 +48,7 @@ $diagnosticos = mysqli_query($conexion, $query);
             </style>
             <thead>
                 <tr>
-                    <th>ID Diagnóstico</th>
                     <th>Código </th>
-                    <th>Diagnóstico </th>
                     <th>Descripción </th>
                 </tr>
             </thead>
@@ -58,13 +56,11 @@ $diagnosticos = mysqli_query($conexion, $query);
                 <?php while ($fila = mysqli_fetch_assoc($diagnosticos)) : ?>
 
                     <tr class="table table-striped">
-                        <td><?php echo $fila['IDDiagnosticos'] ?></td>
                         <td><?php echo $fila['Codigo'] ?></td>
-                        <td><?php echo $fila['Diagnostico'] ?></td>
-                        <td><?php echo $fila['Descripcion'] ?>
+                        <td><?php echo $fila['descripcion'] ?>
                         <td>
-                            <a href="editardiagnostico.php?IDDiagnosticos=<?php echo $fila['IDDiagnosticos']; ?>" class="btn w-100 m-1 btn-primary">editar</a>
-                            <a href="borrardiagnostico.php?IDDiagnosticos=<?php echo $fila['IDDiagnosticos']; ?>" class="btn w-100 m-1 btn-danger">borrar</a>
+                            <a href="editardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-100 m-1 btn-primary">editar</a>
+                            <a href="borrardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-100 m-1 btn-danger">borrar</a>
                         </td>
                     </tr>
 
