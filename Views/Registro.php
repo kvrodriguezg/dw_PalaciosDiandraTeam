@@ -1,3 +1,4 @@
+<?php require_once("../Controllers/examenesController.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,17 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-
     <link rel="stylesheet" href="../css/registro.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-
     <title>Registro</title>
 </head>
 
-
 <body class="container">
-
-
     <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <?php
         include("menu.php");
@@ -44,28 +40,29 @@
     </div>
     <br>
 
-    <body>
-        <section>
-            <table id="tableUsers" class="tabla table">
-                <thead>
-                    <tr>
-                        <th>Seleccionar</th>
-                        <th>Nombre Paciente</th>
-                        <th>Domicilio</th>
-                        <th>Laboratorio</th>
-                        <th>Examen</th>
-                        <th>F. Toma de Muestra</th>
-                        <th>F. de Tinción</th>
-                        <th>F. Diagnóstico</th>
-                        <th>Diagnóstico</th>
-                        <th>Cod. Diagnóstico</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+    <section>
+        <table id="tableUsers" class="tabla table">
+            <thead>
+                <tr>
+                    <th>Seleccionar</th>
+                    <th>Nombre Paciente</th>
+                    <th>Domicilio</th>
+                    <th>Laboratorio</th>
+                    <th>Examen</th>
+                    <th>F. Toma de Muestra</th>
+                    <th>F. de Tinción</th>
+                    <th>F. Diagnóstico</th>
+                    <th>Diagnóstico</th>
+                    <th>Cod. Diagnóstico</th>
+                    <th>Estado</th>
+                    <th>Cambiar Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_array($examenes)) { ?>
                     <tr class="table table-striped">
-                        <?php require_once("../Controllers/examenesController.php");
-                        while ($row = mysqli_fetch_array($examenes)) { ?>
+                        <form method="post" action="Registro.php">
                             <td>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
@@ -82,9 +79,10 @@
                             <td><?php echo $row['Fechadiagnostico'] ?></td>
                             <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
                             <td><?php echo $row['CodigoDiagnosticos']; ?></td>
-                            <td>
+                            <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
 
-                                <select class="form-select" name="estado">
+                            <td>
+                                <select class="form-select" style="width: 150px" name="estado" required>
                                     <?php
                                     $resultadoEstados = $examen->obtenerEstados('recepcion');
 
@@ -93,7 +91,6 @@
                                     }
                                     ?>
                                 </select>
-
                             </td>
 
                             <td>
@@ -105,19 +102,21 @@
                             </td>
                             <td>
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
-                                <a href="#s" class="btn w-100 m-1 btn-primary">Enviar</a>
+                                <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
+                                <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
+                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger">Eliminar</input>
                             </td>
+                        </form>
                     </tr>
-                </tbody>
-            <?php } ?>
-            </table>
-        </section>
-    </body>
 
+            </tbody>
 
-    <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
-
+        <?php } ?>
+        </table>
+    </section>
 </body>
+
+<script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
 
 </html>
 

@@ -1,3 +1,4 @@
+<?php require_once("../Controllers/examenesController.php"); ?>
 <?php include "../Views/Shared/head.php" ?>
 <script src="../../js/diagnostico.js"></script>
 
@@ -6,62 +7,86 @@
 <body class="container">
     <div style="height: 70px"></div><br><br>
     <h1 class="display-2 text-center">Diagnósticos</h1><br><br>
-    <section style="margin: 10px;">
-        <style>
-            .tabla {
-                width: 100%;
-            }
-        </style>
-        <table id="tablaDiagnostico" class="text-center tabla table">
+    <section>
+        <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
-                <th>Seleccionar</th>
+                    <th>Seleccionar</th>
                     <th>Nombre Paciente</th>
-                    <th>Rut</th>
                     <th>Domicilio</th>
-                    <th>Nombre Laboratorio</th>
-                    <th>Nombre Examen</th>
-                    <th>Fecha de toma de muestra</th>
+                    <th>Laboratorio</th>
+                    <th>Examen</th>
+                    <th>F. Toma de Muestra</th>
+                    <th>F. de Tinción</th>
+                    <th>F. Diagnóstico</th>
+                    <th>Diagnóstico</th>
+                    <th>Cod. Diagnóstico</th>
                     <th>Estado</th>
-                    <th>Diagnostico</th>
-                    <th>Acciones</th>
+                    <th>Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="table table-striped">
-                <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                            <label class="form-check-label" for="flexCheckIndeterminate">
-                            </label>
-                        </div>
-                    </td>
-                    <td>Luis Yañez</td>
-                    <td>17426433-5</td>
-                    <td>Arturo prat 269</td>
-                    <td>INDISA</td>
-                    <td>Glisemia</td>
-                    <td>12-12-2024</td>
-                    <td>Listo para Diagnostico</td>
-                    <form>
-                        <td>
-                            <select class="form-select" style="width: 62px" aria-label="Default select example" id="estado" name="estado">
-                                <option value="Z">- POR DIAGNOSTICAR</option>
-                                <option value="A">A - NEGATIVO</option>
-                                <option value="B">B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
-                                <option value="C">C - MUESTRA PRESENTA INFECCION</option>
-                                <option value="D">D - POSIBLE ADENOCARCINOMA</option>
-                                <option value="E">E - CANCER EPIDERMOIDE</option>
-                                <option value="F">F - MUESTRA ATROFICA</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="hidden" name="enviarRegistro" value="enviado">
-                            <button type="submit" id="btnEnviar" class="btn btn-success">Enviar a Registro</button>
-                    </form>
-                    </td>
-                </tr>
+                <?php while ($row = mysqli_fetch_array($examenesDiagnostico)) { ?>
+                    <tr class="table table-striped">
+                        <form method="post" action="diagnostico.php">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                                    <label class="form-check-label" for="flexCheckIndeterminate">
+                                    </label>
+                                </div>
+                            </td>
+                            <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
+                            <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
+                            <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
+                            <td><?php echo $row['NombreExamen'] ?></td>
+                            <td><?php echo $row['FechaTomaMuestra'] ?></td>
+                            <td><?php echo $row['Fechatincion'] ?></td>
+                            <td><?php echo $row['Fechadiagnostico'] ?></td>
+                            <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
+                            <td>
+                                <select class="form-select" style="width: 150px" name="diagnostico" required>
+                                    <?php
+                                    $diagnosticos = $examen->obtenerListaDiagnosticos();
+
+                                    while ($row1 = mysqli_fetch_array($diagnosticos)) {
+                                        echo '<option value="' . $row1['CodigoDiagnosticos'] . '">' . $row1['Diagnostico'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
+
+                            <td>
+                                <select class="form-select" style="width: 150px" name="estado" required>
+                                    <?php
+                                    $resultadoEstados = $examen->obtenerEstados('diagnostico');
+
+                                    while ($row1 = mysqli_fetch_array($resultadoEstados)) {
+                                        echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
+                                    <img src="../img/pdf.png" alt="Icono PDF">
+                                </button>
+
+
+                            </td>
+                            <td>
+                                <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
+                                <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
+                                <input name="actualizarEstadoDiagnostico" type="submit" class="btn w-100 m-1 btn-success"></input>
+                            </td>
+                        </form>
+                    </tr>
+
             </tbody>
+
+        <?php } ?>
         </table>
     </section>
 </body>

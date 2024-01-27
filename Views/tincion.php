@@ -1,3 +1,4 @@
+<?php require_once("../Controllers/examenesController.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,57 +33,60 @@
     </form>
     <br>
     <br>
-        <section>
-            <table id="tableUsers" class="tabla table">
-
-                <thead>
-                    <tr>
-                        <th>Seleccionar</th>
-                        <th>Nombre Paciente</th>
-                        <th>Domicilio</th>
-                        <th>Laboratorio</th>
-                        <th>Análisis</th>
-                        <th>F. Toma de Muestra</th>
-                        <th>F. de Tinción</th>
-                        <th>F. Fiagnostico</th>
-                        <th>Diagnóstico</th>
-                        <th>Cod. Diagnóstico</th>
-                        <th>Estado</th>
-
-                    </tr>
-                </thead>
-                <?php
-                for ($i = 0; $i <= 4; $i++) {
-                    ?>
-                    <tbody>
-                        <tr class="table table-striped">
-                                                        <td>
+    <section>
+        <table id="tableUsers" class="tabla table">
+            <thead>
+                <tr>
+                    <th>Seleccionar</th>
+                    <th>Nombre Paciente</th>
+                    <th>Domicilio</th>
+                    <th>Laboratorio</th>
+                    <th>Examen</th>
+                    <th>F. Toma de Muestra</th>
+                    <th>F. de Tinción</th>
+                    <th>F. Diagnóstico</th>
+                    <th>Diagnóstico</th>
+                    <th>Cod. Diagnóstico</th>
+                    <th>Estado</th>
+                    <th>Cambiar Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_array($examenesTincion)) { ?>
+                    <tr class="table table-striped">
+                        <form method="post" action="tincion.php">
+                            <td>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
                                     <label class="form-check-label" for="flexCheckIndeterminate">
                                     </label>
                                 </div>
                             </td>
-                            <td>luis yañez</td>
-                            <td>Arturo prat 269</td>
-                            <td>ULTRAMAN</td>
-                            <td>Glisemia</td>
-                            <td>12-12-2024</td>
-                            <td>13-12-2024</td>
-                            <td>14-12-2024</td>
-                            <td>MUESTRA INADECUADA, VOLVER A TOMAR</td>
-                            <td>B</td>
-                            <td><select>
-                            <option>Pendiente</option>
-                            <option>Listo para Diagnóstico</option>
-                            <option>Listo para Tinción</option>
-                            <option>Realizado</option>
-                            <option>Completado</option>
-                        </select></td>
+                            <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
+                            <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
+                            <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
+                            <td><?php echo $row['NombreExamen'] ?></td>
+                            <td><?php echo $row['FechaTomaMuestra'] ?></td>
+                            <td><?php echo $row['Fechatincion'] ?></td>
+                            <td><?php echo $row['Fechadiagnostico'] ?></td>
+                            <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
+                            <td><?php echo $row['CodigoDiagnosticos']; ?></td>
+                            <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
 
                             <td>
-                                <button type="button" class="btn btn-outline-danger"
-                                    onclick="window.open('generar_pdf.php', '_blank');">
+                                <select class="form-select" style="width: 150px" name="estado" required>
+                                    <?php
+                                    $resultadoEstados = $examen->obtenerEstados('tincion');
+
+                                    while ($row1 = mysqli_fetch_array($resultadoEstados)) {
+                                        echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
                                     <img src="../img/pdf.png" alt="Icono PDF">
                                 </button>
 
@@ -90,15 +94,17 @@
                             </td>
                             <td>
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
-                                <a href="#s" class="btn w-100 m-1 btn-primary">Enviar</a>
+                                <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
+                                <input name="actualizarEstadoTincion" type="submit" class="btn w-100 m-1 btn-primary"></input>
                             </td>
-                        </tr>
-                    </tbody>
-                    <?php
-                }
-                ?>
-            </table>
-        </section>
+                        </form>
+                    </tr>
+
+            </tbody>
+
+        <?php } ?>
+        </table>
+    </section>
 
 
 
