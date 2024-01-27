@@ -34,7 +34,6 @@ include("menuadministrador.php");
 <h1>Mantenedor Laboratorios</h1><br>
 <?php
     require_once("../Controllers/centrosmedicosController.php");
-    if (!$crearperfiles) {
         echo '
                 <nav class="nav">
                 <ul class="nav">
@@ -54,22 +53,10 @@ include("menuadministrador.php");
                 </div>
             </ul>
             </nav>';
-    } ?>
+?>
 
 <br><br><br>
-<div class="alinear">
-        <form method="POST" class="form">
-            <input type="date" name="calendario" required="required">
-            <button type="submit" class="btn btn-warning" name="Filtrar">Filtrar</button>
-        </form>
 
-        <div class="alinear2">
-            <button type="button" class="btn btn-outline-success custom-excel-button"
-                onclick="window.open('../Controllers/generarExcel.php');">
-                <img src="../img/icono_excel_30.png" alt="Icono Excel">
-            </button>
-        </div>
-    </div>
 <section style="margin: 10px;">
     <table id="tableUsers" class="tabla table">
     <style>
