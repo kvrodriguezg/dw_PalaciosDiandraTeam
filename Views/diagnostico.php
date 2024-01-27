@@ -50,7 +50,7 @@
                                     $diagnosticos = $examen->obtenerListaDiagnosticos();
 
                                     while ($row1 = mysqli_fetch_array($diagnosticos)) {
-                                        echo '<option value="' . $row1['CodigoDiagnosticos'] . '">' . $row1['Diagnostico'] . '</option>';
+                                        echo '<option value="' . $row1['Codigo'] . '">' . $row1['descripcion'] . '</option>';
                                     }
                                     ?>
                                 </select>

@@ -62,7 +62,7 @@ class ExisteTabla
     public function crearDiagnosticos()
     {
         if ($this->comprobarTabla("Diagnosticos") == true) {
-            $query = "INSERT IGNORE INTO diagnosticos (CodigoDiagnosticos, Diagnostico) VALUES 
+            $query = "INSERT IGNORE INTO diagnosticos (codigo, descripcion) VALUES 
                 ('A', 'NEGATIVO'),
                 ('B', 'MUESTRA INADECUADA, VOLVER A TOMAR'),
                 ('C', 'MUESTRA PRESENTA INFECCION'),

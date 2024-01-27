@@ -70,11 +70,11 @@ class examenesModel
     public function obtenerDiagnostico($codDiagnostico)
     {
         if ($codDiagnostico != null) {
-            $query = "SELECT Diagnostico FROM diagnosticos WHERE CodigoDiagnosticos ='$codDiagnostico';";
+            $query = "SELECT descripcion FROM diagnosticos WHERE codigo ='$codDiagnostico';";
             $result = mysqli_query($this->db, $query);
             if ($result) {
                 $row = mysqli_fetch_array($result);
-                return $row['Diagnostico'];
+                return $row['descripcion'];
             } else {
                 return "error" . mysqli_query($this->db, $query);
             }
