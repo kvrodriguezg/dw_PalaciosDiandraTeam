@@ -74,7 +74,6 @@
             </div>
             <h1 style="text-align: center">Iniciar Sesión</h1><br><br>
             <div class="row row-gap-3 form-login">
-
                 <div class="col-12 pb-3 mb-3">
                     <form id="submitLogin" class="row g-3 needs-validation" asp-action="login" asp-controller="Login" method="post" novalidate>
 
