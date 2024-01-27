@@ -1,3 +1,16 @@
+<?php
+   if (!isset($_POST['IDCentroMedico'])) { $IDCentroMedico = '';} else {$IDCentroMedico = $_POST['IDCentroMedico'];}
+   if (!isset($_POST['NombreCentro'])) {$NombreCentro = '';} else {$NombreCentro = $_POST['NombreCentro'];}
+   if (!isset($_POST['codigo'])) {$codigo = '';} else {$codigo = $_POST['codigo'];}
+     
+   if (!isset($_POST['op'])) { $op = '';} else {$op = $_POST['op'];}
+                if ($op == 'EDITAR') {
+                    
+                    header("Location: editarlaboratorio.php?IDCentroMedico=$IDCentroMedico&NombreCentro=$NombreCentro&codigo=$codigo");
+                    exit();
+                }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    
+    <link rel="stylesheet" href="../css/registro.css">
     <title>Document</title>
 </head>
 
@@ -19,8 +32,44 @@ include("menuadministrador.php");
 <br><br><br><br><br>
 <body class="container">
 <h1>Mantenedor Laboratorios</h1><br>
-<a href="crearlaboratorio.php" class="btn  btn-primary">Ingresar Laboratorio</a>
+<?php
+    require_once("../Controllers/centrosmedicosController.php");
+    if (!$crearperfiles) {
+        echo '
+                <nav class="nav">
+                <ul class="nav">
+                    <div class="m-1">
+                        <form method="post" action="mantenedorlaboratorios.php">
+                            <input type="hidden" name="crearcentros" value="crear">
+                            <button class="btn w-100 m-1 btn-primary btn-sm ">CREAR CENTROS</button>
+                        </form>
+                    </div>
+                </ul>
+                <ul class="nav">
+                <div class="m-1">
+                    <form method="post" action="crearlaboratorio.php">
+                        <input type="hidden" name="crearPerfiles" value="crear">
+                        <button class="btn w-100 m-1 btn-primary btn-sm ">INSERTAR PERFILES</button>
+                    </form>
+                </div>
+            </ul>
+            </nav>';
+    } ?>
+
 <br><br><br>
+<div class="alinear">
+        <form method="POST" class="form">
+            <input type="date" name="calendario" required="required">
+            <button type="submit" class="btn btn-warning" name="Filtrar">Filtrar</button>
+        </form>
+
+        <div class="alinear2">
+            <button type="button" class="btn btn-outline-success custom-excel-button"
+                onclick="window.open('../Controllers/generarExcel.php');">
+                <img src="../img/icono_excel_30.png" alt="Icono Excel">
+            </button>
+        </div>
+    </div>
 <section style="margin: 10px;">
     <table id="tableUsers" class="tabla table">
     <style>
@@ -37,42 +86,44 @@ include("menuadministrador.php");
         </tr>
         </thead>
         <tbody>
-            <tr class="table table-striped" >
-                <td>1</td>
-                <td>MEGAMAN    </td>
-                <td>MM</td>
-                <td>
-                    <a href="editarlaboratorio.php" class="btn  m-1 btn-primary">editar</a>
-                    <a href="" class="btn  m-1 btn-danger">borrar</a>
-                    </td>
-            </tr>
-            <tr class="table table-striped" >
-            <td>2</td>
-                <td>ULTRAMAN      </td>
-                <td>UM</td>
+        <tr >                <?php
+                foreach ($listCentros as $registro) {
+                    ?>
+        <td>
+                            <?php echo $registro['IDCentroMedico']; ?>
+                        </td>
+                        <td>
+                            <?php echo $registro['NombreCentro']; ?>
+                        </td>
+                        <td>
+                            <?php echo $registro['codigo']; ?>
+                        </td>
+                        <td>
 
-                <td>
-                <a href="editarlaboratorio.php" class="btn  m-1 btn-primary">editar</a>
-                <a href="" class="btn  m-1 btn-danger">borrar</a>
-                </td>
-                <td>
-    
-    
-                </td>
-            </tr>
-            <tr class="table table-striped" >
-            <td>3</td>
-                <td>ULTRASEVEN     </td>
-                <td>US</td>
-                <td>
-                <a href="editarlaboratorio.php" class="btn  m-1 btn-primary">editar</a>
-                <a href="" class="btn  m-1 btn-danger">borrar</a>
-                </td>
-                <td>
-    
-    
-                </td>
-            </tr>
+                            <form method="POST">
+                                <input type="hidden" name="op" value="EDITAR">
+                                <input type="hidden" name="IDCentroMedico" value="<?php echo $registro['IDCentroMedico'] ?>">
+                                <input type="hidden" name="NombreCentro" value="<?php echo $registro['NombreCentro'] ?>">
+                                <input type="hidden" name="codigo" value="<?php echo $registro['codigo'] ?>">
+                                <button type="submit" class="btn w-100 center-block btn-primary">EDITAR</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="mantenedorlaboratorios.php">
+                                <input type="hidden" name="op" value="eliminar">
+                                <input type="hidden" name="IDCentroMedico" value="<?php echo $registro['IDCentroMedico'] ?>">
+                                <input class="btn btn-danger" type="submit" value="ELIMINAR">
+                            </form>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                if ($op == "ELIMINAR") {
+
+                    require_once("../Controllers/perfilesController.php");
+                }
+
+                ?>
         </tbody>
     </table>
 </section>

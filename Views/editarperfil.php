@@ -37,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <br><br>
 
     <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Editar Perfil</h2><br> <?php echo "op = $op, ID =  $IDPerfil, Tipo = $TipoPerfil" ?>
+        <h2 style="text-align: center;">Editar Perfil</h2><br>
         <div class="row">
             <div class="col">
                 <label for="IDPerfil">ID Perfil</label><br>
-                <input type="text" class="form-control" name="IDPerfil" value="<?php echo $IDPerfil ?>">
+                <input type="text" class="form-control" name="IDPerfil" value="<?php echo $IDPerfil ?>" readonly>
                 <label for="TipoPerfil">Nombre Perfil</label><br>
                 <input type="text" class="form-control" name="TipoPerfil" value="<?php echo $TipoPerfil ?>">
                 <input type="hidden" name="op" value="Modificar">

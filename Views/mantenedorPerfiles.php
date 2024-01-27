@@ -2,22 +2,11 @@
 $op = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (!isset($_POST['IDPerfil'])) {
-        $IDPerfil = '';
-    } else {
-        $IDPerfil = $_POST['IDPerfil'];
-    }
-    if (!isset($_POST['TipoPerfil'])) {
-        $TipoPerfil = '';
-    } else {
-        $TipoPerfil = $_POST['TipoPerfil'];
-    }
-    if (!isset($_POST['op'])) {
-        $op = '';
-    } else {
-        $op = $_POST['op'];
-    }
-    if ($op == 'EDITAR') {
+    if (!isset($_POST['IDPerfil'])) { $IDPerfil = '';} else {$IDPerfil = $_POST['IDPerfil'];}
+    if (!isset($_POST['TipoPerfil'])) {$TipoPerfil = '';} else {$TipoPerfil = $_POST['TipoPerfil'];}
+    if (!isset($_POST['op'])) { $op = '';} else {$op = $_POST['op'];}
+    
+if ($op == 'EDITAR') {
         header("Location: editarperfil.php?IDPerfil=$IDPerfil&TipoPerfil=$TipoPerfil");
         exit();
     }
@@ -35,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 
@@ -50,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Listado de Perfiles</h1><br>
     <?php
     require_once("../Controllers/perfilesController.php");
-    if (!$crearperfiles) {
+
         echo '
                 <nav class="nav">
                 <ul class="nav">
@@ -70,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </ul>
             </nav>';
-    } ?>
+ ?>
     <section style="margin: 10px;">
         <table id="tableUsers" class="tabla table">
             <style>
@@ -91,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 foreach ($listperfiles as $registro) {
                     ?>
-                    <tr class="table table-striped">
+                    <tr >
                         <td>
                             <?php echo $registro['IDPerfil']; ?>
                         </td>
@@ -104,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="hidden" name="op" value="EDITAR">
                                 <input type="hidden" name="IDPerfil" value="<?php echo $registro['IDPerfil'] ?>">
                                 <input type="hidden" name="TipoPerfil" value="<?php echo $registro['TipoPerfil'] ?>">
-                                <button type="submit" class="btn btn-primary">EDITAR</button>
+                                <button type="submit" class="btn w-100 center-block btn-primary">EDITAR</button>
                             </form>
                         </td>
                         <td>

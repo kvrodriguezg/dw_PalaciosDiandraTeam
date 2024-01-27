@@ -1,3 +1,18 @@
+<?php
+$op = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $tipoPerfil = $_POST['nombreCentro'] ?? '';
+    $tipoPerfil = $_POST['CodigoCentro'] ?? '';
+    $op = $_POST['op'] ?? '';
+
+
+    if ($op == "GUARDAR") {
+        require_once("../Controllers/centrosmedicosController.php");
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,27 +38,25 @@
     <br><br>
 
 
-    <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+    <form method="POST" class="form" action="crearlaboratorio.php" style="padding: 100px 300px 0 300px;">
         <h2 style="text-align: center;">Crear Laboratorio</h2><br>
+        <br>
         <div class="row">
             <div class="col">
-                <label for="rut" style="text-align: center;">Nombre</label>
-                <input type="text" class="form-control" name="nombre">
+                <label for="nombreCentro">Nombre Centro:</label> <br><br>
+                <input type="text" name="nombreCentro" placeholder="nombreCentro">
             </div>
         </div>
-
         <br>
-
         <div class="row">
             <div class="col">
-                <label for="nombre" style="text-align: center;">Codigo</label>
-                <input type="text" class="form-control" name="rut">
+                <label for="CodigoCentro">CodigoCentro:</label> <br><br>
+                <input type="text" name="CodigoCentro" placeholder="CodigoCentro">
+                <input type="hidden" name="op" value="GUARDAR">
             </div>
         </div>
-
-        <br>
-
-        <button type="submit" class="btn btn-primary w-100 center-block" name="crearRegistro">Guardar</button>
+        <br><br><br>
+        <input class="btn w-100 m-1 btn-primary btn-sm" name="crearcentrobtn" type="submit" value="INSERTAR" />
     </form>
 
 

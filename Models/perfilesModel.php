@@ -29,7 +29,7 @@ class perfiles
         }
 
     }
-
+    
     public function insertarPerfil($nombrePerfil)
     {
         require_once("existetablaModel.php");
@@ -41,14 +41,11 @@ class perfiles
             if ($stmt = mysqli_prepare($this->db, $query)) {
                 mysqli_stmt_bind_param($stmt, "s", $nombrePerfil);
                 if (mysqli_stmt_execute($stmt)) {
-                    return true;
-                    
+                    return true;       
                 } else {
                     return false;
                 }
-
             }
-
         }
     }
 

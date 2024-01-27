@@ -1,3 +1,22 @@
+<?php
+$IDCentroMedico = $_GET['IDCentroMedico'] ?? '';
+$NombreCentro = $_GET['NombreCentro'] ?? '';
+$codigo = $_GET['codigo'] ?? '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $IDCentroMedico = $_POST['IDCentroMedico'] ?? '';
+    $NombreCentro = $_POST['NombreCentro'] ?? '';
+    $codigo = $_POST['codigo'] ?? '';
+    $op = $_POST['op'] ?? '';
+
+
+
+    if ($op == "Modificar") {
+        require_once("../Controllers/centrosmedicosController.php");
+        exit();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,30 +43,21 @@
 
 
     <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Editar Laboratorio</h2><br>
+        <h2 style="text-align: center;">Editar Perfil</h2><br>
         <div class="row">
             <div class="col">
-                <label for="rut">Nombre Laboratorio</label>
-                <input type="text" class="form-control" name="nombre" placeholder="MEGAMAN">
+            <label for="NombreCentro"> IDCentroMedico</label><br>
+            <input type="text" class="form-control" name="IDCentroMedico" value="<?php echo $IDCentroMedico ?>">
+                <label for="NombreCentro"> Nombre Centro</label><br>
+                <input type="text" class="form-control" name="NombreCentro" value="<?php echo $NombreCentro ?>">
+                <label for="TipoPerfil">Nombre codigo</label><br>
+                <input type="text" class="form-control" name="codigo" value="<?php echo $codigo ?>">
+                <input type="hidden" name="op" value="Modificar">
             </div>
         </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col">
-            <div class="row">
-            <div class="col">
-                <label for="rut">Codigo Laboratorio</label>
-                <input type="text" class="form-control" name="nombre" placeholder="MM">
-            </div>
-        </div>
-            </div>
-
-        </div>
-
         <br><br><br>
-        <a href="creacionusuarios.php" class="btn btn-primary w-100 center-block">Guardar</a>
+        <input class="btn w-100 m-1 btn-primary btn-sm" name="op" type="submit" value="Modificar" />
+
     </form>
 
 

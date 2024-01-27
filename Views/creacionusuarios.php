@@ -1,5 +1,22 @@
+<?php
+$op = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'] ?? '';
+    $rut = $_POST['rut'] ?? '';
+    $usuario = $_POST['usuario'] ?? '';
+    $clave = $_POST['clave'] ?? '';
+    $correo = $_POST['correo'] ?? '';
+    $perfil = $_POST['perfil'] ?? '';
+    $centro = $_POST['centro'] ?? '';
+    $op = $_POST['op'] ?? '';
 
+    if($op == "GUARDAR"){
+        require_once("../Controllers/usuariosController.php");
+    }
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,16 +38,16 @@ include("menuadministrador.php");
 <br><br>
 
 
-<form method="POST"  class="form" style="padding: 100px 300px 0 300px;">
-<h2 style="text-align: center;">Crear usuario</h2><br>
+<form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+<h2 style="text-align: center;">Crear usuario</h2><br> 
     <div class="row">
         <div class="col">
-            <label for="rut"> Nombre Completo</label>
-            <input type="text" class="form-control" name="nombre">
+            <label for="nombre"> Nombre Completo</label>
+            <input type="text" class="form-control" name="nombre" required>
         </div>
         <div class="col">
-            <label for="nombre"> Rut</label>
-            <input type="text" class="form-control" name="rut">
+            <label for="rut"> Rut</label>
+            <input type="text" class="form-control" name="rut" required>
         </div>
     </div>
 
@@ -39,46 +56,49 @@ include("menuadministrador.php");
     <div class="row">
     <div class="col">
             <label for="nombre">Usuario Ingreso</label>
-            <input type="text" class="form-control" name="rut">
+            <input type="text" class="form-control" name="usuario" required>
         </div>
         <div class="col">
             <label for="materno">Clave </label>
-            <input type="text" class="form-control" name="CentroMédico">
+            <input type="text" class="form-control" name="clave" required>
         </div>
     </div>
+    <br>
 
+    <div class="row">
+    <div class="col">
+            <label for="nombre">Correo</label>
+            <input type="text" class="form-control" name="correo" required>
+        </div>
+    </div>
     <br>
 
     <div class="row">
         <div class="col">
-            <label for="clave">Perfil</label>
-            <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Perfil usuario
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Recepcionista</a>
-                    <a class="dropdown-item" href="#">Tecnico Tinción</a>
-                    <a class="dropdown-item" href="#">Tecnico Diagnostico</a>
-                    <a class="dropdown-item" href="#">Centro Médico</a>
-                </div>
-            </div>
+            <label for="rut">Perfil</label>
+                <td>
+                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="perfil" name="perfil" value="seleccionar">
+                        <option>Seleccionar</option>
+                        <option>Administrador</option>
+                        <option>Recepcionista</option>
+                        <option>Tecnico Diagnóstico</option>
+                        <option>Centro Médico</option>
+                    </select>
+                </td>
         </div>
         <div class="col">
-            <label for="nivel">Centro Médico</label>
-            <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Seleccionar 
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Accion-1</a>
-                    <a class="dropdown-item" href="#">Accion-2</a>
-                    <a class="dropdown-item" href="#">Accion-3</a>
-                </div>
-            </div>
+            <label for="rut">Centro Médico 2</label>
+                <td>
+                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="centro" name="centro" value="seleccionar">
+                        <option>Seleccionar</option>
+                        <option>Ultraman</option>
+                        <option>Megaman</option>
+                        <option>ultramegaman</option>
+                    </select>
+                </td>
         </div>
     </div>
-
+    <input type="hidden" name="op" value="GUARDAR">
     <br><br><br>
     
     <button type="submit" class="btn btn-primary w-100 center-block" name="crearRegistro">Registrar</button>

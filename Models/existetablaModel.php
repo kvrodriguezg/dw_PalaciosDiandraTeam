@@ -31,7 +31,7 @@ class ExisteTabla
     {
         $this->crearTabla("Perfiles", "IDPerfil INT PRIMARY KEY AUTO_INCREMENT, TipoPerfil VARCHAR(50) NOT NULL");
         $this->crearTabla("CentrosMedicos", "IDCentroMedico INT PRIMARY KEY AUTO_INCREMENT, NombreCentro VARCHAR(100) NOT NULL, codigo VARCHAR(5) NOT NULL");
-        $this->crearTabla("Usuarios", "IDUsuario INT PRIMARY KEY AUTO_INCREMENT, Nombre VARCHAR(50) NOT NULL, Correo VARCHAR(50) NOT NULL, Rut VARCHAR(10) UNIQUE NOT NULL, Clave VARCHAR(100) NOT NULL, IDPerfil INT NOT NULL, IDCentroMedico INT, FOREIGN KEY (IDCentroMedico) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (IDPerfil) REFERENCES Perfiles(IDPerfil)");
+        $this->crearTabla("Usuarios", "IDUsuario INT PRIMARY KEY AUTO_INCREMENT, usuario varchar(50), Nombre VARCHAR(50) NOT NULL, Correo VARCHAR(50) NOT NULL, Rut VARCHAR(10) UNIQUE NOT NULL, Clave VARCHAR(100) NOT NULL, IDPerfil INT NOT NULL, IDCentroMedico INT, FOREIGN KEY (IDCentroMedico) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (IDPerfil) REFERENCES Perfiles(IDPerfil)");
         $this->crearTabla("Pacientes", "IDPaciente INT PRIMARY KEY AUTO_INCREMENT, NombrePaciente VARCHAR(100) NOT NULL, RutPaciente VARCHAR(12) NOT NULL, DomicilioPaciente VARCHAR(200) NOT NULL");
         $this->crearTabla("Diagnosticos", "CodigoDiagnosticos VARCHAR(5) PRIMARY KEY NOT NULL, Codigo INT NOT NULL, Diagnostico VARCHAR(255) NOT NULL");
         $this->crearTabla("Estados", "IDEstado INT PRIMARY KEY AUTO_INCREMENT, NombreEstado VARCHAR(100) NOT NULL");

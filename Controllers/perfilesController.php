@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
 
 //EDITAR PERFILES
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] == "Modificar" && isset($_POST['IDPerfil']) && isset($_POST['TipoPerfil'])) {
-    echo '<script>alert("cayo en controller op = $op, ID = $IDPerfil, Tipo = $TipoPerfil");</script>';
     $IDPerfil = $_POST['IDPerfil'];
     $TipoPerfil = $_POST['TipoPerfil'];
     $editarPerfil = $objPerfil->modificarPerfil($IDPerfil, $TipoPerfil);

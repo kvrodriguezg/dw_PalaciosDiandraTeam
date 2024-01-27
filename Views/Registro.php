@@ -42,8 +42,6 @@
                 <img src="../img/icono_excel_30.png" alt="Icono Excel">
             </button>
         </div>
-
-
     </div>
     <br>
 
