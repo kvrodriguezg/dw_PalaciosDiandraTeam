@@ -1,12 +1,20 @@
 <?php
-require_once("../Controllers/EstadoController.php"); 
-
-$IDEstado='';
+require_once("../Controllers/EstadoController.php");
+require_once("../Controllers/usuariosController.php");
+$IDEstado = '';
 $sw = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-    if(!isset($_POST['IDEstado']))	    {$IDEstado='';       }else{$IDEstado=$_POST['IDEstado'];}
-    if(!isset($_POST['sw']))                {$sw='';                 }else{$sw=$_POST['sw'];}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_POST['IDEstado'])) {
+        $IDEstado = '';
+    } else {
+        $IDEstado = $_POST['IDEstado'];
+    }
+    if (!isset($_POST['sw'])) {
+        $sw = '';
+    } else {
+        $sw = $_POST['sw'];
+    }
 
 }
 
@@ -29,22 +37,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 
-    <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
-        <?php
-        include("menuadministrador.php");
-        ?>
-    </header>
-    <br><br><br><br><br>
-    <body class="container">
+<header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
+    <?php
+    include("menuadministrador.php");
+    ?>
+</header>
+<br><br><br><br><br>
+
+<body class="container">
     <h1>Listado de Estados</h1><br>
     <a href="crearestado.php" class="btn  btn-primary">Crear Estados</a>
     <br><br><br>
     <section style="margin: 10px;">
-        
-    
-    <table id="tableUsers" class="tabla table">
-            <style> .tabla { width: 100%; } </style>
-            
+
+
+        <table id="tableUsers" class="tabla table">
+            <style>
+                .tabla {
+                    width: 100%;
+                }
+            </style>
+
             <thead>
                 <tr>
                     <th>ID Diagnóstico</th>
@@ -53,37 +66,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>Acción </th>
                 </tr>
             </thead>
-            
-            <?php
-            foreach($DetalleEstados as $fila)
-             {
-             ?>
-             <tbody>
-                <tr>
-                    <td><?= $fila['IDEstado'] ?></td>
-                    <td><?= $fila['NombreEstado'] ?></td>
-                    <td><?= $fila['Perfil'] ?></td>
-                    <td>
-                    <a href="editarestado.php?IDEstado=<?php echo $fila['IDEstado']; ?>" class="btn w-100 m-1 btn-primary">editar</a>
-                        
-                    <form  method="post" >
-                        <input type="hidden" name="sw" value="eliminar">
-                        <input type="hidden" name="IDEstado" value="<?php echo $fila['IDEstado']; ?>">
-                        <input  class="btn m-1 w-100 btn-danger" type="submit" value="eliminar">
-                    </form>
-                    <?php
-                
-                if ($sw == "eliminar") {
 
-                    require_once("../Controllers/EstadoController.php");
-                }
-?>
-                    </td>
-                </tr>
-            </tbody>
-        <?php
-                }
-        ?>
+            <?php
+            foreach ($DetalleEstados as $fila) {
+                ?>
+                <tbody>
+                    <tr>
+                        <td>
+                            <?= $fila['IDEstado'] ?>
+                        </td>
+                        <td>
+                            <?= $fila['NombreEstado'] ?>
+                        </td>
+                        <td>
+                            <?php
+                            $perfil = $objusuario->buscarPerfilId($fila['IDPerfil']);
+                            echo $perfil['TipoPerfil'];
+                            ?>
+                        </td>
+                        <td>
+                            <a href="editarestado.php?IDEstado=<?php echo $fila['IDEstado']; ?>"
+                                class="btn w-100 m-1 btn-primary">editar</a>
+
+                            <form method="post">
+                                <input type="hidden" name="sw" value="eliminar">
+                                <input type="hidden" name="IDEstado" value="<?php echo $fila['IDEstado']; ?>">
+                                <input class="btn m-1 w-100 btn-danger" type="submit" value="eliminar">
+                            </form>
+                            <?php
+
+                            if ($sw == "eliminar") {
+
+                                require_once("../Controllers/EstadoController.php");
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                </tbody>
+                <?php
+            }
+            ?>
         </table>
     </section>
 

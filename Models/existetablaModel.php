@@ -37,7 +37,6 @@ class ExisteTabla
         $this->crearTabla("Diagnosticos", "Codigo VARCHAR(2) NOT NULL PRIMARY KEY , descripcion VARCHAR(255) NOT NULL");
         $this->crearTabla("Estados", "IDEstado INT PRIMARY KEY AUTO_INCREMENT, NombreEstado VARCHAR(100) UNIQUE NOT NULL, IDPerfil INT, FOREIGN KEY (IDPerfil) REFERENCES Perfiles(IDPerfil)");
         $this->crearTabla("Examenes", "IDExamen INT PRIMARY KEY AUTO_INCREMENT, NombreExamen VARCHAR(100) NOT NULL, RutPaciente VARCHAR(12) NOT NULL, IDCentroSolicitante INT NOT NULL, IDEstado INT NOT NULL, CodigoDiagnosticos VARCHAR(5), FechaTomaMuestra DATE NOT NULL, FechaRecepcion DATE NOT NULL, Fechatincion DATE, Fechadiagnostico DATE, FOREIGN KEY (CodigoDiagnosticos) REFERENCES Diagnosticos(Codigo), FOREIGN KEY (IDCentroSolicitante) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (RutPaciente) REFERENCES Pacientes(RutPaciente), FOREIGN KEY (IDEstado) REFERENCES Estados(IDEstado)");
-        echo "<script>alert('Tablas creadas.');</script>";
     }
 
 
