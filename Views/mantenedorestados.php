@@ -1,3 +1,17 @@
+<?php
+require_once("../Controllers/EstadoController.php"); 
+
+$IDEstado='';
+$sw = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if(!isset($_POST['IDEstado']))	    {$IDEstado='';       }else{$IDEstado=$_POST['IDEstado'];}
+    if(!isset($_POST['sw']))                {$sw='';                 }else{$sw=$_POST['sw'];}
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,76 +40,50 @@
     <a href="crearestado.php" class="btn  btn-primary">Crear Estados</a>
     <br><br><br>
     <section style="margin: 10px;">
-        <table id="tableUsers" class="tabla table">
-            <style>
-                .tabla {
-                    width: 100%;
-                }
-            </style>
+        
+    
+    <table id="tableUsers" class="tabla table">
+            <style> .tabla { width: 100%; } </style>
+            
             <thead>
                 <tr>
-                    <th>IDDiagnóstico</th>
+                    <th>ID Diagnóstico</th>
                     <th>Estado </th>
                     <th>Perfil </th>
                     <th>Acción </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                    <td>1</td>
-                    <td>Recepcionado </td>
-                    <td>recepcionista</td>
+            
+            <?php
+            foreach($DetalleEstados as $fila)
+             {
+             ?>
+             <tbody>
+                <tr>
+                    <td><?= $fila['IDEstado'] ?></td>
+                    <td><?= $fila['NombreEstado'] ?></td>
+                    <td><?= $fila['Perfil'] ?></td>
                     <td>
-                        <a href="editarestado.php" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                    </td>
-                    <td>
+                    <a href="editarestado.php?IDEstado=<?php echo $fila['IDEstado']; ?>" class="btn w-100 m-1 btn-primary">editar</a>
+                        
+                    <form  method="post" >
+                        <input type="hidden" name="sw" value="eliminar">
+                        <input type="hidden" name="IDEstado" value="<?php echo $fila['IDEstado']; ?>">
+                        <input  class="btn m-1 w-100 btn-danger" type="submit" value="eliminar">
+                    </form>
+                    <?php
+                
+                if ($sw == "eliminar") {
 
-
+                    require_once("../Controllers/EstadoController.php");
+                }
+?>
                     </td>
                 </tr>
-                <tr class="table table-striped">
-                    <td>2</td>
-                    <td>Listo para diagnóstico </td>
-                    <td>Tinción</td>
-                    <td>
-                        <a href="editarestado.php" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                    </td>
-                    <td>
-
-
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>3</td>
-                    <td>Realizado </td>
-                    <td>área de diagnóstico</td>
-                    <td>
-                        <a href="editarestado.php" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>4</td>
-                    <td>Completado  </td>
-                    <td>registro</td>
-                    <td>
-                        <a href="editarestado.php" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>5</td>
-                    <td>Pendiente </td>
-                    <td>N/A</td>
-                    <td>
-                        <a href="editarestado.php" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="" class="btn w-100 m-1 btn-danger">borrar</a>
-                    </td>
-                </tr>
-
             </tbody>
+        <?php
+                }
+        ?>
         </table>
     </section>
 

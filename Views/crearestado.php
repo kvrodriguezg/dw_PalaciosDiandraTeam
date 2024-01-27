@@ -1,3 +1,18 @@
+<?php
+
+$NombreEstado='';
+$Perfil='';
+$sw = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if(!isset($_POST['NombreEstado']))	    {$NombreEstado='';       }else{$NombreEstado=$_POST['NombreEstado'];}
+    if(!isset($_POST['Perfil']))	        {$Perfil='';             }else{$Perfil=$_POST['Perfil'];}
+    if(!isset($_POST['sw']))                {$sw='';                 }else{$sw=$_POST['sw'];}
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,41 +33,33 @@
     <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <?php
         include("menuadministrador.php");
+        
         ?>
     </header>
     <br><br>
 
 
     <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Crear Estado</h2><br>
+        <h2 style="text-align: center;">Editar Estado</h2><br>
         <div class="row">
             <div class="col">
-                <label for="rut" style="text-align: center;">Nombre Estado</label>
-                <input type="text" class="form-control" name="nombre">
-            </div>
+                <label for="rut" style="text-align: center;">Nombre Estado:</label>
+                <input type="text" class="form-control" name="NombreEstado" value="<?php echo "$NombreEstado"; ?>"><br>
+                <label  style="text-align: center;">Perfil:</label>
+                <input type="text" class="form-control" name="Perfil" value="<?php echo "$Perfil"; ?>">
+                <input type="hidden" name="sw" value="Crear"><br>
+                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearRegistro" value="Crear">
         </div>
-
-        <br>
-
-        <br>
-
-        <label for="nivel">Perfil</label>
-            <div class="dropdown">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Seleccionar Perfil
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Recepcionista</a>
-                    <a class="dropdown-item" href="#">Técnico Tinción</a>
-                    <a class="dropdown-item" href="#">Técnico Registro</a>
-                    <a class="dropdown-item" href="#">Todos</a>
-                </div>
-            </div>
-
-        <br>
-
-        <button type="submit" class="btn btn-primary w-100 center-block" name="crearRegistro">Guardar</button>
     </form>
+
+    <?php
+
+    if ($sw == "Crear") {
+        require_once("../Controllers/EstadoController.php");       
+    }
+    ?>
+
+
 
 
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
