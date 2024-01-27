@@ -15,7 +15,7 @@ if (isset($_POST['op']) && $_POST['op'] == "GUARDAR" && isset($_POST['nombre'])&
     $centro = $_POST['centro'] ?? '';
     $op = $_POST['op'] ?? '';
     $insertar = $objusuario->insertarUsuario($usuario,$nombre,$correo, $rut, $clave, $perfil, $centro);
-    header("Location: mantenedorusuarios.php");
+   header("Location: mantenedorusuarios.php");
     exit();
 }
 

@@ -18,7 +18,7 @@ class perfiles
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
         if ($tablaExistente->comprobarTabla("perfiles") == true) {
-            $query = "INSERT INTO perfiles (idPerfil, TipoPerfil) VALUES (1, 'Administrador'),(2, 'Recepcionista'),(3, 'Tecnico Tincion'),(4, 'Tecnico Diagnostico'),(5, 'Tecnico Registro'),(6, 'Centro medico');";
+            $query = "INSERT INTO perfiles (TipoPerfil) VALUES ('Administrador'),('Recepcionista'),('Tecnico Tincion'),('Tecnico Diagnostico'),('Tecnico Registro'),('Centro medico');";
             $creacion = mysqli_query($this->db, $query);
             if (!$creacion) {
                 echo "Error al crear la tabla Perfiles: " . mysqli_error($this->db);

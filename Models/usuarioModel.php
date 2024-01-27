@@ -36,7 +36,7 @@ class usuario
         return $idcentro;
     }
 
-    public function insertarUsuario($nombre, $usuario, $correo, $rut, $clave, $perfil, $centro)
+    public function insertarUsuario($usuario,$nombre,  $correo, $rut, $clave, $perfil, $centro)
     {
         $idperfil = $this->buscarPerfil($perfil);
         $idcentro = $this->buscarcentro($centro);
@@ -44,7 +44,7 @@ class usuario
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
         if ($tablaExistente->comprobarTabla("perfiles") == true) {
-            $query = "INSERT INTO usuarios ( usuario,Nombre, Correo, Rut, Clave, IDPerfil, IDCentroMedico) VALUES (?, ?, ?, ?, ?, ?,?);";
+            $query = "INSERT INTO usuarios (usuario,Nombre, Correo, Rut, Clave, IDPerfil, IDCentroMedico) VALUES (?, ?, ?, ?, ?, ?,?);";
 
             if ($stmt = mysqli_prepare($this->db, $query)) {
                 mysqli_stmt_bind_param($stmt, "sssssii", $usuario, $nombre, $correo, $rut, $clave, $idperfil['IDPerfil'], $idcentro['IDCentroMedico']);

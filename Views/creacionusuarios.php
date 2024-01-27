@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $op = $_POST['op'] ?? '';
 
     if($op == "GUARDAR"){
+        echo "<script>alert('llego guardar')</script>";
         require_once("../Controllers/usuariosController.php");
     }
 

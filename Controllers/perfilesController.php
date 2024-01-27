@@ -5,6 +5,8 @@ $objPerfil = new Perfiles();
 // Creación de perfiles si no existe
 if (isset($_POST['crearPerfiles'])) {
     $objPerfil->crearperfiles();
+    header("Location: mantenedorPerfiles.php"); 
+    exit();
 } 
 
 // Insertar perfil 
