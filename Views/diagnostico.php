@@ -1,9 +1,9 @@
 <?php include "../Views/Shared/head.php" ?>
 <script src="../../js/diagnostico.js"></script>
+<?php include "menudiagnostico.php" ?>
 
-    <?php include "menudiagnostico.php" ?>
-    
-<body class="container">
+
+<body>
     <div style="height: 70px"></div><br><br>
     <h1 class="display-2 text-center">Diagnósticos</h1><br><br>
     <section style="margin: 10px;">
@@ -15,7 +15,7 @@
         <table id="tablaDiagnostico" class="text-center tabla table">
             <thead>
                 <tr>
-                <th>Seleccionar</th>
+                    <th>Seleccionar</th>
                     <th>Nombre Paciente</th>
                     <th>Rut</th>
                     <th>Domicilio</th>
@@ -29,9 +29,9 @@
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                <td>
+                    <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                            <input class="form-check" type="checkbox" value="" id="flexCheckIndeterminate">
                             <label class="form-check-label" for="flexCheckIndeterminate">
                             </label>
                         </div>
@@ -43,27 +43,29 @@
                     <td>Glisemia</td>
                     <td>12-12-2024</td>
                     <td>Listo para Diagnostico</td>
-                    <form>
-                        <td>
-                            <select class="form-select" style="width: 62px" aria-label="Default select example" id="estado" name="estado">
-                                <option value="Z">- POR DIAGNOSTICAR</option>
-                                <option value="A">A - NEGATIVO</option>
-                                <option value="B">B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
-                                <option value="C">C - MUESTRA PRESENTA INFECCION</option>
-                                <option value="D">D - POSIBLE ADENOCARCINOMA</option>
-                                <option value="E">E - CANCER EPIDERMOIDE</option>
-                                <option value="F">F - MUESTRA ATROFICA</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="hidden" name="enviarRegistro" value="enviado">
-                            <button type="submit" id="btnEnviar" class="btn btn-success">Enviar a Registro</button>
-                    </form>
+                    <td>
+                        <select class="form-select" style="width: 100%" aria-label="Default select example" id="estado" name="estado">
+                            <option value="Z">- POR DIAGNOSTICAR</option>
+                            <option value="A">A - NEGATIVO</option>
+                            <option value="B">B - MUESTRA INADECUADA, <br>VOLVER A TOMAR</option>
+                            <option value="C">C - MUESTRA PRESENTA INFECCION</option>
+                            <option value="D">D - POSIBLE ADENOCARCINOMA</option>
+                            <option value="E">E - CANCER EPIDERMOIDE</option>
+                            <option value="F">F - MUESTRA ATROFICA</option>
+                        </select>
                     </td>
+                    <td>
+                        <a href="" class="btn w-100 m-1 btn-warning">Editar</a>
+                    </td>
+                    <td>
+                        <a href="" class="btn w-100 m-1 btn-success">Enviar a Registro</a>
+                    </td>
+
                 </tr>
             </tbody>
         </table>
     </section>
 </body>
 <?php include "../views/Shared/scripts.php" ?>
+
 </html>
