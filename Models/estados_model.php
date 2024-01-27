@@ -29,9 +29,9 @@ class Estados
     {
         $consulta=mysqli_query($this->db,"select * from estados");
         while ($filas = mysqli_fetch_assoc($consulta)) {
-            $this->estados[] = $filas;
+            $this->Estados[] = $filas;
         }
-        return $this->estados;
+        return $this->Estados;
     }
 
  
