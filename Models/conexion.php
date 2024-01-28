@@ -7,23 +7,23 @@ function Conectarse()
         exit();
     }
 
-    $db_nombre = "BDDDiandraPalacios";
+    $db_nombre = "bdddiandraPalacios";
 
     //Validamos si existe.
     $db_existe = mysqli_select_db($link, $db_nombre);
-
-    // Si la base de datos no existe, crearla
-    if (!$db_existe) {
-        $query = "CREATE DATABASE $db_nombre";
-        if (!mysqli_query($link, $query)) {
-            echo "Error 2";
+//
+        // Si la base de datos no existe, crearla
+        if (!$db_existe) {
+            $query = "CREATE DATABASE $db_nombre";
+            if (!mysqli_query($link, $query)) {
+                echo "Error 2";
+            }
+        } else {
+        
+            if (!mysqli_select_db($link, $db_nombre)) {
+                echo "Error 3";
+                exit();
+            }
         }
-    } else {
-
-        if (!mysqli_select_db($link, $db_nombre)) {
-            echo "Error 3";
-            exit();
-        }
-    }
-    return $link;
+        return $link;
 }
