@@ -1,3 +1,18 @@
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_POST['nombre'])) { $nombre = '';} else {$nombre = $_POST['nombre'];}
+    if (!isset($_POST['rut'])) {$rut = '';} else {$rut = $_POST['rut'];}
+    if (!isset($_POST['domicilio'])) { $domicilio = '';} else {$domicilio = $_POST['domicilio'];}
+    if (!isset($_POST['idcentromedico'])) { $idcentromedico = '';} else {$idcentromedico = $_POST['idcentromedico'];}
+    if (!isset($_POST['nombreexamen'])) {$nombreexamen = '';} else {$nombreexamen = $_POST['nombreexamen'];}
+    if (!isset($_POST['fechamuestra'])) { $fechamuestra = '';} else {$fechamuestra = $_POST['fechamuestra'];}
+    if (!isset($_POST['fecharecepcion'])) { $fecharecepcion = '';} else {$fecharecepcion = $_POST['fecharecepcion'];}
+    
+    }
+    include("../Controllers/ExamenController.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +33,7 @@
     <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <?php
         include("menurecepcionista.php");
-        include("../Controllers/ExamenController.php");
+
         ?>
     </header>
     <br><br><br><br><br>
@@ -43,18 +58,16 @@
                 <label for="domicilio">Domicilio</label>
                 <input type="text" class="form-control" name="domicilio">
             </div>
-            <div class="col">
-                <label for="clave">Seleccionar Laboratorio</label>
-                <div class="dropdown">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Laboratorios
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">MEGAMAN código MM</a>
-                        <a class="dropdown-item" href="#">ULTRAMAN código UM</a>
-                        <a class="dropdown-item" href="#">ULTRASEVEN código US</a>
-                    </div>
+                <div class="col">
+                    <label for="idcentromedico">Seleccionar Centro medico</label>
+                    <select class="form-control" name="idcentrosoli">
+                        <?php
+                            while($row=mysqli_fetch_array($centrosmedicos))
+                            {
+                                echo "<option value=" . $row['IDCentroMedico'] . ">" . $row['NombreCentro'] .  $row['IDCentroMedico'] . "</option>";
+                            }
+                        ?>
+                    </select>
                 </div>
             </div>
         </div>
@@ -64,11 +77,11 @@
         <div class="row">
             <div class="col">
                 <label for="nombreExamen">Nombre Examen</label>
-                <input type="text" class="form-control" name="nombreExamen">
+                <input type="text" class="form-control" name="nombreexamen">
             </div>
             <div class="col">
                 <label for="fechaTomaMuestra">Fecha de Toma de Muestra</label>
-                <input type="date" class="form-control" name="fechaTomaMuestra">
+                <input type="date" class="form-control" name="fechamuestra">
             </div>
         </div>
 
@@ -77,6 +90,7 @@
 
 
         <br>
+        <input type="hidden" name="fecharecepcion"value="<?php echo date('Y-m-d H:i:s'); ?>">
         <input type="hidden" name="ingreso" value="ingresado">
         <input type="submit" class="btn btn-primary w-100 center-block" name="btnregistrar" value="Registrar">
         

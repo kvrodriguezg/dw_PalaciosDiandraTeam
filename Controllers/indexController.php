@@ -14,6 +14,9 @@ foreach ($tablas as $tabla) {
 //Creacion de tablas si no existen.
 if (isset($_POST['crearTabla'])) {
     $existe->crearTablas();
+    $existe->crearCentros();
+    $existe->crearDiagnosticos();
+    $existe->crearPerfiles();
+    $existe->crearEstados();
     $validacionExistencia = true;
 }
-
