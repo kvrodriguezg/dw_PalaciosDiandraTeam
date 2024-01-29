@@ -12,13 +12,16 @@
                         <a class="nav-link text-blue" href="mantenedordiagnostico.php"><i class="fa-solid fa-syringe"></i> Mantenedor Diagn&oacutesticos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-blue" href="mantenedorlaboratorios.php"><i class="fa-solid fa-vial"></i>Mantenedor Laboratorios</a>
+                        <a class="nav-link text-blue" href="mantenedorlaboratorios.php"><i class="fa-solid fa-vial"></i> Mantenedor Laboratorios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-blue" href="mantenedorestados.php"><i class="fa-solid fa-vial"></i>Mantenedor Estados</a>
+                        <a class="nav-link text-blue" href="mantenedorestados.php"><i class="fa-solid fa-vial"></i> Mantenedor Estados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-blue" href="mantenedorPerfiles.php"><i class="fa-solid fa-vial"></i>Mantenedor Perfiles</a>
+                        <a class="nav-link text-blue" href="mantenedorPerfiles.php"><i class="fa-solid fa-vial"></i> Mantenedor Perfiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="Registro.php"><i class="fa-solid fa-vial"></i> Registro</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesi&oacuten</a>
