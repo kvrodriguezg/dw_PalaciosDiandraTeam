@@ -1,7 +1,13 @@
 <?php
-include("../Models/usuarioModel.php");
+require_once("../Models/usuarioModel.php");
+require_once("../Models/perfilesModel.php");
 $objusuario = new usuario();
+$objPerfil = new Perfiles();
+
+
 $listusuarios = $objusuario->verUsuarios();
+$listperfiles = $objPerfil->vertipoPerfiles();
+$listcentros = $objusuario->verCentrosarray();
 
 
 if (isset($_POST['op']) && $_POST['op'] == "GUARDAR" && isset($_POST['nombre'])&& isset($_POST['rut'])&& isset($_POST['usuario'])&& isset($_POST['clave'])&& isset($_POST['correo'])&& isset($_POST['perfil'])&& isset($_POST['centro'])) {
