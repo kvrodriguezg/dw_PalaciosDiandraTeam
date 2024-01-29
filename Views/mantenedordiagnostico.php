@@ -1,7 +1,7 @@
 <?php include("../Models/conex.php") ?>
 <?php
 //crear y selecionar la query
-$query = "SELECT * FROM diagnosticos ORDER BY Codigo DESC";
+$query = "SELECT * FROM diagnosticos";
 $diagnosticos = mysqli_query($conexion, $query);
 ?>
 
