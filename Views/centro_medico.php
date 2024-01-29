@@ -1,3 +1,6 @@
+<?php
+require_once("../Controllers/centroController.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
