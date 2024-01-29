@@ -1,4 +1,7 @@
-<?php include("../Models/conex.php") ?>
+<?php include("../Models/conex.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);?>
 <?php
 //crear y selecionar la query
 $query = "SELECT * FROM diagnosticos ORDER BY Codigo DESC";

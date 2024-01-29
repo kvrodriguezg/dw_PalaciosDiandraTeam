@@ -1,4 +1,7 @@
 <?php
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);
    if (!isset($_POST['IDCentroMedico'])) { $IDCentroMedico = '';} else {$IDCentroMedico = $_POST['IDCentroMedico'];}
    if (!isset($_POST['NombreCentro'])) {$NombreCentro = '';} else {$NombreCentro = $_POST['NombreCentro'];}
    if (!isset($_POST['codigo'])) {$codigo = '';} else {$codigo = $_POST['codigo'];}

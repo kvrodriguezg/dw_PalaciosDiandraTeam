@@ -1,6 +1,6 @@
 <?php
 
-class centromedico{
+ class CentroMedico  {
     private $id;
     private $nombreCentro;
     private $codigo;
@@ -11,6 +11,7 @@ class centromedico{
         require_once("conexion.php");
         $this->db = Conectarse();
         $this->centros = array();
+        
     }
 
     public function crearCentros(){
@@ -37,7 +38,7 @@ class centromedico{
     }
 
 
-
+ 
 
 
     public function insertarCentro($nombreCentro,$CodigoCentro)

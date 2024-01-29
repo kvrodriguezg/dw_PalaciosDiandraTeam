@@ -1,5 +1,10 @@
 <?php require_once("../Controllers/examenesController.php"); ?>
-<?php include "../Views/Shared/head.php" ?>
+<?php include "../Views/Shared/head.php" ;
+require_once('../Controllers/accesoController.php');
+
+$perfilesPermitidos = 1;
+verificarAcceso($perfilesPermitidos);
+?>
 <script src="../../js/diagnostico.js"></script>
 <?php include "menudiagnostico.php" ?>
 

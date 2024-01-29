@@ -1,4 +1,9 @@
-<?php require_once("../Controllers/examenesController.php"); ?>
+<?php require_once("../Controllers/examenesController.php"); 
+require_once('../Controllers/accesoController.php');
+
+$perfilesPermitidos = 2;
+verificarAcceso($perfilesPermitidos);
+?>
 <!DOCTYPE html>
 <html lang="en">
 

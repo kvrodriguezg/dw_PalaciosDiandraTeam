@@ -21,7 +21,7 @@
                         <a class="nav-link text-blue" href="mantenedorPerfiles.php"><i class="fa-solid fa-vial"></i>Mantenedor Perfiles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-blue" href="../index.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesi&oacuten</a>
+                        <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesi&oacuten</a>
                     </li> 
 
                 </ul>

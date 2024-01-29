@@ -4,11 +4,13 @@ class perfiles
 {
     private $db;
     private $perfiles;
+    private $tipoperfiles;
     public function __construct()
     {
         require_once("conexion.php");
         $this->db = Conectarse();
         $this->perfiles = array();
+        $this->tipoperfiles = array();
     }
 
 
@@ -83,6 +85,14 @@ class perfiles
             $this->perfiles[] = $filas;
         }
         return $this->perfiles;
+    }
+
+    public function vertipoPerfiles(){
+        $consulta = mysqli_query($this->db, "select TipoPerfil from perfiles");
+        while ($filas = mysqli_fetch_array($consulta)) {
+            $this->tipoperfiles[] = $filas;
+        }
+        return $this->tipoperfiles;
     }
 
     public function buscarPerfil($idPerfil) {
