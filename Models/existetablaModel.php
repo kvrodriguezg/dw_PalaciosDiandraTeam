@@ -44,6 +44,7 @@ class ExisteTabla
     {
         if ($this->comprobarTabla("CentrosMedicos") == true) {
             $query = "INSERT IGNORE INTO centrosmedicos (NombreCentro, codigo) VALUES 
+                ('N/A', 'N/A'),
                 ('MEGAMAN', 'MM'),
                 ('ULTRAMAN', 'UM'),
                 ('ULTRASEVEN', 'US');";
