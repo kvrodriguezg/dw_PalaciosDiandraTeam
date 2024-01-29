@@ -1,4 +1,9 @@
-<?php require_once("../Controllers/examenesController.php"); ?>
+<?php require_once("../Controllers/examenesController.php");
+require_once('../Controllers/accesoController.php');
+
+$perfilesPermitidos = 3;
+verificarAcceso($perfilesPermitidos);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +15,7 @@
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="../css/registro.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <title>Registro</title>
+    <title>Recepción</title>
 </head>
 
 <body class="container">

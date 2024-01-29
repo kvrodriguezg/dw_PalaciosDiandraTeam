@@ -1,5 +1,9 @@
 <?php
 require_once("../Controllers/usuariosController.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);
+
 $op = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -73,8 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <thead>
                 <tr>
                     <th>IDUsuario</th>
-                    <th>Nombre Completo</th>
                     <th>usuario </th>
+                    <th>Nombre Completo</th>
                     <th>correo </th>
                     <th>Rut </th>
                     <th>Clave </th>

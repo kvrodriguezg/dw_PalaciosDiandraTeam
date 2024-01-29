@@ -1,6 +1,9 @@
 <?php
 require_once("../Controllers/EstadoController.php");
 require_once("../Controllers/usuariosController.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);
 $IDEstado = '';
 $sw = "";
 

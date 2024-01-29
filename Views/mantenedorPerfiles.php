@@ -1,4 +1,7 @@
 <?php
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);
 $op = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

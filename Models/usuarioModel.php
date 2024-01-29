@@ -4,6 +4,10 @@ class usuario
     private $db;
     private $usuario;
     private $user;
+    private $userLogin;
+
+    
+    private $centrosarray;
 
     public function __construct()
     {
@@ -11,6 +15,8 @@ class usuario
         $this->db = Conectarse();
         $this->usuario = array();
         $this->user = array();
+       $this->userLogin = array();
+       $this->centrosarray = array();
     }
 
     public function verUsuarios()
@@ -36,10 +42,18 @@ class usuario
         return $idcentro;
     }
 
+    public function verCentrosarray(){
+        $consulta = mysqli_query($this->db, "select NombreCentro from centrosmedicos;");
+        while ($filas = mysqli_fetch_array($consulta)) {
+            $this->centrosarray[] = $filas;
+        }
+        return $this->centrosarray;
+    }
     public function insertarUsuario($usuario,$nombre,  $correo, $rut, $clave, $perfil, $centro)
     {
         $idperfil = $this->buscarPerfil($perfil);
         $idcentro = $this->buscarcentro($centro);
+        $clavehash= password_hash($clave, PASSWORD_DEFAULT);
 
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
@@ -47,7 +61,7 @@ class usuario
             $query = "INSERT INTO usuarios (usuario,Nombre, Correo, Rut, Clave, IDPerfil, IDCentroMedico) VALUES (?, ?, ?, ?, ?, ?,?);";
 
             if ($stmt = mysqli_prepare($this->db, $query)) {
-                mysqli_stmt_bind_param($stmt, "sssssii", $usuario, $nombre, $correo, $rut, $clave, $idperfil['IDPerfil'], $idcentro['IDCentroMedico']);
+                mysqli_stmt_bind_param($stmt, "sssssii", $usuario, $nombre, $correo, $rut, $clavehash, $idperfil['IDPerfil'], $idcentro['IDCentroMedico']);
 
                 if (mysqli_stmt_execute($stmt)) {
                     return true;
@@ -111,5 +125,26 @@ class usuario
             }
         }
     }
+
+    function iniciarSesion($usuario, $clave) {
+        $link = Conectarse();
+    
+        $query = mysqli_prepare($link, "SELECT usuario, Clave, idPerfil, IDCentroMedico FROM usuarios WHERE usuario = ?");
+    
+        if ($query) {
+            mysqli_stmt_bind_param($query, "s", $usuario);
+            mysqli_stmt_execute($query);
+            mysqli_stmt_bind_result($query, $resultadoUsuario, $resultadoClave, $idPerfil, $IDCentroMedico);
+            mysqli_stmt_fetch($query);
+            mysqli_stmt_close($query);
+    
+            if ($resultadoUsuario === $usuario && password_verify($clave, $resultadoClave)) {
+                return array('idPerfil' => $idPerfil, 'IDCentroMedico' => $IDCentroMedico);
+            }
+        } else {
+            return false;
+        }
+    }
+    
     
 }

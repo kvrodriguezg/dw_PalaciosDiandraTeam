@@ -1,6 +1,5 @@
 <?php
 include("../Models/centromedicoModel.php");
-
 $objCentros = new centromedico();
 
 // Creación de CENTRO si no existe
