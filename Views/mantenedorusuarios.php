@@ -3,8 +3,6 @@ require_once("../Controllers/usuariosController.php");
 require_once('../Controllers/accesoController.php');
 $perfilesPermitidos = 5;
 verificarAcceso($perfilesPermitidos);
-
-$op = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!isset($_POST['IDUsuario'])) {
@@ -19,10 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($op == 'EDITAR') {
-
         header("Location: editarusuario.php?IDUsuario=$IDUsuario");
         exit();
-    }
+    } 
 }
 
 ?>
@@ -129,28 +126,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button type="submit" class="btn w-100 center-block btn-primary">EDITAR</button>
                             </form>
                         </td>
-                        <td>
-                            <form method="post" action="">
-                                <input type="hidden" name="op" value="eliminar">
-                                <input type="hidden" name="IDUsuario" value="<?php echo $usu['IDUsuario'] ?>">
-                                <input class="btn btn-danger" type="submit" value="ELIMINAR">
+                        <td class="text-center">
+                            <form method="POST" action="" id="eliminarForm">
+                                <input type="hidden" name="op" id="op" value="">
+                                <input type="hidden" name="IDUsuario" value="<?php echo $usu['IDUsuario']; ?>">
+                                <button type="button" class="btn btn-danger" onclick="confirmarYEliminar('<?php echo $usu['IDUsuario']; ?>')">ELIMINAR</button>
                             </form>
                         </td>
                     </tr>
                     <?php
-                }
-                if ($op == "ELIMINAR") {
-
-                    require_once("../Controllers/usuariosController.php");
                 }
                 ?>
             </tbody>
         </table>
 
     </section>
-
-
-
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -165,3 +155,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+<script>
+    function confirmarYEliminar(IDUsuario) {
+        var confirmacion = confirm("¿Estás seguro de que deseas eliminar este usuario?");
+        if (confirmacion) {
+            var opField = document.getElementById('op');
+            opField.value = "eliminar";
+            console.log("Valor del campo op:", opField.value);
+            document.getElementById('eliminarForm').submit();
+        }
+    }
+</script>

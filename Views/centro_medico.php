@@ -1,3 +1,6 @@
+<?php
+require_once("../Controllers/centroController.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +23,7 @@
 
 <body class="container">
     <section style="margin: 10px;" class="centro">
-        <h2 class="titulo">Laboratorio Megaman</h2><br><br>
+        <h2 class="titulo"><?php echo " Centro Médico $nombreCentro"; ?></h2><br><br>
         <table id="tableUsers" class="tabla table">
             <style>
                 .tabla {
@@ -36,6 +39,7 @@
                 }
             </style>
             <thead>
+
                 <tr>
                     <th>Nombre</th>
                     <th>Rut</th>
@@ -49,63 +53,36 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+ foreach ($listExamenes as $list) {
+?>
+                    <tr>
+                        <td>
+                            <?php echo $list['NombrePaciente']; ?>
+                        </td>
+                        <td>
+                            <?php echo $list['NombreExamen']; ?>
+                        </td>
+                        <td>
+                            <?php echo $list['RutPaciente']; ?>
+                        </td>
+                        <td>
+                            <?php echo $list['FechaTomaMuestra']; ?>
+                        </td>
+                        <td>
+                            <?php echo $list['FechaRecepcion']; ?>
+                        </td>
+                        <td>
+                            <?php echo $list['NombreEstado']; ?>
+                        </td>
+                        <td>
 
-                <tr class="table table-striped">
-                    <td>Alexis Tobar</td>
-                    <td>17426433-3</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                    <td>glicemia</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>Alexis Tobar</td>
-                    <td>17426433-3</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                    <td>glicemia</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>Alexis Tobar</td>
-                    <td>17426433-3</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                    <td>glicemia</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>Alexis Tobar</td>
-                    <td>17426433-3</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                    <td>glicemia</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>Alexis Tobar</td>
-                    <td>17426433-3</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                    <td>glicemia</td>
-                    <td>Pendiente</td>
-                    <td>
-                        <a href="" class="btn w-100 m-1 btn-info">Ver Diagnostico</a>
-                    </td>
-                </tr>
-
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+<?php }
+?>
             </tbody>
         </table>
     </section>

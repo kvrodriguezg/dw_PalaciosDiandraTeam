@@ -6,11 +6,13 @@
     private $codigo;
     private $centros;
     private $db;
+    private $listadoExamenesCentro;
     public function __construct()
     {
         require_once("conexion.php");
         $this->db = Conectarse();
         $this->centros = array();
+        $this->listadoExamenesCentro = array();
         
     }
 
@@ -80,7 +82,7 @@
 
 
     public function eliminarCentro($IDCentroMedico){
-        $query="DELETE FROM centrosmedicos WHERE IDCentroMedico=?;";
+        $query="DELETE FROM centrosmedicos WHERE IDCentroMedico = ?;";
         if ($stmt = mysqli_prepare($this->db, $query)) {
             mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico);
             if (mysqli_stmt_execute($stmt)) {
@@ -92,7 +94,31 @@
         }
     }
 
+    public function buscarExamenes($IDCentroMedico){
+        $query = "select p.NombrePaciente,e.NombreExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join pacientes p on e.RutPaciente = p.RutPaciente Join estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
+        $consulta = mysqli_query($this->db, $query);
+        while ($filas = mysqli_fetch_array($consulta)) {
+            $this->listadoExamenesCentro[] = $filas;
+        }
+        return $this->listadoExamenesCentro;
+    }
 
 
-
+    public function nombreCentro($IDCentroMedico) {
+        $consulta = "select NombreCentro from centrosmedicos where IDCentroMedico = ?";
+        if ($stmt = mysqli_prepare($this->db, $consulta)) {
+            mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico); 
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_bind_result($stmt, $NombreCentro); 
+                mysqli_stmt_fetch($stmt);    
+                return $NombreCentro;
+            } else {               
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
+
+ 

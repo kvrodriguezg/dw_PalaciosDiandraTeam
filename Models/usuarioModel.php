@@ -66,7 +66,7 @@ class usuario
                 if (mysqli_stmt_execute($stmt)) {
                     return true;
                 } else {
-                    return "Fallo la query. Error: " . mysqli_stmt_error($stmt);
+                    return false;
                 }
             }
         }
@@ -121,7 +121,7 @@ class usuario
             if (mysqli_stmt_execute($stmt)) {
                 return true;
             } else {
-                return "Fallo la query. Error: " . mysqli_stmt_error($stmt);
+                return false;
             }
         }
     }
