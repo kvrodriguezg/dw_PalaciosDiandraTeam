@@ -1,68 +1,42 @@
-<?php
-require_once("../Controllers/examenesController.php");
+<?php require_once("../Controllers/examenesController.php"); ?>
+<?php include "../Views/Shared/head.php" ;
 require_once('../Controllers/accesoController.php');
-session_start();
-$perfilesPermitidos = 3;
+
+$perfilesPermitidos = 1;
 verificarAcceso($perfilesPermitidos);
 
 $seleccionados = $_POST['seleccionados'] ?? "";
 $idEstado = $_POST['estado'] ?? "";
+$diagnostico = $_POST['diagnostico'] ?? "";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <!-- CSS personalizado -->
-    <link rel="stylesheet" href="../css/prueba.css">
-    <!--datables CSS básico-->
-    <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css" />
-    <!--datables estilo bootstrap 4 CSS-->
-    <link rel="stylesheet" type="text/css" href="../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-    <!--font awesome con CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-</head>
+<?php include "menudiagnostico.php" ?>
 
 <body>
-    <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
-        <?php
-        include("menurecepcionista.php");
-        ?>
-    </header>
-    <br><br><br>
-    <div>
-        <h2 class="titulo">Cambio de Estado Masivo</h2><br>
-    </div>
+    <div style="height: 70px"></div><br><br>
+    <h1>Cambio de Estado Masivo</h1><br>  
     <br>
-
-    <div class="recepcion">
-        <style>
-            .recepcion {
-                margin: 20px;
-            }
-
-            .tabla-recepcion {}
-        </style>
-        <form method="post" action="cambiarestadorecepcion.php">
+    <br>
+    <section>
+    <form method="post" action="cambiarestadodiagnostico.php">
             <select class="form-select" style="width: 150px" name="estado" required>
                 <?php
-                $resultadoEstados = $examen->obtenerEstados('recepcion');
+                $resultadoEstados = $examen->obtenerEstados('diagnostico');
                 while ($row1 = mysqli_fetch_array($resultadoEstados)) {
                     echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
                 }
                 ?>
             </select>
-            <button type="submit" class="btn btn-primary" name="cambiarEstadoMasivo">Cambiar Estado Masivo</button>
+            <select class="form-select" style="width: 150px" name="diagnostico" required>
+                                    <?php
+                                    $diagnosticos = $examen->obtenerListaDiagnosticos();
+
+                                    while ($row1 = mysqli_fetch_array($diagnosticos)) {
+                                        echo '<option value="' . $row1['Codigo'] . '">' . $row1['descripcion'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+            <button type="submit" class="btn btn-primary" name="cambiarEstadodiagnostico">Cambiar Estado Masivo</button>
             <br><br>
             <div class="row">
                 <div class="col-m-12">
@@ -128,25 +102,8 @@ $idEstado = $_POST['estado'] ?? "";
                 </div>
             </div>
         </form>
-    </div>
+    </section>
 </body>
-
-<script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
-<script src="../jquery/jquery-3.3.1.min.js"></script>
-<script src="../popper/popper.min.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-
-<!-- datatables JS -->
-<script type="text/javascript" src="../datatables/datatables.min.js"></script>
-
-<!-- para usar botones en datatables JS -->
-<script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-<script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
-<script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-<script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-<script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-
-<!-- código JS propio-->
-<script type="text/javascript" src="../js/data3.js"></script>
+<?php include "../views/Shared/scripts.php" ?>
 
 </html>

@@ -3,6 +3,9 @@ require_once('../Controllers/accesoController.php');
 
 $perfilesPermitidos = 2;
 verificarAcceso($perfilesPermitidos);
+
+$seleccionados = $_POST['seleccionados'] ?? "";
+$idEstado = $_POST['estado'] ?? "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,18 +31,22 @@ verificarAcceso($perfilesPermitidos);
     </header>
     <br><br><br><br><br>
 
-    <h1>Listado para Tinción</h1><br>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Pendiente</a>
-        <a class="dropdown-item" href="#">Realizado</a>
-        <a class="dropdown-item" href="#">Entregado</a>
-    </div>
-
-    </form>
+    <h1>Cambio de Estado Masivo</h1><br>
     <br>
     <br>
     <section>
-        <table id="tableUsers" class="tabla table">
+    <form method="post" action="cambiarestadotincion.php">
+        <select class="form-select" style="width: 150px" name="estado" required>
+        <?php
+        $resultadoEstados = $examen->obtenerEstados('tincion');
+        while ($row1 = mysqli_fetch_array($resultadoEstados)) {
+            echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
+        }
+        ?>
+    </select>
+    <button type="submit" class="btn btn-primary" name="cambiarEstadotincion">Cambiar Estado Masivo</button>
+    <br>     <br>
+    <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
                     <th>Seleccionar</th>
@@ -53,19 +60,15 @@ verificarAcceso($perfilesPermitidos);
                     <th>Diagnóstico</th>
                     <th>Cod. Diagnóstico</th>
                     <th>Estado</th>
-                    <th>Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = mysqli_fetch_array($examenesTincion)) { ?>
                     <tr class="table table-striped">
                         <form method="post" action="tincion.php">
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                    <label class="form-check-label" for="flexCheckIndeterminate">
-                                    </label>
-                                </div>
+                        <td>
+                                <input class="form-check-input" type="checkbox" name="seleccionados[]"
+                                    value="<?php echo $row['IDExamen']; ?>" id="flexCheckIndeterminate">
                             </td>
                             <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
@@ -77,29 +80,13 @@ verificarAcceso($perfilesPermitidos);
                             <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
                             <td><?php echo $row['CodigoDiagnosticos']; ?></td>
                             <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
-
-                            <td>
-                                <select class="form-select" style="width: 150px" name="estado" required>
-                                    <?php
-                                    $resultadoEstados = $examen->obtenerEstados('tincion');
-
-                                    while ($row1 = mysqli_fetch_array($resultadoEstados)) {
-                                        echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                            <td>
-                                <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
-                                <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
-                                <input name="actualizarEstadoTincion" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                            </td>
+                            <?php } ?>
                         </form>
                     </tr>
 
             </tbody>
 
-        <?php } ?>
+
         </table>
     </section>
 

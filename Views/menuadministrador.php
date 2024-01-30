@@ -24,6 +24,12 @@
                         <a class="nav-link text-blue" href="Registro.php"><i class="fa-solid fa-vial"></i> Registro</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-blue" href="reporteDiagnostico.php"><i class="fa-solid fa-vial"></i> reporte Diagnóstico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="reporteExamenes.php"><i class="fa-solid fa-vial"></i> reporte Exámenes</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesi&oacuten</a>
                     </li> 
 

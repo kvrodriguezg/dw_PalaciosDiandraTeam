@@ -39,7 +39,6 @@ if (isset($_POST['eliminarRegistro'])) {
 }
 
   if (isset($_POST['cambiarEstadoMasivo'])) {
-      echo "Llego aqaui";
       $seleccionados = $_POST['seleccionados'];
       $idEstado = $_POST['estado'];
   
@@ -51,3 +50,27 @@ if (isset($_POST['eliminarRegistro'])) {
       exit;
   }
  
+  if (isset($_POST['cambiarEstadotincion'])) {
+    $seleccionados = $_POST['seleccionados'];
+    $idEstado = $_POST['estado'];
+
+    foreach($seleccionados as $idExamen) {
+      $examen->cambiarEstado($idEstado,$idExamen);
+     }
+
+    header("Location: tincion.php");
+    exit;
+}
+
+
+if (isset($_POST['cambiarEstadodiagnostico'])) {
+    $seleccionados = $_POST['seleccionados'];
+    $idEstado=$_POST['estado'];
+    $diagnostico=$_POST['diagnostico'];
+    foreach($seleccionados as $idExamen) {
+    $examen->cambiarEstado($idEstado,$idExamen);
+    $examen->actualizarDiagnostico($idExamen,$diagnostico);
+    }
+    header("Location: diagnostico.php");
+    exit;
+}
