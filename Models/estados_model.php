@@ -13,11 +13,11 @@ class Estados
 
     public function InsertaEstado($nuevoEstado,$nuevoPerfil)
     {
-        $consulta="insert into estados (NombreEstado, Perfil) values (?,?)";
+        $consulta="insert into estados (NombreEstado, IDPerfil) values (?,?)";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
             mysqli_stmt_bind_param($stmt, "ss", $nuevoEstado,$nuevoPerfil);
             if (mysqli_stmt_execute($stmt)) {
-                return true;
+                 return true;
             } else {
                 return false;
             }
@@ -39,7 +39,7 @@ class Estados
     public function ModificarEstado($nuevoEstado,$nuevoPerfil,$idEstados)
     {
         
-        $consulta="update estados set NombreEstado=?, Perfil=? where IDEstado=?";
+        $consulta="update estados set NombreEstado=?, IDPerfil=? where IDEstado=?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
             mysqli_stmt_bind_param($stmt, "ssi", $nuevoEstado,$nuevoPerfil,$idEstados);
             if (mysqli_stmt_execute($stmt)) {

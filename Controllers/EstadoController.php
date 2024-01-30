@@ -6,9 +6,11 @@ $objetoEstado = new Estados();
 
 if  (isset($_POST['NombreEstado'])) {
     $NombreEstado = $_POST['NombreEstado'];
-    $insertarEstado = $objetoEstado->InsertaEstado($NombreEstado,$Perfil);
+    $insertarEstado = $objetoEstado->InsertaEstado($NombreEstado,$IDPerfil);
 
-    header("Location: mantenedorestados.php"); 
+    $mensaje="Registro Creado Correctamente";
+    
+    header("Location: mantenedorestados.php".urlencode($mensaje)); 
     exit();
 }
 
