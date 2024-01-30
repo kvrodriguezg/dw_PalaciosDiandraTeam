@@ -54,11 +54,10 @@
                     <th>Diagnóstico</th>
                     <th>Cod. Diagnóstico</th>
                     <th>Estado</th>
-                    <th>Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = mysqli_fetch_array($examenes)) { ?>
+                <?php while ($row = mysqli_fetch_array($examenesRegistro)) { ?>
                     <tr class="table table-striped">
                         <form method="post" action="Registro.php">
                             <td>
@@ -79,7 +78,7 @@
                             <td><?php echo $row['CodigoDiagnosticos']; ?></td>
                             <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
 
-                            <td>
+                            <?php /*<td>
                                 <select class="form-select" style="width: 150px" name="estado" required>
                                     <?php
                                     $resultadoEstados = $examen->obtenerEstados('recepcion');
@@ -89,7 +88,7 @@
                                     }
                                     ?>
                                 </select>
-                            </td>
+                            </td>*/?>
 
                             <td>
                                 <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
@@ -101,7 +100,7 @@
                             <td>
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                 <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
-                                <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
+                                <?php //<input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>?>
                                 <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger">Eliminar</input>
                             </td>
                         </form>

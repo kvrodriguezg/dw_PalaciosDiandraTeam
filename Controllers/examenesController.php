@@ -4,6 +4,7 @@ $examen = new examenesModel();
 $examenes = $examen->obtenerDatosExamenes();
 $examenesTincion = $examen->obtenerExamenesTincion();
 $examenesDiagnostico = $examen->obtenerExamenesDiagnosticos();
+$examenesRegistro = $examen->obtenerExamenesRegistro();
 
 if (isset($_POST['actualizarEstado'])) {
     $idExamen=$_POST['idExamen'];
@@ -28,9 +29,9 @@ if (isset($_POST['actualizarEstadoTincion'])) {
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
+
 if (isset($_POST['eliminarRegistro'])) {
-    $idExamen=$_POST['idExamen'];
+    $idExamen = $_POST['idExamen'];
     $examen->eliminarRegistro($idExamen);
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
-
