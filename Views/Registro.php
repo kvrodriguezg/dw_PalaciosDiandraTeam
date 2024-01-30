@@ -46,77 +46,86 @@ verificarAcceso($perfilesPermitidos);
 
 
     <section>
-        <table id="tableUsers" class="tabla table">
-            <thead>
-                <tr>
-                    <th>Seleccionar</th>
-                    <th>Nombre Paciente</th>
-                    <th>Domicilio</th>
-                    <th>Laboratorio</th>
-                    <th>Examen</th>
-                    <th>F. Toma de Muestra</th>
-                    <th>F. de Tinción</th>
-                    <th>F. Diagnóstico</th>
-                    <th>Diagnóstico</th>
-                    <th>Cod. Diagnóstico</th>
-                    <th>Estado</th>
-                    <th>Cambiar Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($examenes)) { ?>
-                    <tr class="table table-striped">
-                        <form method="post" action="Registro.php">
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                    <label class="form-check-label" for="flexCheckIndeterminate">
-                                    </label>
-                                </div>
-                            </td>
-                            <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
-                            <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
-                            <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
-                            <td><?php echo $row['NombreExamen'] ?></td>
-                            <td><?php echo $row['FechaTomaMuestra'] ?></td>
-                            <td><?php echo $row['Fechatincion'] ?></td>
-                            <td><?php echo $row['Fechadiagnostico'] ?></td>
-                            <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
-                            <td><?php echo $row['CodigoDiagnosticos']; ?></td>
-                            <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
+        <div>
+            <div>
+                <div>
+                    <table id="tableUsers" class="tabla table">
+                        <thead>
+                            <tr>
+                                <th>Seleccionar</th>
+                                <th>Nombre Paciente</th>
+                                <th>Domicilio</th>
+                                <th>Laboratorio</th>
+                                <th>Examen</th>
+                                <th>F. Toma de Muestra</th>
+                                <th>F. de Tinción</th>
+                                <th>F. Diagnóstico</th>
+                                <th>Diagnóstico</th>
+                                <th>Cod. Diagnóstico</th>
+                                <th>Estado</th>
+                                <th>Cambiar Estado</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = mysqli_fetch_array($examenes)) { ?>
+                                <tr class="table table-striped">
+                                    <form method="post" action="Registro.php">
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                                                <label class="form-check-label" for="flexCheckIndeterminate">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
+                                        <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
+                                        <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
+                                        <td><?php echo $row['NombreExamen'] ?></td>
+                                        <td><?php echo $row['FechaTomaMuestra'] ?></td>
+                                        <td><?php echo $row['Fechatincion'] ?></td>
+                                        <td><?php echo $row['Fechadiagnostico'] ?></td>
+                                        <td><?php echo $examen->obtenerDiagnostico($row['CodigoDiagnosticos']); ?></td>
+                                        <td><?php echo $row['CodigoDiagnosticos']; ?></td>
+                                        <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
 
-                            <td>
-                                <select class="form-select" style="width: 150px" name="estado" required>
-                                    <?php
-                                    $resultadoEstados = $examen->obtenerEstados('recepcion');
+                                        <td>
+                                            <select class="form-select" style="width: 150px" name="estado" required>
+                                                <?php
+                                                $resultadoEstados = $examen->obtenerEstados('recepcion');
 
-                                    while ($row1 = mysqli_fetch_array($resultadoEstados)) {
-                                        echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </td>
+                                                while ($row1 = mysqli_fetch_array($resultadoEstados)) {
+                                                    echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
 
-                            <td>
-                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
-                                    <img src="../img/pdf.png" alt="Icono PDF">
-                                </button>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
+                                                <img src="../img/pdf.png" alt="Icono PDF">
+                                            </button>
 
 
-                            </td>
-                            <td>
-                                <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
-                                <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
-                                <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger">Eliminar</input>
-                            </td>
-                        </form>
-                    </tr>
+                                        </td>
+                                        <td>
+                                            <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
+                                            <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
+                                            <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
+                                            <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger">Eliminar</input>
+                                        </td>
+                                    </form>
+                                </tr>
 
-            </tbody>
+                        </tbody>
 
-        <?php } ?>
-        </table>
+                    <?php } ?>
+                    </table>
+
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 
