@@ -8,7 +8,7 @@ require_once("../Controllers/centroController.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="#" />
-    <title>Tutorial DataTables</title>
+    <title>Centro Médico</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <!-- CSS personalizado -->
