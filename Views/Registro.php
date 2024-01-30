@@ -108,6 +108,7 @@ verificarAcceso($perfilesPermitidos);
             </div>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <!-- jQuery, Popper.js, Bootstrap JS -->
     <script src="../jquery/jquery-3.3.1.min.js"></script>
     <script src="../popper/popper.min.js"></script>
