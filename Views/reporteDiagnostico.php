@@ -1,13 +1,4 @@
-<?php include("../Models/conex.php");
-require_once('../Controllers/accesoController.php');
-$perfilesPermitidos = 5;
-verificarAcceso($perfilesPermitidos);?>
-<?php
-//crear y selecionar la query
-$query = "SELECT * FROM diagnosticos";
-$diagnosticos = mysqli_query($conexion, $query);
-?>
-
+<?php require_once("../Controllers/reportesController.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,70 +9,59 @@ $diagnosticos = mysqli_query($conexion, $query);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-
-    <title>Diagnosticos</title>
+    <title>Diagnosticos por Centro Médico</title>
 </head>
 
-<header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
-    <?php
-    include("menuadministrador.php");
-    ?>
-</header>
-
-
-
 <body class="container">
+    <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
+        <?php
+        include("menuadministrador.php");
+        ?>
+    </header>
+
     <br><br><br><br><br>
-    <?php if (!isset($mensaje)) : ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 15px;">
-            <strong><?php echo $_GET['mensaje'] ?></strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php endif ?>
-
-    <h1>Listado de Diagnosticos</h1><br>
-    <a href="creardiagnostico.php" class="btn  btn-primary">Crear Diagnóstico</a>
-    <br><br><br>
-    <div class="seccion_mantenedor">
-        <style>
-            .tablas_mantenedor {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .seccion_mantenedor {
-                padding-left: 270px;
-            }
-        </style>
-        <section class="tablas_mantenedor">
-            <table id="tableUsers" class="tabla table">
-
-                <thead>
+    <section class="tablas_mantenedor">
+        <h1 class='text-center'>Diagnósticos por Centro Médico</h1><br>
+        <table id="tableUsers" class="tabla table">
+            <thead>
+                <tr>
+                    <th>Centro Médico</th>
+                    <?php foreach ($diagnosticos as $diagnostico) { ?>
+                        <th><?php echo $diagnostico; ?></th>
+                    <?php } ?>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($centrosMedicos as $centroMedico) { ?>
                     <tr>
-                        <th>Código </th>
-                        <th>Descripción </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($fila = mysqli_fetch_assoc($diagnosticos)) : ?>
+                        <td><?php echo $centroMedico; ?></td>
+                        <?php
+                        $totalDiagnosticoCentro = 0;
 
-                        <tr class="table ">
-                            <td><?php echo $fila['Codigo'] ?></td>
-                            <td><?php echo $fila['descripcion'] ?>
+                        foreach ($diagnosticos as $diagnostico) {
+                            $cantidad = $reporte->obtenerCantidadDiagnosticoPorCentro($centroMedico, $diagnostico);
+                            $totalDiagnosticoCentro += $cantidad;
+                        }
 
+                        foreach ($diagnosticos as $diagnostico) {
+                            $cantidad = $reporte->obtenerCantidadDiagnosticoPorCentro($centroMedico, $diagnostico);
+                            $porcentaje = 0;
+                            if ($totalDiagnosticoCentro > 0) {
+                                $porcentaje = ($cantidad / $totalDiagnosticoCentro) * 100;
+                            }
+                        ?>
                             <td>
-                                <a href="editardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-30 m-1 btn-primary">editar</a>
-                                <a href="borrardiagnostico.php?Codigo=<?php echo $fila['Codigo']; ?>" class="btn w-30 m-1 btn-danger">borrar</a>
+                                <?php echo $cantidad; ?>
+                                (<?php echo round($porcentaje,2); ?>%)
                             </td>
-                        </tr>
-
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </section>
-    </div>
-
+                        <?php } ?>
+                        <td><?php echo $totalDiagnosticoCentro; ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </section>
 
 
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>

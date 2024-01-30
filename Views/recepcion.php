@@ -118,7 +118,6 @@ verificarAcceso($perfilesPermitidos);
                     </tr>
 
             </tbody>
-
         <?php } ?>
         </table>
     </section>
