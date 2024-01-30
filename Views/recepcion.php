@@ -113,7 +113,6 @@
                     </tr>
 
             </tbody>
-
         <?php } ?>
         </table>
     </section>
