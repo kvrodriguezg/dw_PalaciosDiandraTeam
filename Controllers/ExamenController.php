@@ -43,5 +43,3 @@ if (!empty($_POST["ingreso"])) {
         echo '<script>alert("Algunos campos están vacíos");</script>';
     }
 }
-
-?>
