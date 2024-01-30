@@ -1,8 +1,8 @@
 <?php
 require_once("../Controllers/usuariosController.php");
-require_once('../Controllers/accesoController.php');
-$perfilesPermitidos = 5;
-verificarAcceso($perfilesPermitidos);
+//require_once('../Controllers/accesoController.php');
+//$perfilesPermitidos = 5;
+//verificarAcceso($perfilesPermitidos);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!isset($_POST['IDUsuario'])) {
@@ -33,8 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -60,28 +61,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
     </nav>';
     ?>
-
+   <br>
+    <label for="filtroUsuario">Filtrar por Usuario:</label>
+    <input type="text" id="filtroUsuario">
+    <br>
+    <br>
+    <label for="filtroCentro">Filtrar por laboratorio:</label>
+    <input type="text" id="filtroCentro">
     <br><br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <section>
-                    <table id=" tableUsers" class="table table-responsive">
-                        <thead>
-                            <tr>
-                                <th>IDUsuario</th>
-                                <th>usuario </th>
-                                <th>Nombre Completo</th>
-                                <th>correo </th>
-                                <th>Rut </th>
-                                <th>Clave </th>
-                                <th>Perfil</th>
-                                <th>Centro Medico</th>
-                                <th>Editar</th>
-                                <th>Borrar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <section style="margin: 10px;">
+        <table id="tableUsers" class="tabla table">
+            <style>
+                .tabla {
+                    width: 100%;
+                }
+            </style>
+            <thead>
+            <script>
+                $(document).ready(function () {
+                    // Función para realizar el filtrado
+                    function filtrar() {
+                        var inputFiltroUsuario = $('#filtroUsuario').val().toLowerCase();
+                        var inputFiltroCentro = $('#filtroCentro').val().toLowerCase();
+
+                        // Mostrar todas las filas de la tabla al principio
+                        $('#tableUsers tbody tr').show();
+
+                        // Filtrar las filas que coinciden con el criterio de búsqueda por usuario
+                        if (inputFiltroUsuario) {
+                            $('#tableUsers tbody tr').filter(function () {
+                                var textoFila = $(this).find('td:eq(2)').text().toLowerCase();
+                                return textoFila.indexOf(inputFiltroUsuario) === -1;
+                            }).hide();
+                        }
+
+                        // Filtrar las filas que coinciden con el criterio de búsqueda por centro
+                        if (inputFiltroCentro) {
+                            $('#tableUsers tbody tr').filter(function () {
+                                var textoFila = $(this).find('td:eq(7)').text().toLowerCase();
+                                return textoFila.indexOf(inputFiltroCentro) === -1;
+                            }).hide();
+                        }
+                    }
+
+                    // Llamar a la función de filtrado al cargar la página
+                    filtrar();
+
+                    // Agregar eventos de cambio a los inputs de filtrado
+                    $('#filtroUsuario, #filtroCentro').on('input', filtrar);
+                });
+            </script>
+                <tr>
+                    <th>IDUsuario</th>
+                    <th>usuario </th>
+                    <th>Nombre Completo</th>
+                    <th>correo </th>
+                    <th>Rut </th>
+                    <th>Clave </th>
+                    <th>Perfil</th>
+                    <th>Centro Medico</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($listusuarios as $usu) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $usu['IDUsuario']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usu['usuario']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usu['Nombre']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usu['Correo']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usu['Rut']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usu['Clave']; ?>
+                        </td>
+                        <td>
                             <?php
                             foreach ($listusuarios as $usu) {
                             ?>

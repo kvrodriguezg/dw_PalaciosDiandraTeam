@@ -26,6 +26,15 @@ class examenesModel
         }
     }
 
+    public function obtenerExamenesRegistro()
+    {
+        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM estados WHERE NombreEstado = 'Realizado')";
+        $result = mysqli_query($this->db, $query);
+        if ($result) {
+            return $result;
+        }
+    }
+
     public function obtenerExamenesTincion()
     {
         $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM estados WHERE NombreEstado = 'Listo para Tinción')";
@@ -104,8 +113,14 @@ class examenesModel
 
     public function cambiarEstado($idEstado, $idExamen)
     {
-        $query = "UPDATE Examenes SET IDEstado = $idEstado WHERE IDExamen = $idExamen;";
-        $result = mysqli_query($this->db, $query);
+        $query = "UPDATE Examenes SET IDEstado = ? WHERE IDExamen = ?";
+
+        $stmt = mysqli_prepare($this->db, $query);
+
+        mysqli_stmt_bind_param($stmt, "ii", $idEstado, $idExamen);
+
+        $result = mysqli_stmt_execute($stmt);
+
         if ($result) {
             return true;
         } else {
@@ -117,9 +132,16 @@ class examenesModel
     public function actualizarTincion($idExamen, $idEstado)
     {
         $fechaTincion = date("Y-m-d");
-        $query = "UPDATE Examenes SET IDEstado = $idEstado, Fechatincion = '$fechaTincion' WHERE IDExamen = $idExamen;";
-        $result = mysqli_query($this->db, $query);
-    
+        $query = "UPDATE Examenes SET IDEstado = ?, Fechatincion = ? WHERE IDExamen = ?";
+
+        $stmt = mysqli_prepare($this->db, $query);
+
+        mysqli_stmt_bind_param($stmt, "iss", $idEstado, $fechaTincion, $idExamen);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
+
         if ($result) {
             return true;
         } else {
@@ -140,8 +162,15 @@ class examenesModel
     public function actualizarDiagnostico($idExamen, $diagnostico)
     {
         $fechaDiagnostico = date("Y-m-d");
-        $query = "UPDATE Examenes SET CodigoDiagnosticos = '$diagnostico', Fechadiagnostico = '$fechaDiagnostico' WHERE IDExamen = $idExamen;";
-        $result = mysqli_query($this->db, $query);
+        $query = "UPDATE Examenes SET CodigoDiagnosticos = ?, Fechadiagnostico = ? WHERE IDExamen = ?";
+
+        $stmt = mysqli_prepare($this->db, $query);
+
+        mysqli_stmt_bind_param($stmt, "ssi", $diagnostico, $fechaDiagnostico, $idExamen);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
 
         if ($result) {
             return true;
@@ -153,8 +182,15 @@ class examenesModel
 
     public function eliminarRegistro($idExamen)
     {
-        $query = "DELETE FROM Examenes WHERE IDExamen = $idExamen;";
-        $result = mysqli_query($this->db, $query);
+        $query = "DELETE FROM Examenes WHERE IDExamen = ?";
+
+        $stmt = mysqli_prepare($this->db, $query);
+
+        mysqli_stmt_bind_param($stmt, "i", $idExamen);
+
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
 
         if ($result) {
             return true;
