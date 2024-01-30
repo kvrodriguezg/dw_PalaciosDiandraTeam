@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../Controllers/examenesController.php");
 require_once('../Controllers/accesoController.php');
 
@@ -60,10 +60,11 @@ verificarAcceso($perfilesPermitidos);
                     <th>Diagnóstico</th>
                     <th>Cod. Diagnóstico</th>
                     <th>Estado</th>
+                    <th>Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = mysqli_fetch_array($examenesRegistro)) { ?>
+                <?php while ($row = mysqli_fetch_array($examenes)) { ?>
                     <tr class="table table-striped">
                         <form method="post" action="Registro.php">
                             <td>
@@ -84,7 +85,7 @@ verificarAcceso($perfilesPermitidos);
                             <td><?php echo $row['CodigoDiagnosticos']; ?></td>
                             <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
 
-                            <?php /*<td>
+                            <td>
                                 <select class="form-select" style="width: 150px" name="estado" required>
                                     <?php
                                     $resultadoEstados = $examen->obtenerEstados('recepcion');
@@ -94,21 +95,12 @@ verificarAcceso($perfilesPermitidos);
                                     }
                                     ?>
                                 </select>
-                            </td>*/?>
+                            </td>
 
                             <td>
-
-
-                            <button type="button" class="btn btn-outline-danger" 
-                                onclick="window.open('generar_pdf.php?id=<?php echo $row['IDExamen']; ?>', '_blank');">
-                                <img src="../img/pdf.png" alt="Icono PDF">
-                            </button>
-                            <?Php
-                            // echo $row['IDExamen'];
-
-
-                            ?> 
-                            
+                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
+                                    <img src="../img/pdf.png" alt="Icono PDF">
+                                </button>
 
 
                             </td>
@@ -116,7 +108,7 @@ verificarAcceso($perfilesPermitidos);
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                 <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
                                 <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="eliminar"></input>
+                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger">Eliminar</input>
                             </td>
                         </form>
                     </tr>
