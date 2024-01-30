@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <title>Document</title>
 </head>
@@ -47,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <br><br><br><br><br>
 
 <body class="container">
+    
     <h1>Listado de Usuarios</h1><br>
     <?php
     echo '
@@ -61,6 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
     </nav>';
     ?>
+    <br>
+    <label for="filtroUsuario">Filtrar por Usuario:</label>
+    <input type="text" id="filtroUsuario">
+    <br>
+    <br>
+    <label for="filtroCentro">Filtrar por laboratorio:</label>
+    <input type="text" id="filtroCentro">
 
     <br><br><br>
     <section style="margin: 10px;">
@@ -84,6 +93,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>Borrar</th>
                 </tr>
             </thead>
+            <script>
+                $(document).ready(function () {
+                    // Función para realizar el filtrado
+                    function filtrar() {
+                        var inputFiltroUsuario = $('#filtroUsuario').val().toLowerCase();
+                        var inputFiltroCentro = $('#filtroCentro').val().toLowerCase();
+
+                        // Mostrar todas las filas de la tabla al principio
+                        $('#tableUsers tbody tr').show();
+
+                        // Filtrar las filas que coinciden con el criterio de búsqueda por usuario
+                        if (inputFiltroUsuario) {
+                            $('#tableUsers tbody tr').filter(function () {
+                                var textoFila = $(this).find('td:eq(2)').text().toLowerCase();
+                                return textoFila.indexOf(inputFiltroUsuario) === -1;
+                            }).hide();
+                        }
+
+                        // Filtrar las filas que coinciden con el criterio de búsqueda por centro
+                        if (inputFiltroCentro) {
+                            $('#tableUsers tbody tr').filter(function () {
+                                var textoFila = $(this).find('td:eq(7)').text().toLowerCase();
+                                return textoFila.indexOf(inputFiltroCentro) === -1;
+                            }).hide();
+                        }
+                    }
+
+                    // Llamar a la función de filtrado al cargar la página
+                    filtrar();
+
+                    // Agregar eventos de cambio a los inputs de filtrado
+                    $('#filtroUsuario, #filtroCentro').on('input', filtrar);
+                });
+            </script>
+
+
+
+            
+
             <tbody>
                 <?php
                 foreach ($listusuarios as $usu) {
