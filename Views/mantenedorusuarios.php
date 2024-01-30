@@ -1,8 +1,8 @@
 <?php
 require_once("../Controllers/usuariosController.php");
-require_once('../Controllers/accesoController.php');
-$perfilesPermitidos = 5;
-verificarAcceso($perfilesPermitidos);
+//require_once('../Controllers/accesoController.php');
+//$perfilesPermitidos = 5;
+//verificarAcceso($perfilesPermitidos);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!isset($_POST['IDUsuario'])) {
