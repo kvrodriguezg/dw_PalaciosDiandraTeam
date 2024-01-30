@@ -6,7 +6,7 @@ class usuario
     private $user;
     private $userLogin;
 
-    
+
     private $centrosarray;
 
     public function __construct()
@@ -15,8 +15,8 @@ class usuario
         $this->db = Conectarse();
         $this->usuario = array();
         $this->user = array();
-       $this->userLogin = array();
-       $this->centrosarray = array();
+        $this->userLogin = array();
+        $this->centrosarray = array();
     }
 
     public function verUsuarios()
@@ -42,18 +42,19 @@ class usuario
         return $idcentro;
     }
 
-    public function verCentrosarray(){
+    public function verCentrosarray()
+    {
         $consulta = mysqli_query($this->db, "select NombreCentro from centrosmedicos;");
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->centrosarray[] = $filas;
         }
         return $this->centrosarray;
     }
-    public function insertarUsuario($usuario,$nombre,  $correo, $rut, $clave, $perfil, $centro)
+    public function insertarUsuario($usuario, $nombre,  $correo, $rut, $clave, $perfil, $centro)
     {
         $idperfil = $this->buscarPerfil($perfil);
         $idcentro = $this->buscarcentro($centro);
-        $clavehash= password_hash($clave, PASSWORD_DEFAULT);
+        $clavehash = password_hash($clave, PASSWORD_DEFAULT);
 
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
@@ -83,10 +84,10 @@ class usuario
                 return false;
             }
         }
-
     }
 
-    public function buscarUsuario($IDUsuario){
+    public function buscarUsuario($IDUsuario)
+    {
         $consulta = mysqli_query($this->db, "SELECT * FROM usuarios where IDUsuario=$IDUsuario");
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->user[] = $filas;
@@ -108,16 +109,16 @@ class usuario
         return $NombreCentro;
     }
 
-    public function modificarPerfil($IDUsuario,$usuario,$nombre,$correo, $rut, $clave, $perfil, $centro)
+    public function modificarPerfil($IDUsuario, $usuario, $nombre, $correo, $rut, $clave, $perfil, $centro)
     {
 
         $idperfil = $this->buscarPerfil($perfil);
         $idcentro = $this->buscarcentro($centro);
 
         $query = "UPDATE usuarios SET usuario = ?,Nombre = ?, Correo = ?, Rut = ?, Clave = ?, IDPerfil = ?, IDCentroMedico = ? WHERE IDUsuario = ?;";
-        if ($stmt = mysqli_prepare($this->db, $query)) { 
-            mysqli_stmt_bind_param($stmt, "sssssiii",$usuario,$nombre,$correo, $rut, $clave, $idperfil['IDPerfil'], $idcentro['IDCentroMedico'],$IDUsuario); 
-                                                                                
+        if ($stmt = mysqli_prepare($this->db, $query)) {
+            mysqli_stmt_bind_param($stmt, "sssssiii", $usuario, $nombre, $correo, $rut, $clave, $idperfil['IDPerfil'], $idcentro['IDCentroMedico'], $IDUsuario);
+
             if (mysqli_stmt_execute($stmt)) {
                 return true;
             } else {
@@ -126,18 +127,19 @@ class usuario
         }
     }
 
-    function iniciarSesion($usuario, $clave) {
+    function iniciarSesion($usuario, $clave)
+    {
         $link = Conectarse();
-    
+
         $query = mysqli_prepare($link, "SELECT usuario, Clave, idPerfil, IDCentroMedico FROM usuarios WHERE usuario = ?");
-    
+
         if ($query) {
             mysqli_stmt_bind_param($query, "s", $usuario);
             mysqli_stmt_execute($query);
             mysqli_stmt_bind_result($query, $resultadoUsuario, $resultadoClave, $idPerfil, $IDCentroMedico);
             mysqli_stmt_fetch($query);
             mysqli_stmt_close($query);
-    
+
             if ($resultadoUsuario === $usuario && password_verify($clave, $resultadoClave)) {
                 return array('idPerfil' => $idPerfil, 'IDCentroMedico' => $IDCentroMedico);
             }
@@ -145,6 +147,4 @@ class usuario
             return false;
         }
     }
-    
-    
 }
