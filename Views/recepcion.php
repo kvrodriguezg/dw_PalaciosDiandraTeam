@@ -112,7 +112,7 @@ verificarAcceso($perfilesPermitidos);
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                 <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
                                 <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger">Eliminar</input>
+                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="eliminar"></input>
                             </td>
                         </form>
                     </tr>
