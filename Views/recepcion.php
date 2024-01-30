@@ -1,6 +1,6 @@
 <?php require_once("../Controllers/examenesController.php");
 require_once('../Controllers/accesoController.php');
-
+session_start();
 $perfilesPermitidos = 3;
 verificarAcceso($perfilesPermitidos);
 ?>
