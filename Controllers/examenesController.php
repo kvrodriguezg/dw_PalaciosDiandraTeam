@@ -37,3 +37,17 @@ if (isset($_POST['eliminarRegistro'])) {
     $examen->eliminarRegistro($idExamen);
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
+
+  if (isset($_POST['cambiarEstadoMasivo'])) {
+      echo "Llego aqaui";
+      $seleccionados = $_POST['seleccionados'];
+      $idEstado = $_POST['estado'];
+  
+      foreach($seleccionados as $idExamen) {
+        $examen->cambiarEstado($idEstado,$idExamen);
+       }
+  
+      header("Location: recepcion.php");
+      exit;
+  }
+ 

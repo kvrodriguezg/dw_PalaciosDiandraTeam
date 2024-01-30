@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="../css/prueba.css">
-    <title>Document</title>
+    <title>Iniciar Sesión</title>
 </head>
 
 <body>
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <li class="nav-item">
                         <a class="nav-link text-blue" href="diagnostico.php"><i class="fa-solid fa-user"></i>
-                            Diagnosticos</a>
+                            Diagnósticos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-blue" href="Registro.php"><i class="fa-solid fa-receipt"></i>
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img class="img-login" src="../img/logo_labmuest.png" alt="" width="300">
                 </div>
             </div>
-            <h2 style="text-align: center;">Login</h2><br>
+            <h2 style="text-align: center;">Iniciar Sesión</h2><br>
             <?php
             if (!empty($error)) {
                 echo "<script>alert('$error')</script>";
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label style="text-align: center;">Clave:</label>
                         <input type="password" class="form-control" name="clave" placeholder="Ingrese su clave">
                         <input type="hidden" name="op" value="LOGIN"><br>
-                        <input type="submit" class="btn btn-primary w-100 center-block" name="btnlogin" value="LOGIN">
+                        <input type="submit" class="btn btn-primary w-100 center-block" name="btnlogin" value="Ingresar">
                     </div>
                 </div>
 

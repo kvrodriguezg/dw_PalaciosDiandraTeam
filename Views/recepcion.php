@@ -55,7 +55,7 @@ verificarAcceso($perfilesPermitidos);
             }
 
             .tabla-recepcion {
-                width: 600px;
+           
             }
         </style>
         <div class="row">
@@ -63,7 +63,6 @@ verificarAcceso($perfilesPermitidos);
                 <table id="pruebas4" class="tabla-recepcion">
                     <thead>
                         <tr>
-                            <th>Seleccionar</th>
                             <th>Nombre Paciente</th>
                             <th>Domicilio</th>
                             <th>Laboratorio</th>
@@ -83,13 +82,6 @@ verificarAcceso($perfilesPermitidos);
                         <?php while ($row = mysqli_fetch_array($examenes)) { ?>
                             <tr class=>
                                 <form method="post" action="Registro.php">
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                            <label class="form-check-label" for="flexCheckIndeterminate">
-                                            </label>
-                                        </div>
-                                    </td>
                                     <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                                     <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
                                     <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
