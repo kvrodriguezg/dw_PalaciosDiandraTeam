@@ -131,17 +131,10 @@ class examenesModel
 
     public function actualizarTincion($idExamen, $idEstado)
     {
-        $fechaTincion = date("Y-m-d");
-        $query = "UPDATE Examenes SET IDEstado = ?, Fechatincion = ? WHERE IDExamen = ?";
-
-        $stmt = mysqli_prepare($this->db, $query);
-
-        mysqli_stmt_bind_param($stmt, "iss", $idEstado, $fechaTincion, $idExamen);
-
-        $result = mysqli_stmt_execute($stmt);
-
-        mysqli_stmt_close($stmt);
-
+        $fechaTincion = date("Y-m-d H:i:s");
+        $query = "UPDATE Examenes SET IDEstado = $idEstado, Fechatincion = '$fechaTincion' WHERE IDExamen = $idExamen;";
+        $result = mysqli_query($this->db, $query);
+    
         if ($result) {
             return true;
         } else {
@@ -161,16 +154,9 @@ class examenesModel
     }
     public function actualizarDiagnostico($idExamen, $diagnostico)
     {
-        $fechaDiagnostico = date("Y-m-d");
-        $query = "UPDATE Examenes SET CodigoDiagnosticos = ?, Fechadiagnostico = ? WHERE IDExamen = ?";
-
-        $stmt = mysqli_prepare($this->db, $query);
-
-        mysqli_stmt_bind_param($stmt, "ssi", $diagnostico, $fechaDiagnostico, $idExamen);
-
-        $result = mysqli_stmt_execute($stmt);
-
-        mysqli_stmt_close($stmt);
+        $fechaDiagnostico = date("Y-m-d H:i:s");
+        $query = "UPDATE Examenes SET CodigoDiagnosticos = '$diagnostico', Fechadiagnostico = '$fechaDiagnostico' WHERE IDExamen = $idExamen;";
+        $result = mysqli_query($this->db, $query);
 
         if ($result) {
             return true;
