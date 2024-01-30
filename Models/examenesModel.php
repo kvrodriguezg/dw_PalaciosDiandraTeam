@@ -116,7 +116,7 @@ class examenesModel
 
     public function actualizarTincion($idExamen, $idEstado)
     {
-        $fechaTincion = date("Y-m-d");
+        $fechaTincion = date("Y-m-d H:i:s");
         $query = "UPDATE Examenes SET IDEstado = $idEstado, Fechatincion = '$fechaTincion' WHERE IDExamen = $idExamen;";
         $result = mysqli_query($this->db, $query);
     
@@ -139,7 +139,7 @@ class examenesModel
     }
     public function actualizarDiagnostico($idExamen, $diagnostico)
     {
-        $fechaDiagnostico = date("Y-m-d");
+        $fechaDiagnostico = date("Y-m-d H:i:s");
         $query = "UPDATE Examenes SET CodigoDiagnosticos = '$diagnostico', Fechadiagnostico = '$fechaDiagnostico' WHERE IDExamen = $idExamen;";
         $result = mysqli_query($this->db, $query);
 

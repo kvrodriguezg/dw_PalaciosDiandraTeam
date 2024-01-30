@@ -84,14 +84,6 @@
                                     ?>
                                 </select>
                             </td>
-
-                            <td>
-                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
-                                    <img src="../img/pdf.png" alt="Icono PDF">
-                                </button>
-
-
-                            </td>
                             <td>
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                 <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
