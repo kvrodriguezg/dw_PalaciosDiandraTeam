@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($op == 'EDITAR') {
         header("Location: editarusuario.php?IDUsuario=$IDUsuario");
         exit();
-    } 
+    }
 }
 
 ?>
@@ -30,13 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -45,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include("menuadministrador.php");
     ?>
 </header>
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 
 <body class="container">
     <h1>Listado de Usuarios</h1><br>
@@ -62,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
     </nav>';
     ?>
-   <br>
+    <br>
     <label for="filtroUsuario">Filtrar por Usuario:</label>
     <input type="text" id="filtroUsuario">
     <br>
@@ -78,40 +76,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             </style>
             <thead>
-            <script>
-                $(document).ready(function () {
-                    // Función para realizar el filtrado
-                    function filtrar() {
-                        var inputFiltroUsuario = $('#filtroUsuario').val().toLowerCase();
-                        var inputFiltroCentro = $('#filtroCentro').val().toLowerCase();
+                <script>
+                    $(document).ready(function() {
+                        // Función para realizar el filtrado
+                        function filtrar() {
+                            var inputFiltroUsuario = $('#filtroUsuario').val().toLowerCase();
+                            var inputFiltroCentro = $('#filtroCentro').val().toLowerCase();
 
-                        // Mostrar todas las filas de la tabla al principio
-                        $('#tableUsers tbody tr').show();
+                            // Mostrar todas las filas de la tabla al principio
+                            $('#tableUsers tbody tr').show();
 
-                        // Filtrar las filas que coinciden con el criterio de búsqueda por usuario
-                        if (inputFiltroUsuario) {
-                            $('#tableUsers tbody tr').filter(function () {
-                                var textoFila = $(this).find('td:eq(2)').text().toLowerCase();
-                                return textoFila.indexOf(inputFiltroUsuario) === -1;
-                            }).hide();
+                            // Filtrar las filas que coinciden con el criterio de búsqueda por usuario
+                            if (inputFiltroUsuario) {
+                                $('#tableUsers tbody tr').filter(function() {
+                                    var textoFila = $(this).find('td:eq(2)').text().toLowerCase();
+                                    return textoFila.indexOf(inputFiltroUsuario) === -1;
+                                }).hide();
+                            }
+
+                            // Filtrar las filas que coinciden con el criterio de búsqueda por centro
+                            if (inputFiltroCentro) {
+                                $('#tableUsers tbody tr').filter(function() {
+                                    var textoFila = $(this).find('td:eq(7)').text().toLowerCase();
+                                    return textoFila.indexOf(inputFiltroCentro) === -1;
+                                }).hide();
+                            }
                         }
 
-                        // Filtrar las filas que coinciden con el criterio de búsqueda por centro
-                        if (inputFiltroCentro) {
-                            $('#tableUsers tbody tr').filter(function () {
-                                var textoFila = $(this).find('td:eq(7)').text().toLowerCase();
-                                return textoFila.indexOf(inputFiltroCentro) === -1;
-                            }).hide();
-                        }
-                    }
+                        // Llamar a la función de filtrado al cargar la página
+                        filtrar();
 
-                    // Llamar a la función de filtrado al cargar la página
-                    filtrar();
-
-                    // Agregar eventos de cambio a los inputs de filtrado
-                    $('#filtroUsuario, #filtroCentro').on('input', filtrar);
-                });
-            </script>
+                        // Agregar eventos de cambio a los inputs de filtrado
+                        $('#filtroUsuario, #filtroCentro').on('input', filtrar);
+                    });
+                </script>
                 <tr>
                     <th>IDUsuario</th>
                     <th>usuario </th>
@@ -128,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <tbody>
                 <?php
                 foreach ($listusuarios as $usu) {
-                    ?>
+                ?>
                     <tr>
                         <td>
                             <?php echo $usu['IDUsuario']; ?>
@@ -174,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
                         </td>
                     </tr>
-                    <?php
+                <?php
                 }
                 ?>
             </tbody>
@@ -182,15 +180,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </section>
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 

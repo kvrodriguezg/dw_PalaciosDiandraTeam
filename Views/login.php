@@ -85,21 +85,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         </style>
         <form method="POST" action="login.php" class="form" style="padding: 100px 300px 0 300px;">
+            <div class="m-0 row justify-content-center align-items-center">
+                <div class="col-auto p-5 text-center">
+                    <img class="img-login" src="../img/logo_labmuest.png" alt="" width="300">
+                </div>
+            </div>
             <h2 style="text-align: center;">Login</h2><br>
             <?php
             if (!empty($error)) {
                 echo "<script>alert('$error')</script>";
             }
             ?>
-            <div class="row">
-                <div class="col">
-                    <label for="rut" style="text-align: center;">Usuario:</label>
-                    <input type="text" class="form-control" name="usuario" placeholder="Insgrese su usuario"><br>
-                    <label style="text-align: center;">Clave:</label>
-                    <input type="password" class="form-control" name="clave" placeholder="Ingrese su clave">
-                    <input type="hidden" name="op" value="LOGIN"><br>
-                    <input type="submit" class="btn btn-primary w-100 center-block" name="btnlogin" value="LOGIN">
+            <div class="container loginn">
+                <style>
+                    .loginn {
+                        padding: 0 300px;
+                    }
+                </style>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label for="rut" style="text-align: center;">Usuario:</label>
+                        <input type="text" class="form-control" name="usuario" placeholder="Insgrese su usuario"><br>
+                        <label style="text-align: center;">Clave:</label>
+                        <input type="password" class="form-control" name="clave" placeholder="Ingrese su clave">
+                        <input type="hidden" name="op" value="LOGIN"><br>
+                        <input type="submit" class="btn btn-primary w-100 center-block" name="btnlogin" value="LOGIN">
+                    </div>
                 </div>
+
+            </div>
         </form>
 
         </div>
