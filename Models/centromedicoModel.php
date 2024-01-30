@@ -1,6 +1,7 @@
 <?php
 
- class CentroMedico  {
+class CentroMedico
+{
     private $id;
     private $nombreCentro;
     private $codigo;
@@ -13,10 +14,10 @@
         $this->db = Conectarse();
         $this->centros = array();
         $this->listadoExamenesCentro = array();
-        
     }
 
-    public function crearCentros(){
+    public function crearCentros()
+    {
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
         if ($tablaExistente->comprobarTabla("CentrosMedicos") == true) {
@@ -31,7 +32,8 @@
         }
     }
 
-    public function verCentros(){
+    public function verCentros()
+    {
         $consulta = mysqli_query($this->db, "select * from centrosmedicos;");
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->centros[] = $filas;
@@ -40,49 +42,46 @@
     }
 
 
- 
 
 
-    public function insertarCentro($nombreCentro,$CodigoCentro)
+
+    public function insertarCentro($nombreCentro, $CodigoCentro)
     {
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
         if ($tablaExistente->comprobarTabla("CentrosMedicos") == true) {
 
             $query = "INSERT INTO centrosmedicos (NombreCentro, codigo)  VALUES (?,?);";
-            
+
             if ($stmt = mysqli_prepare($this->db, $query)) {
-                mysqli_stmt_bind_param($stmt, "ss", $nombreCentro,$CodigoCentro);
+                mysqli_stmt_bind_param($stmt, "ss", $nombreCentro, $CodigoCentro);
                 if (mysqli_stmt_execute($stmt)) {
                     return true;
-                    
                 } else {
                     return false;
                 }
-
             }
-
         }
     }
 
-    public function modificarCentro($IDCentroMedico,$NombreCentro,$codigo)
+    public function modificarCentro($IDCentroMedico, $NombreCentro, $codigo)
     {
         $query = "UPDATE centrosmedicos SET NombreCentro = ?, codigo = ? WHERE IDCentroMedico = ?;";
-        if ($stmt = mysqli_prepare($this->db, $query)) { 
-            mysqli_stmt_bind_param($stmt, "ssi", $NombreCentro, $codigo,$IDCentroMedico ); 
-                                                                           
-            if (mysqli_stmt_execute($stmt)) { 
-                return true; 
+        if ($stmt = mysqli_prepare($this->db, $query)) {
+            mysqli_stmt_bind_param($stmt, "ssi", $NombreCentro, $codigo, $IDCentroMedico);
+            if (mysqli_stmt_execute($stmt)) {
+                return true;
             } else {
-                return false; 
+                return false;
             }
         }
     }
 
 
 
-    public function eliminarCentro($IDCentroMedico){
-        $query="DELETE FROM centrosmedicos WHERE IDCentroMedico = ?;";
+    public function eliminarCentro($IDCentroMedico)
+    {
+        $query = "DELETE FROM centrosmedicos WHERE IDCentroMedico = ?;";
         if ($stmt = mysqli_prepare($this->db, $query)) {
             mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico);
             if (mysqli_stmt_execute($stmt)) {
@@ -90,11 +89,11 @@
             } else {
                 return false;
             }
-
         }
     }
 
-    public function buscarExamenes($IDCentroMedico){
+    public function buscarExamenes($IDCentroMedico)
+    {
         $query = "select p.NombrePaciente,e.NombreExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join pacientes p on e.RutPaciente = p.RutPaciente Join estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
         $consulta = mysqli_query($this->db, $query);
         while ($filas = mysqli_fetch_array($consulta)) {
@@ -104,15 +103,16 @@
     }
 
 
-    public function nombreCentro($IDCentroMedico) {
+    public function nombreCentro($IDCentroMedico)
+    {
         $consulta = "select NombreCentro from centrosmedicos where IDCentroMedico = ?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
-            mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico); 
+            mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico);
             if (mysqli_stmt_execute($stmt)) {
-                mysqli_stmt_bind_result($stmt, $NombreCentro); 
-                mysqli_stmt_fetch($stmt);    
+                mysqli_stmt_bind_result($stmt, $NombreCentro);
+                mysqli_stmt_fetch($stmt);
                 return $NombreCentro;
-            } else {               
+            } else {
                 return false;
             }
         } else {
@@ -120,5 +120,3 @@
         }
     }
 }
-
- 
