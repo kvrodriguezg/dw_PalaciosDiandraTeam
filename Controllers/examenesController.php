@@ -10,7 +10,9 @@ if (isset($_POST['actualizarEstado'])) {
     $idExamen=$_POST['idExamen'];
     $idEstado=$_POST['estado'];
     $examen->cambiarEstado($idEstado,$idExamen);
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+    echo "llego aqui";
+    header("Location: recepcion.php");
+    exit;
 }
 
 if (isset($_POST['actualizarEstadoDiagnostico'])) {
