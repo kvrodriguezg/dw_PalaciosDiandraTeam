@@ -1,6 +1,6 @@
 <?php
 require_once("../Controllers/examenesController.php");
-git require_once('../Controllers/accesoController.php');
+require_once('../Controllers/accesoController.php');
 
 $perfilesPermitidos = (4);
 verificarAcceso($perfilesPermitidos);
