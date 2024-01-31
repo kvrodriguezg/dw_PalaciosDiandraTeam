@@ -1,4 +1,8 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaperfil = dirname($directorioActual) . "/Controllers/perfilesController.php";
+//require_once $rutaperfil;
+
 $IDPerfil = $_GET['IDPerfil'] ?? '';
 $TipoPerfil = $_GET['TipoPerfil'] ?? '';
 
@@ -6,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $IDPerfil = $_POST['IDPerfil'] ?? '';
     $TipoPerfil = $_POST['TipoPerfil'] ?? '';
     $op = $_POST['modificar'] ?? ''; 
-
+    $_SESSION['IDPerfil'] = $_POST['IDPerfil'];
     if ($op == "Modificar") {
         require_once("../Controllers/perfilesController.php");
         exit();

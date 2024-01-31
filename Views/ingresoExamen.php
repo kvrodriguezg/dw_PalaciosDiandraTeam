@@ -1,4 +1,15 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaacceso;
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
+
+require_once("../Controllers/ExamenController.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 3;
+verificarAcceso($perfilesPermitidos);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['nombre'])) { $nombre = '';} else {$nombre = $_POST['nombre'];}
@@ -10,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['fecharecepcion'])) { $fecharecepcion = '';} else {$fecharecepcion = $_POST['fecharecepcion'];}
     
     }
-    include("../Controllers/ExamenController.php");
+
 ?>
 
 <!DOCTYPE html>

@@ -7,6 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($op == "GUARDAR") {
+        //$directorioActual = __DIR__;
+        //$rutaperfiles = dirname($directorioActual) . "/Controllers/perfilesController.php";
+        //require_once $rutaperfiles;
         require_once("../Controllers/perfilesController.php");
     }
 }
@@ -52,13 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br><br>
         <input class="btn w-100 m-1 btn-primary btn-sm" name="crearperfilbtn" type="submit" value="INSERTAR" />
     </form>
-
-    <?php
-    if ($op == "GUARDAR") {
-
-        require_once("../Controllers/perfilesController.php");
-    }
-    ?>
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

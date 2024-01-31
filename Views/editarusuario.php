@@ -1,4 +1,8 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/usuariosController.php";
+//require_once $rutaacceso;
+
 $IDUsuario = $_GET['IDUsuario'] ?? '';
 
 require_once("../Controllers/usuariosController.php");
@@ -35,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombrePerfil = '';
 
     if ($op == "Modificar") {
-        echo "<script>alert('llego aqui 1')</script>";
         require_once("../Controllers/usuariosController.php");
         exit();
     }
@@ -69,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-            <h2 style="text-align: center;">Crear usuario</h2><br>
+            <h2 style="text-align: center;">Editar Usuario</h2><br>
             <input type="hidden" class="form-control" name="IDUsuario" value="<?php echo $registro['IDUsuario']; ?>">
 
             <div class="row">

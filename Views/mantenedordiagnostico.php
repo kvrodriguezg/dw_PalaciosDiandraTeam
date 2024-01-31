@@ -1,9 +1,16 @@
-<?php include("../Models/conex.php") ?>
-<?php
-//crear y selecionar la query
-$query = "SELECT * FROM diagnosticos ORDER BY Codigo DESC";
-$diagnosticos = mysqli_query($conexion, $query);
-?>
+<?php 
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conex.php";
+//require_once $ruta;
+//
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaacceso;
+
+include("../Controllers/diagnosticoController.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);?>
+
 
 <!DOCTYPE html>
 <html lang="en">

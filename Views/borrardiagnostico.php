@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conex.php";
+//require_once $ruta;
 include '../Models/conex.php';
 //OBTENER EL ID ENVIADO DEL MANTENEDOR 
 $idRegistro = $_GET['Codigo'];

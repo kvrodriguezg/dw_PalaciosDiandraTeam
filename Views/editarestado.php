@@ -1,5 +1,11 @@
 <?php
+<<<<<<< HEAD
 require_once("../Controllers/EstadoController.php");  
+=======
+//$directorioActual = __DIR__;
+//$rutaEstado = dirname($directorioActual) . "/Controllers/EstadoController.php";
+//require_once $rutaEstado;
+>>>>>>> origin/main
 
 $AgregaNEstado='';
 $AgregaPerfEstado='';

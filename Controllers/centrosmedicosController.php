@@ -1,6 +1,8 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/centromedicoModel.php";
+//require_once $ruta;
 include("../Models/centromedicoModel.php");
-
 $objCentros = new centromedico();
 
 // Creación de CENTRO si no existe
@@ -14,9 +16,17 @@ if (isset($_POST['op']) && $_POST['op'] == "GUARDAR" && isset($_POST['nombreCent
     $nombreCentro = $_POST['nombreCentro'];
     $CodigoCentro = $_POST['CodigoCentro'];
     $insertarCentro = $objCentros->insertarCentro($nombreCentro,$CodigoCentro);
-
-    header("Location: mantenedorlaboratorios.php"); 
-    exit();
+    if ($insertarCentro) {
+        echo '<script>alert("Centro creado con éxito.");</script>';
+    } else {
+        echo '<script>alert("No se pudo crear el centro.");</script>';
+    }
+   echo '<script>
+           setTimeout(function() {
+               window.location.href = "mantenedorlaboratorios.php";
+           }, 100);
+         </script>';
+   exit();
 }
 
 
@@ -26,14 +36,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
     $CodigoCentro = $_POST['codigo'];
     $IDCentroMedico = $_POST['IDCentroMedico'];
     $editarCentro = $objCentros->modificarCentro($IDCentroMedico,$nombreCentro,$CodigoCentro);
-    echo "IDCentroMedico $IDCentroMedico nombreCentro $nombreCentro , CodigoCentro $CodigoCentro";
-    header("Location: mantenedorlaboratorios.php"); 
-    exit();
+    if ($editarCentro) {
+        echo '<script>alert("Centro editado con éxito.");</script>';
+    } else {
+        echo '<script>alert("No se pudo editar el Centro.");</script>';
+    }
+   echo '<script>
+           setTimeout(function() {
+               window.location.href = "mantenedorlaboratorios.php";
+           }, 100);
+         </script>';
+   exit();
 }
-// Eliminar CENTRO 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] == "eliminar" && isset($_POST['IDCentroMedico'])) {
+
+
+
+// Eliminar IDCentroMedico 
+if (isset($_POST['op']) && $_POST['op'] == "ELIMINAR" && isset($_POST['IDCentroMedico'])) {
     $IDCentroMedico = $_POST['IDCentroMedico'];
-    $borrarPerfil = $objCentros->eliminarCentro($IDCentroMedico);
-    
-       header("Location: mantenedorlaboratorios.php"); 
+    $borrarCentro = $objCentros->eliminarCentro($IDCentroMedico);
+    if ($borrarCentro) {
+        echo '<script>alert("Centro médico eliminado con éxito.");</script>';
+    } else {
+        echo '<script>alert("No se pudo eliminar el Centro médico.");</script>';
+    }
+   echo '<script>
+           setTimeout(function() {
+               window.location.href = "mantenedorlaboratorios.php";
+           }, 100);
+         </script>';
+   exit();
 }

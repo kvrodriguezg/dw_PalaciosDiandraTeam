@@ -1,56 +1,49 @@
 <?php
-
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conexion.php";
+//require_once $ruta;
 class perfiles
 {
     private $db;
     private $perfiles;
+    private $tipoperfiles;
     public function __construct()
     {
         require_once("conexion.php");
         $this->db = Conectarse();
         $this->perfiles = array();
+        $this->tipoperfiles = array();
     }
 
 
     //esta funcion ayudara a insertar los perfiles ya definidos en cuanto se cree la tabla
     public function crearperfiles()
     {
-        require_once("existetablaModel.php");
-        $tablaExistente = new existetabla();
-        if ($tablaExistente->comprobarTabla("perfiles") == true) {
-            $query = "INSERT INTO perfiles (TipoPerfil) VALUES ('Administrador'),('Recepcionista'),('Tecnico Tincion'),('Tecnico Diagnostico'),('Tecnico Registro'),('Centro medico');";
+
+            $query = "INSERT INTO Perfiles (TipoPerfil) VALUES ('Administrador'),('Recepcionista'),('Tecnico Tincion'),('Tecnico Diagnostico'),('Tecnico Registro'),('Centro medico');";
             $creacion = mysqli_query($this->db, $query);
             if (!$creacion) {
                 echo "Error al crear la tabla Perfiles: " . mysqli_error($this->db);
             }
             return true;
-        } else {
-            return false;
-        }
-
+        
     }
     
     public function insertarPerfil($nombrePerfil)
     {
-        require_once("existetablaModel.php");
-        $tablaExistente = new existetabla();
-        if ($tablaExistente->comprobarTabla("perfiles") == true) {
-
-            $query = "INSERT INTO perfiles (TipoPerfil) VALUES (?);";
+            $query = "INSERT INTO Perfiles (TipoPerfil) VALUES (?);";
             
             if ($stmt = mysqli_prepare($this->db, $query)) {
                 mysqli_stmt_bind_param($stmt, "s", $nombrePerfil);
                 if (mysqli_stmt_execute($stmt)) {
                     return true;       
-                } else {
-                    return false;
-                }
+                } 
             }
-        }
+        
     }
 
     public function eliminarPerfil($idPerfil){
-        $query="DELETE FROM perfiles WHERE idPerfil=?;";
+        $query="DELETE FROM Perfiles WHERE idPerfil=?;";
         if ($stmt = mysqli_prepare($this->db, $query)) {
             mysqli_stmt_bind_param($stmt, "s", $idPerfil);
             if (mysqli_stmt_execute($stmt)) {
@@ -63,7 +56,7 @@ class perfiles
     }
     public function modificarPerfil($idperfil, $nombrePerfil)
     {
-        $query = "UPDATE perfiles SET TipoPerfil = ? WHERE IDPerfil = ?;"; // LA CONSULTA QUE QUIERO EJECUTAR
+        $query = "UPDATE Perfiles SET TipoPerfil = ? WHERE IDPerfil = ?;"; // LA CONSULTA QUE QUIERO EJECUTAR
         if ($stmt = mysqli_prepare($this->db, $query)) { // LE AVISO AL EDITOR QUE LE ENVIARE UNA CONSULTA PREPARADA
             mysqli_stmt_bind_param($stmt, "si", $nombrePerfil, $idperfil); // LE INDICO A LA CONSULTA PREPARADA STMT 
                                                                                 //QUE DATOS NECESITO QUE VALIDE
@@ -78,19 +71,30 @@ class perfiles
     
 
     public function verPerfiles(){
-        $consulta = mysqli_query($this->db, "select * from perfiles");
+        $consulta = mysqli_query($this->db, "select * from Perfiles");
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->perfiles[] = $filas;
         }
         return $this->perfiles;
     }
 
+<<<<<<< HEAD
 
 
 
     
+=======
+    public function vertipoPerfiles(){
+        $consulta = mysqli_query($this->db, "select TipoPerfil from Perfiles");
+        while ($filas = mysqli_fetch_array($consulta)) {
+            $this->tipoperfiles[] = $filas;
+        }
+        return $this->tipoperfiles;
+    }
+
+>>>>>>> origin/main
     public function buscarPerfil($idPerfil) {
-        $consulta = "SELECT TipoPerfil FROM perfiles WHERE idPerfil = ?";
+        $consulta = "SELECT TipoPerfil FROM Perfiles WHERE idPerfil = ?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
             mysqli_stmt_bind_param($stmt, "i", $idPerfil); 
             if (mysqli_stmt_execute($stmt)) {

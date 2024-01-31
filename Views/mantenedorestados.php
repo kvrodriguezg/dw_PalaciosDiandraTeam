@@ -1,6 +1,16 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaestado = dirname($directorioActual) . "/Controllers/EstadoController.php";
+//$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaestado;
+//require_once $rutausuarios;
+//require_once $rutaacceso;
 require_once("../Controllers/EstadoController.php");
 require_once("../Controllers/usuariosController.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);
 $IDEstado = '';
 $sw = "";
 

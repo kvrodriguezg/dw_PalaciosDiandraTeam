@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
+//require_once $ruta;
 $op = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$usuarioModel = dirname($directorioActual) . "/Models/usuarioModel.php";
+//require_once $usuarioModel;
 include("Models/existetablaModel.php");
 $existe = new ExisteTabla();
 $tablas = ["Perfiles", "Usuarios", "Estados", "CentrosMedicos", "Examenes", "Diagnosticos", "Pacientes"];
