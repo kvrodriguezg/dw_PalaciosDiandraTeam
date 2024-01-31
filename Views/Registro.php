@@ -1,4 +1,11 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaacceso;
+//
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
 require_once("../Controllers/examenesController.php");
 require_once('../Controllers/accesoController.php');
 

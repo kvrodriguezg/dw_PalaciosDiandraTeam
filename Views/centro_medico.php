@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutacentro = dirname($directorioActual) . "/Controllers/centroController.php";
+//require_once $rutacentro;
 require_once("../Controllers/centroController.php");
 ?>
 <!DOCTYPE html>

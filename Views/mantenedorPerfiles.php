@@ -1,4 +1,11 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+////require_once $ruta;
+//
+//$rutaperfiles = dirname($directorioActual) . "/Controllers/perfilesController.php";
+//require_once $rutaperfiles;
+
 require_once('../Controllers/accesoController.php');
 $perfilesPermitidos = 5;
 verificarAcceso($perfilesPermitidos);

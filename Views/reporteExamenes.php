@@ -1,4 +1,8 @@
-<?php require_once("../Controllers/reportesController.php"); ?>
+<?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Controllers/reportesController.php";
+//require_once $ruta;
+require_once("../Controllers/reportesController.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 

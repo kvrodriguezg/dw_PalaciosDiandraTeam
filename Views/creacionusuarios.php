@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
+//require_once $rutausuarios;
 $op = "";
 
 require_once("../Controllers/usuariosController.php");

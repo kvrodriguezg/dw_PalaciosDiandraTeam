@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conexion.php";
+//require_once $ruta;
 class ExisteTabla
 {
     private $db;
@@ -43,7 +46,7 @@ class ExisteTabla
     public function crearCentros()
     {
         if ($this->comprobarTabla("CentrosMedicos") == true) {
-            $query = "INSERT IGNORE INTO centrosmedicos (NombreCentro, codigo) VALUES 
+            $query = "INSERT IGNORE INTO CentrosMedicos (NombreCentro, codigo) VALUES 
                 ('N/A', 'N/A'),
                 ('MEGAMAN', 'MM'),
                 ('ULTRAMAN', 'UM'),

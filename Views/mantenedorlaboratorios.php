@@ -1,4 +1,10 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutacentro;
+//require_once $rutaacceso;
+
 require_once('../Controllers/accesoController.php');
 require_once('../Controllers/centrosmedicosController.php');
 $perfilesPermitidos = 5;

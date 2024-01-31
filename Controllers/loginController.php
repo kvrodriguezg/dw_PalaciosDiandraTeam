@@ -1,5 +1,8 @@
 
 <?php
+//$directorioActual = __DIR__;
+//$usuarioModel = dirname($directorioActual) . "/Models/usuarioModel.php";
+//require_once $usuarioModel;
 include("../Models/usuarioModel.php");
 $objlogin = new usuario();
 

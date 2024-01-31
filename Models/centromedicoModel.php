@@ -1,5 +1,7 @@
 <?php
-
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conexion.php";
+//require_once $ruta;
 class CentroMedico
 {
     private $id;

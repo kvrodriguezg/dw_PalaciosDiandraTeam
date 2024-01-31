@@ -1,5 +1,17 @@
-<?php require_once("../Controllers/examenesController.php"); ?>
-<?php include "../Views/Shared/head.php" ;
+<?php 
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaacceso;
+//
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
+////
+//$directorioActual = __DIR__;
+//$rutahead = $directorioActual . "/Shared/head.php";
+require_once $rutahead;
+require_once("../Controllers/examenesController.php");
+ include "../Views/Shared/head.php" ;
 require_once('../Controllers/accesoController.php');
 
 $perfilesPermitidos = 1;

@@ -1,4 +1,8 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaperfil = dirname($directorioActual) . "/Controllers/perfilesController.php";
+//require_once $rutaperfil;
+
 $IDPerfil = $_GET['IDPerfil'] ?? '';
 $TipoPerfil = $_GET['TipoPerfil'] ?? '';
 

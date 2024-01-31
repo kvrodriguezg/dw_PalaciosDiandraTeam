@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaEstado = dirname($directorioActual) . "/Controllers/EstadoController.php";
+//require_once $rutaEstado;
 
 $AgregaNEstado='';
 $AgregaPerfEstado='';

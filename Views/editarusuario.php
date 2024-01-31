@@ -1,4 +1,8 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/usuariosController.php";
+//require_once $rutaacceso;
+
 $IDUsuario = $_GET['IDUsuario'] ?? '';
 
 require_once("../Controllers/usuariosController.php");

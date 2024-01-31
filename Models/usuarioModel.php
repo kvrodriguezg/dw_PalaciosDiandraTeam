@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conexion.php";
+//require_once $ruta;
 class usuario
 {
     private $db;
@@ -11,6 +14,7 @@ class usuario
 
     public function __construct()
     {
+        //sacar aqui
         require_once("conexion.php");
         $this->db = Conectarse();
         $this->usuario = array();

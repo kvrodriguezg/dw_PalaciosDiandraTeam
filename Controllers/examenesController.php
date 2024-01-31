@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/examenesModel.php";
+//require_once $ruta;
 include("../Models/examenesModel.php");
 $examen = new examenesModel();
 $examenes = $examen->obtenerDatosExamenes();

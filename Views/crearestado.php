@@ -1,4 +1,7 @@
 <?php
+     // $directorioActual = __DIR__;
+     // $rutaestado = dirname($directorioActual) . "/Controllers/EstadoController.php";
+     // require_once $rutaestado;   
 require_once("../Controllers/EstadoController.php"); 
 $NombreEstado='';
 $IDPerfil='';

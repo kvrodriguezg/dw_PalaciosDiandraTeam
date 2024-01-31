@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
+//require_once $rutacentro;
 $IDCentroMedico = $_GET['IDCentroMedico'] ?? '';
 $NombreCentro = $_GET['NombreCentro'] ?? '';
 $codigo = $_GET['codigo'] ?? '';

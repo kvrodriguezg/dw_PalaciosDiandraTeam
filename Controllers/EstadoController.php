@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/estados_model.php";
+//require_once $ruta;
 include("../Models/estados_model.php");
 // include("../Models/perfilesmodel.php");
 $objetoEstado = new Estados();

@@ -1,4 +1,15 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaPdf = dirname($directorioActual) . "/Controllers/PdfController.php";
+//require_once $rutaPdf;
+//
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
+//
+//$directorioActual = __DIR__;
+//$rutaTCPDF = dirname($directorioActual) . "/TCPDF-main/tcpdf.php";
+//require_once $rutaTCPDF;
 
 require_once('../Controllers/PdfController.php');
 require_once("../Controllers/examenesController.php");

@@ -1,5 +1,7 @@
 <?php
-
+//$directorioActual = __DIR__;
+//$pdf = dirname($directorioActual) . "/Models/pdfModel.php";
+//require_once $pdf;
 include("../Models/pdfModel.php");
 
 $objetoPdf = new PDF();
