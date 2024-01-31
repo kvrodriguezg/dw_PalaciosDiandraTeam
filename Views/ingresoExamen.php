@@ -27,6 +27,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <title>Ingreso Examen</title>
+    <script>
+    function agregarGuion() {
+        var rutInput = document.getElementById('rut');
+        var valorRut = rutInput.value.replace(/[^\dKk]/g, '');
+
+        if (valorRut.length <= 10) {
+            rutInput.value = formatearRut(valorRut);
+        }
+    }
+
+    function formatearRut(rut) {
+        if (rut.length > 1) {
+            return rut.slice(0, -1) + '-' + rut.slice(-1);
+        }
+        return rut;
+    }
+    </script>
+
+
+
 </head>
 
 <body>
@@ -47,8 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col">
                 <label for="rut">Rut</label>
-                <input type="text" class="form-control" name="rut">
+                <input type="text" class="form-control" name="rut" id="rut"
+                oninput="agregarGuion()" maxlength="10" required>
             </div>
+
+
+
         </div>
 
         <br>
