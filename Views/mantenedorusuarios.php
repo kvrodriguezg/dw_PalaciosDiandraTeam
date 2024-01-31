@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="..//css/prueba.css">
     <title>Document</title>
 </head>
 
@@ -51,10 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <br><br><br><br><br><br>
 
 <body>
-    <div class="container">
+    <div class="titulo-usuario">
+        <br>
         <h1>Listado de Usuarios</h1><br>
-        <?php
-        echo '
+        <div class="buscador-usuario">
+            <?php
+            echo '
             <nav class="nav">
             <ul class="nav">
             <div class="m-1">
@@ -65,20 +68,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </ul>
         </nav>';
-        ?>
-        <br>
-        <label for="filtroUsuario">Filtrar por Usuario:</label>
-        <input type="text" id="filtroUsuario">
-        <br>
-        <br>
-        <label for="filtroCentro">Filtrar por laboratorio:</label>
-        <input type="text" id="filtroCentro">
+            ?>
+            <div>
+                <label for="filtroUsuario">Filtrar por Usuario:</label>
+                <input type="text" id="filtroUsuario">
+            </div>
+            <div>
+                <label for="filtroCentro">Filtrar por laboratorio:</label>
+                <input type="text" id="filtroCentro">
+            </div>
+        </div>
     </div>
     <br><br><br>
-    <div class="row">
+    <div class="row mantenedorDiagnostico">
         <div class="col-lg-12">
-            <table id="tableUsers" class=" table table-hover table-responsive">
-
+            <table id="tableUsers" class=" table table-hover table-responsive tabla-usuario">
                 <thead>
                     <script>
                         $(document).ready(function() {
@@ -120,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <th>Nombre Completo</th>
                         <th>correo </th>
                         <th>Rut </th>
-                        <th>Clave </th>
+                        <th class="th-usuario">Clave </th>
                         <th>Perfil</th>
                         <th>Centro Medico</th>
                         <th>Editar</th>
@@ -147,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td>
                                 <?php echo $usu['Rut']; ?>
                             </td>
-                            <td width="100">
+                            <td class="th-usuario">
                                 <?php echo $usu['Clave']; ?>
                             </td>
                             <td>
