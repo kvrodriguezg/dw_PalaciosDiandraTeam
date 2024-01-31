@@ -54,7 +54,7 @@ verificarAcceso($perfilesPermitidos);
                 <table id="pruebas2">
                     <thead>
                         <tr>
-                            <th>Seleccionar</th>
+                            <th>ID Examen</th>
                             <th>Nombre Paciente</th>
                             <th>Domicilio</th>
                             <th>Laboratorio</th>
@@ -66,22 +66,14 @@ verificarAcceso($perfilesPermitidos);
                             <th>Cod. Diagnóstico</th>
                             <th>Estado</th>
                             <th>PDF</th>
-                            <th>acciones</th>
-
-
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = mysqli_fetch_array($examenesRegistro)) { ?>
+                        <?php while ($row = mysqli_fetch_array($examenes)) { ?>
                             <tr class="table table-striped">
                                 <form method="post" action="Registro.php">
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                            <label class="form-check-label" for="flexCheckIndeterminate">
-                                            </label>
-                                        </div>
-                                    </td>
+                                    <td><?php echo $row['IDExamen'] ?></td>
                                     <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                                     <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
                                     <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
@@ -103,14 +95,12 @@ verificarAcceso($perfilesPermitidos);
                                     <td>
                                         <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                         <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
-                                        <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                                        <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="eliminar"></input>
+                                        <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="Eliminar"></input>
                                     </td>
                                 </form>
                             </tr>
+                        <?php } ?>
                     </tbody>
-
-                <?php } ?>
                 </table>
             </div>
         </div>
@@ -134,9 +124,4 @@ verificarAcceso($perfilesPermitidos);
     <!-- código JS propìo-->
     <script type="text/javascript" src="../js/data2.js"></script>
 </body>
-
-
-
-
-
 </html>

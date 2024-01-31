@@ -18,17 +18,20 @@ $perfilesPermitidos = 1;
 verificarAcceso($perfilesPermitidos);
 ?>
 <script src="../../js/diagnostico.js"></script>
+<link rel="stylesheet" href="../css/prueba.css">
 <?php include "menudiagnostico.php" ?>
 
 
 <body>
     <div style="height: 70px"></div><br><br>
-    <h1 class="display-2 text-center">Diagnósticos</h1><br><br>
+    <div>
+        <h2 class="titulo">Diagnóstico</h2>
+    </div>
     <section>
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
-                    <th>Seleccionar</th>
+                    <th>ID Examen</th>
                     <th>Nombre Paciente</th>
                     <th>Domicilio</th>
                     <th>Laboratorio</th>
@@ -46,13 +49,7 @@ verificarAcceso($perfilesPermitidos);
                 <?php while ($row = mysqli_fetch_array($examenesDiagnostico)) { ?>
                     <tr class="table table-striped">
                         <form method="post" action="diagnostico.php">
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                    <label class="form-check-label" for="flexCheckIndeterminate">
-                                    </label>
-                                </div>
-                            </td>
+                            <td><?php echo $row['IDExamen'] ?></td>
                             <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
@@ -92,10 +89,8 @@ verificarAcceso($perfilesPermitidos);
                             </td>
                         </form>
                     </tr>
-
+                <?php } ?>
             </tbody>
-
-        <?php } ?>
         </table>
     </section>
 </body>

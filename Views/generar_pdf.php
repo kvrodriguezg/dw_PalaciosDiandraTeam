@@ -97,7 +97,7 @@ $html = '<table width="100%">
     <div  style="width: 90%; text-align: center;">
     <img src="'.$firmaDigital.'" width="80">
     <h6>Luis Yañez Carreño </h6>
-    <h6>Luis Director Técnico </h6>
+    <h6>Director Técnico </h6>
     </div>
 
     <Footer text-align="center">
