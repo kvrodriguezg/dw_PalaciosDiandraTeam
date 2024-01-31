@@ -113,7 +113,7 @@ class examenesModel
 
     public function cambiarEstado($idEstado, $idExamen)
     {
-        $query = "UPDATE Examenes SET IDEstado = ? WHERE IDExamen = ?";
+        $query = "UPDATE examenes SET IDEstado = ? WHERE IDExamen = ?";
 
         $stmt = mysqli_prepare($this->db, $query);
 

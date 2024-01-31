@@ -1,5 +1,10 @@
 <?php
 
+require_once("../Controllers/ExamenController.php");
+require_once('../Controllers/accesoController.php');
+$perfilesPermitidos = 3;
+verificarAcceso($perfilesPermitidos);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['nombre'])) { $nombre = '';} else {$nombre = $_POST['nombre'];}
     if (!isset($_POST['rut'])) {$rut = '';} else {$rut = $_POST['rut'];}
@@ -10,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['fecharecepcion'])) { $fecharecepcion = '';} else {$fecharecepcion = $_POST['fecharecepcion'];}
     
     }
-    include("../Controllers/ExamenController.php");
+
 ?>
 
 <!DOCTYPE html>
