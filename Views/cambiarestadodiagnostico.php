@@ -45,6 +45,7 @@ $diagnostico = $_POST['diagnostico'] ?? "";
                         <thead>
                             <tr>
                                 <th>Seleccionar</th>
+                                <th>ID Examen</th>
                                 <th>Nombre Paciente</th>
                                 <th>Domicilio</th>
                                 <th>Laboratorio</th>
@@ -58,11 +59,14 @@ $diagnostico = $_POST['diagnostico'] ?? "";
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($row = mysqli_fetch_array($examenes)) { ?>
+                            <?php while ($row = mysqli_fetch_array($examenesDiagnostico)) { ?>
                                 <tr>
                                     <td>
                                         <input class="form-check-input" type="checkbox" name="seleccionados[]"
                                             value="<?php echo $row['IDExamen']; ?>" id="flexCheckIndeterminate">
+                                    </td>
+                                    <td>
+                                        <?php echo $row['IDExamen'] ?>
                                     </td>
                                     <td>
                                         <?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?>

@@ -71,6 +71,7 @@ $idEstado = $_POST['estado'] ?? "";
                         <thead>
                             <tr>
                                 <th>Seleccionar</th>
+                                <th>ID Examen</th>
                                 <th>Nombre Paciente</th>
                                 <th>Domicilio</th>
                                 <th>Laboratorio</th>
@@ -89,6 +90,9 @@ $idEstado = $_POST['estado'] ?? "";
                                     <td>
                                         <input class="form-check-input" type="checkbox" name="seleccionados[]"
                                             value="<?php echo $row['IDExamen']; ?>" id="flexCheckIndeterminate">
+                                    </td>
+                                    <td>
+                                        <?php echo $row['IDExamen'] ?>
                                     </td>
                                     <td>
                                         <?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?>

@@ -54,15 +54,14 @@ verificarAcceso($perfilesPermitidos);
                 margin: 20px;
             }
 
-            .tabla-recepcion {
-           
-            }
+            .tabla-recepcion {}
         </style>
         <div class="row">
             <div class="col-m-12">
                 <table id="pruebas4" class="tabla-recepcion">
                     <thead>
                         <tr>
+                            <th>ID Examen</th>
                             <th>Nombre Paciente</th>
                             <th>Domicilio</th>
                             <th>Laboratorio</th>
@@ -81,7 +80,8 @@ verificarAcceso($perfilesPermitidos);
                     <tbody>
                         <?php while ($row = mysqli_fetch_array($examenes)) { ?>
                             <tr class=>
-                                <form method="post" action="Registro.php">
+                                <form method="post" action="recepcion.php">
+                                    <td><?php echo $row['IDExamen'] ?></td>
                                     <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                                     <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
                                     <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
@@ -115,12 +115,12 @@ verificarAcceso($perfilesPermitidos);
                                         <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                         <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
                                         <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                                        <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="eliminar"></input>
+                                        <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="Eliminar"></input>
                                     </td>
                                 </form>
                             </tr>
+                        <?php } ?>
                     </tbody>
-                <?php } ?>
                 </table>
             </div>
         </div>
