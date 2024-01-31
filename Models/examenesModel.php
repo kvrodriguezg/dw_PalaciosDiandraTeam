@@ -22,7 +22,7 @@ class examenesModel
 
     public function obtenerExamenesDiagnosticos()
     {
-        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM estados WHERE NombreEstado = 'Listo para Diagnóstico')";
+        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Listo para Diagnóstico')";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;
@@ -31,7 +31,7 @@ class examenesModel
 
     public function obtenerExamenesRegistro()
     {
-        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM estados WHERE NombreEstado = 'Realizado')";
+        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Realizado')";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;
@@ -40,7 +40,7 @@ class examenesModel
 
     public function obtenerExamenesTincion()
     {
-        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM estados WHERE NombreEstado = 'Listo para Tinción')";
+        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Listo para Tinción')";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;
@@ -71,7 +71,7 @@ class examenesModel
 
     public function obtenerCentroMedico($idCentroMedico)
     {
-        $query = "SELECT NombreCentro FROM centrosmedicos WHERE IDCentroMedico =$idCentroMedico;";
+        $query = "SELECT NombreCentro FROM CentrosMedicos WHERE IDCentroMedico =$idCentroMedico;";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             $row = mysqli_fetch_array($result);
@@ -82,7 +82,7 @@ class examenesModel
     public function obtenerDiagnostico($codDiagnostico)
     {
         if ($codDiagnostico != null) {
-            $query = "SELECT descripcion FROM diagnosticos WHERE codigo ='$codDiagnostico';";
+            $query = "SELECT descripcion FROM Diagnosticos WHERE codigo ='$codDiagnostico';";
             $result = mysqli_query($this->db, $query);
             if ($result) {
                 $row = mysqli_fetch_array($result);
@@ -97,7 +97,7 @@ class examenesModel
 
     public function obtenerEstados($perfil)
     {
-        $query = "SELECT * FROM estados WHERE IDPerfil = (SELECT IDPerfil FROM perfiles WHERE TipoPerfil= '$perfil')";
+        $query = "SELECT * FROM Estados WHERE IDPerfil = (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil= '$perfil')";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;
@@ -106,7 +106,7 @@ class examenesModel
 
     public function obtenerEstadoActual($idEstado)
     {
-        $query = "SELECT NombreEstado FROM estados WHERE IDEstado = $idEstado;";
+        $query = "SELECT NombreEstado FROM Estados WHERE IDEstado = $idEstado;";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             $row = mysqli_fetch_array($result);
@@ -116,7 +116,7 @@ class examenesModel
 
     public function cambiarEstado($idEstado, $idExamen)
     {
-        $query = "UPDATE examenes SET IDEstado = ? WHERE IDExamen = ?";
+        $query = "UPDATE Examenes SET IDEstado = ? WHERE IDExamen = ?";
 
         $stmt = mysqli_prepare($this->db, $query);
 
@@ -149,7 +149,7 @@ class examenesModel
 
     public function obtenerListaDiagnosticos()
     {
-        $query = "SELECT * FROM diagnosticos;";
+        $query = "SELECT * FROM Diagnosticos;";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;

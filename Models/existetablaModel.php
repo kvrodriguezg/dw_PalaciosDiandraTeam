@@ -66,7 +66,7 @@ class ExisteTabla
     public function crearDiagnosticos()
     {
         if ($this->comprobarTabla("Diagnosticos") == true) {
-            $query = "INSERT IGNORE INTO diagnosticos (codigo, descripcion) VALUES 
+            $query = "INSERT IGNORE INTO Diagnosticos (codigo, descripcion) VALUES 
                 ('A', 'NEGATIVO'),
                 ('B', 'MUESTRA INADECUADA, VOLVER A TOMAR'),
                 ('C', 'MUESTRA PRESENTA INFECCION'),
@@ -88,7 +88,7 @@ class ExisteTabla
     public function crearPerfiles()
     {
         if ($this->comprobarTabla("Perfiles") == true) {
-            $query = "INSERT IGNORE INTO perfiles (TipoPerfil) VALUES 
+            $query = "INSERT IGNORE INTO Perfiles (TipoPerfil) VALUES 
                 ('diagnostico'),
                 ('tincion'),
                 ('recepcion'),
@@ -110,11 +110,11 @@ class ExisteTabla
     public function crearEstados()
     {
         if ($this->comprobarTabla("Estados") == true) {
-            $query = "INSERT IGNORE INTO estados (NombreEstado, IDPerfil) VALUES 
-                ('Recepcionado', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'recepcion')),
-                ('Listo para Tinción', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'recepcion')),
-                ('Listo para Diagnóstico', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'tincion')),
-                ('Realizado', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'diagnostico'));";
+            $query = "INSERT IGNORE INTO Estados (NombreEstado, IDPerfil) VALUES 
+                ('Recepcionado', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
+                ('Listo para Tinción', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
+                ('Listo para Diagnóstico', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'tincion')),
+                ('Realizado', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'diagnostico'));";
             $creacion = mysqli_query($this->db, $query);
     
             if (!$creacion) {

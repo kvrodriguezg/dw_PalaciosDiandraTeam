@@ -19,7 +19,7 @@ class diagnosticos{
     }
 
     public function verdiagnosticos(){
-        $query = "SELECT * FROM diagnosticos";
+        $query = "SELECT * FROM Diagnosticos";
         $diagnosticos = mysqli_query($this->db, $query);
         return $diagnosticos;
     } 

@@ -17,7 +17,7 @@ class examenModel {
         $domicilio = mysqli_real_escape_string($this->db, $domicilio);
         $rut = mysqli_real_escape_string($this->db, $rut);
 
-        $query = "INSERT INTO pacientes (NombrePaciente, DomicilioPaciente, RutPaciente) VALUES ('$nombre', '$domicilio', '$rut')";
+        $query = "INSERT INTO Pacientes (NombrePaciente, DomicilioPaciente, RutPaciente) VALUES ('$nombre', '$domicilio', '$rut')";
         mysqli_query($this->db, $query);
 
         if (mysqli_error($this->db)) {
@@ -27,7 +27,7 @@ class examenModel {
     }
 
     public function validarPaciente($rut){
-        $query = "select * from pacientes where rutPaciente = '$rut'";
+        $query = "select * from Pacientes where rutPaciente = '$rut'";
         $existe = mysqli_query($this->db,$query);
         if (mysqli_num_rows($existe) > 0){
             return true;
@@ -42,7 +42,7 @@ class examenModel {
         $idcentrosoli = mysqli_real_escape_string($this->db, $idcentrosoli);
         $fechamuestra = mysqli_real_escape_string($this->db, $fechamuestra);
         $fecharecepcion = mysqli_real_escape_string($this->db, $fecharecepcion);
-        $query = "INSERT INTO examenes (NombreExamen,RutPaciente,IDCentroSolicitante,FechaTomaMuestra,FechaRecepcion, IDEstado) VALUES ('$nombreexamen','$rut','$idcentrosoli','$fechamuestra',NOW(), (SELECT IDEstado FROM estados WHERE NombreEstado = 'Recepcionado'));";
+        $query = "INSERT INTO Examenes (NombreExamen,RutPaciente,IDCentroSolicitante,FechaTomaMuestra,FechaRecepcion, IDEstado) VALUES ('$nombreexamen','$rut','$idcentrosoli','$fechamuestra',NOW(), (SELECT IDEstado FROM estados WHERE NombreEstado = 'Recepcionado'));";
         /*if ($stmt = mysqli_prepare($this->db, $query)) {
             mysqli_stmt_bind_param($stmt, "ssis", $nombreexamen,$rut,$idcentrosoli,$fechamuestra,$fecharecepcion);
             if (mysqli_stmt_execute($stmt)) {
@@ -63,7 +63,7 @@ class examenModel {
 
     public function obtenerCentrosmedicos()
     {
-        $query = "SELECT * FROM centrosmedicos";
+        $query = "SELECT * FROM CentrosMedicos";
         $result = mysqli_query($this->db, $query);
         
         if ($result) {
@@ -73,7 +73,7 @@ class examenModel {
         }
     }
     public function obtenerDomicilioPaciente($rut) {
-        $query = "SELECT DomicilioPaciente FROM pacientes WHERE RutPaciente = '$rut'";
+        $query = "SELECT DomicilioPaciente FROM Pacientes WHERE RutPaciente = '$rut'";
         $result = mysqli_query($this->db, $query);
 
         if ($result) {
@@ -87,7 +87,7 @@ class examenModel {
     public function actualizarDomicilioPaciente($rut, $nuevoDomicilio) {
         $nuevoDomicilio = mysqli_real_escape_string($this->db, $nuevoDomicilio);
 
-        $query = "UPDATE pacientes SET DomicilioPaciente = '$nuevoDomicilio' WHERE RutPaciente = '$rut'";
+        $query = "UPDATE Pacientes SET DomicilioPaciente = '$nuevoDomicilio' WHERE RutPaciente = '$rut'";
         mysqli_query($this->db, $query);
 
         if (mysqli_error($this->db)) {

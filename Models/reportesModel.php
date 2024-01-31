@@ -12,7 +12,7 @@ class ReportesModel {
     }
 
     public function obtenerNombresCentrosMedicos() {
-        $query = "SELECT NombreCentro FROM centrosmedicos;";
+        $query = "SELECT NombreCentro FROM CentrosMedicos;";
         $result = mysqli_query($this->db, $query);
 
         $nombresCentros = [];
@@ -27,14 +27,14 @@ class ReportesModel {
     }
 
     public function obtenerNombresDiagnosticos() {
-        $query = "SELECT descripcion FROM diagnosticos;";
+        $query = "SELECT descripcion FROM Diagnosticos;";
         $result = mysqli_query($this->db, $query);
 
         $nombresDiagnosticos = [];
 
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $nombresDiagnosticos[] = $row['descripcion'];
+                $nombresDiagnosticos[] = $row['Descripcion'];
             }
         }
 
