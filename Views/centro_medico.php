@@ -1,3 +1,5 @@
+<?php require_once("../Controllers/examenesController.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,3 +115,4 @@
 </body>
 
 </html>
+

@@ -1,4 +1,5 @@
 <?php
+require_once("../Controllers/EstadoController.php");  
 
 $AgregaNEstado='';
 $AgregaPerfEstado='';
@@ -9,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!isset($_POST['IDEstado']))	        {$IDEstado='';            }else{$IDEstado=$_POST['IDEstado'];}
     if(!isset($_POST['AgregaPerfEstado']))  {$AgregaPerfEstado='';    }else{$AgregaPerfEstado=$_POST['AgregaPerfEstado'];}
     if(!isset($_POST['sw']))                {$sw='';                  }else{$sw=$_POST['sw'];}
-
+    if(isset($_POST['idPerfil']))             { $perfilSelecionado=$_POST['idPerfil'];} else {$perfilSelecionado = 1;}
 }
     $IDEstado = $_GET['IDEstado'];
 ?>
@@ -43,7 +44,17 @@ include("menuadministrador.php");
                 <label for="rut" style="text-align: center;">Estado:</label>
                 <input type="text" class="form-control" name="AgregaNEstado" value="<?php echo "$AgregaNEstado"; ?>"><br>
                 <label  style="text-align: center;">Perfil:</label>
-                <input type="text" class="form-control" name="AgregaPerfEstado" value="<?php echo "$AgregaPerfEstado"; ?>">
+                <select class="form-select" style="width: 150px" name="IDPerfil" required>
+                    <?php
+                    foreach ($DetallePerfiles as $opcPerfil )
+                    {
+                        $idPerfil = $opcPerfil['IDPerfil'];
+                        $tipoPerfil = $opcPerfil['TipoPerfil'];
+                        $selected = ($idPerfil == $perfilSelecionado) ? 'selected' : '';
+                        echo "<option value='$idPerfil' $selected>$tipoPerfil</option>";
+                    }
+                    ?>
+                </select> <br>
                 <input type="hidden" name="IDEstado" value="<?php echo $IDEstado; ?>">
                 <input type="hidden" name="sw" value="Modificar"><br>
                 <input type="submit" class="btn btn-primary w-100 center-block" name="ModificarRegistro" value="Modificar">

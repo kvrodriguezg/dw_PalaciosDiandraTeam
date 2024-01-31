@@ -85,6 +85,10 @@ class perfiles
         return $this->perfiles;
     }
 
+
+
+
+    
     public function buscarPerfil($idPerfil) {
         $consulta = "SELECT TipoPerfil FROM perfiles WHERE idPerfil = ?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {

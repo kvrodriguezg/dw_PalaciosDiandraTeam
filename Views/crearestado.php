@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!isset($_POST['NombreEstado']))	    {$NombreEstado='';       }else{$NombreEstado=$_POST['NombreEstado'];}
     if(!isset($_POST['IDPerfil']))	        {$IDPerfil='';             }else{$IDPerfil=$_POST['IDPerfil'];}
     if(!isset($_POST['sw']))                {$sw='';                 }else{$sw=$_POST['sw'];}
-    // if(isset($_POST['Perfil']))             { $perfilSelecionado=$_POST['Perfil'];} else {$perfilSelecionado = 1;}
+    if(isset($_POST['idPerfil']))           { $perfilSelecionado=$_POST['idPerfil'];} else {$perfilSelecionado = 1;}
 }
 ?>
 
@@ -45,30 +45,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col">
                 <label for="rut" style="text-align: center;">Estado:</label>
                 <input type="text" class="form-control" name="NombreEstado" value="<?php echo "$NombreEstado"; ?>"placeholder="Nombre Estado" Required><br>
-                <label  style="text-align: center;">Perfil:</label>
-                <input type="text" class="form-control" name="IDPerfil" value="<?php echo "$IDPerfil"; ?>" placeholder="Id de Perfil Asignado" Required>
-                <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearRegistro" value="Crear">
-                 
-                
-                <!-- <select name="IDPerfil" required>
+                <label  style="text-align: center;">Perfil:</label><br>
+                <select class="form-select" style="width: 150px" name="IDPerfil" required>
                     <?php
                     foreach ($DetallePerfiles as $opcPerfil )
-                {
+                    {
                         $idPerfil = $opcPerfil['IDPerfil'];
                         $tipoPerfil = $opcPerfil['TipoPerfil'];
-
-                        // Verificar si es el perfil seleccionado
                         $selected = ($idPerfil == $perfilSelecionado) ? 'selected' : '';
-
-                        // Imprimir la opción
                         echo "<option value='$idPerfil' $selected>$tipoPerfil</option>";
                     }
                     ?>
-                </select> -->
-
-        
-        
+                </select> <br>
+                <input type="hidden" name="sw" value="Crear"><br>
+                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearRegistro" value="Crear">
+                          
             </div>
     </form>
 

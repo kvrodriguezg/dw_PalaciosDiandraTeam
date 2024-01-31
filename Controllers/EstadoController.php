@@ -1,8 +1,8 @@
 <?php
 include("../Models/estados_model.php");
-// include("../Models/perfilesmodel.php");
+include("../Models/perfilesmodel.php");
 $objetoEstado = new Estados();
-// $objetoPerfiles = new perfiles();
+$objetoPerfiles = new perfiles();
 
 
 if  (isset($_POST['NombreEstado'])) {
@@ -17,7 +17,7 @@ if  (isset($_POST['NombreEstado'])) {
 }
 
 $DetalleEstados = $objetoEstado->MostrarEstados();
-// $DetallePerfiles = $objetoPerfiles->verPerfiles();
+$DetallePerfiles = $objetoPerfiles->verPerfiles();
 
 if  (isset($_POST['AgregaNEstado'])) {
     $AgregaNEstado = $_POST['AgregaNEstado'];

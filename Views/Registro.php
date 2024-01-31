@@ -95,19 +95,16 @@ require_once("../Controllers/examenesController.php");
                             </td>
 
                             <td>
-
-
                             <button type="button" class="btn btn-outline-danger" 
+                            <?php if($row['IDEstado']==4) {?>                               
                                 onclick="window.open('generar_pdf.php?id=<?php echo $row['IDExamen']; ?>', '_blank');">
                                 <img src="../img/pdf.png" alt="Icono PDF">
+                                <?php } else {?>
+                                ><img src="../img/pdf.png" alt="Icono PDF">
+                                <?php
+                                }
+                                ?>
                             </button>
-                            <?Php
-                            // echo $row['IDExamen'];
-
-
-                            ?> 
-                            
-
 
                             </td>
                             <td>
