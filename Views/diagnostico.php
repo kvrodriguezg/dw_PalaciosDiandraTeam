@@ -9,7 +9,7 @@
 ////
 //$directorioActual = __DIR__;
 //$rutahead = $directorioActual . "/Shared/head.php";
-require_once $rutahead;
+//require_once $rutahead;
 require_once("../Controllers/examenesController.php");
  include "../Views/Shared/head.php" ;
 require_once('../Controllers/accesoController.php');

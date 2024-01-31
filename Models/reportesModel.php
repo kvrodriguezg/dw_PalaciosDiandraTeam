@@ -34,7 +34,7 @@ class ReportesModel {
 
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $nombresDiagnosticos[] = $row['Descripcion'];
+                $nombresDiagnosticos[] = $row['descripcion'];
             }
         }
 

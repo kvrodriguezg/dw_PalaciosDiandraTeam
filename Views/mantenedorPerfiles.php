@@ -52,17 +52,14 @@ if ($op == 'EDITAR') {
                 <nav class="nav">
                 <ul class="nav">
                     <div class="m-1">
-                        <form method="post">
-                            <input type="hidden" name="crearPerfiles" value="crear">
-                            <button class="btn w-100 m-1 btn-primary btn-sm ">Crear PERFILES</button>
-                        </form>
+
                     </div>
                 </ul>
                 <ul class="nav">
                 <div class="m-1">
                     <form method="post" action="crearperfil.php">
                         <input type="hidden" name="crearPerfiles" value="crear">
-                        <button class="btn w-100 m-1 btn-primary btn-sm ">Insertar PERFILES</button>
+                        <button class="btn w-100 m-1 btn-primary btn-sm ">CREAR PERFIL</button>
                     </form>
                 </div>
             </ul>
