@@ -5,9 +5,17 @@
         </a>
         <nav class="nav">
             <ul class="nav">
-
+            <li class="nav-item">
+                    <a class="nav-link text-blue" href="tincion.php"> <i
+                            class="fa-solid fa-stethoscope"></i> Listado para tinción</a>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i>Cerrar Sesión</a>
+                    <a class="nav-link text-blue" href="cambiarestadotincion.php"> <i
+                            class="fa-solid fa-stethoscope"></i> Cambio Estado Masivo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i>
+                        Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
