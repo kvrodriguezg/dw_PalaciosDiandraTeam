@@ -1,4 +1,4 @@
-<?php 
+<?php
 //$directorioActual = __DIR__;
 //$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
 //require_once $rutaacceso;
@@ -61,8 +61,6 @@ verificarAcceso($perfilesPermitidos);
             .recepcion {
                 margin: 20px;
             }
-
-            .tabla-recepcion {}
         </style>
         <div class="row">
             <div class="col-m-12">

@@ -77,6 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="filtroCentro">Filtrar por laboratorio:</label>
                 <input type="text" id="filtroCentro">
             </div>
+            <div>
+                <label for="filtroFentro">Filtrar por laboratorio:</label>
+                <input type="date" id="filtroCentro">
+            </div>
         </div>
     </div>
     <br><br><br>
@@ -90,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             function filtrar() {
                                 var inputFiltroUsuario = $('#filtroUsuario').val().toLowerCase();
                                 var inputFiltroCentro = $('#filtroCentro').val().toLowerCase();
+                                var inputFiltroFecha = $('#filtroFentro').val().toLowerCase();
 
                                 // Mostrar todas las filas de la tabla al principio
                                 $('#tableUsers tbody tr').show();
@@ -107,6 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     $('#tableUsers tbody tr').filter(function() {
                                         var textoFila = $(this).find('td:eq(7)').text().toLowerCase();
                                         return textoFila.indexOf(inputFiltroCentro) === -1;
+                                    }).hide();
+                                }
+                                if (inputFiltroFecha) {
+                                    $('#tableUsers tbody tr').filter(function() {
+                                        var textoFila = $(this).find('td:eq(7)').date().toLowerCase();
+                                        return textoFila.indexOf(inputFiltroFecha) === -1;
                                     }).hide();
                                 }
                             }
