@@ -30,7 +30,9 @@ require_once("../Controllers/reportesController.php"); ?>
             <thead>
                 <tr>
                     <th>Centro Médico</th>
-                    <?php foreach ($examenes as $examen) { ?>
+                    <?php 
+                    $totalFinal = 0;
+                    foreach ($examenes as $examen) { ?>
                         <th><?php echo $examen; ?></th>
                     <?php } ?>
                     <th>Total</th>
@@ -60,12 +62,15 @@ require_once("../Controllers/reportesController.php"); ?>
                                 (<?php echo round($porcentaje,2); ?>%)
                             </td>
                         <?php } ?>
-                        <td><?php echo $totalExamenesCentro; ?></td>
+                        <td><?php echo $totalExamenesCentro; 
+                        $totalFinal += $totalExamenesCentro;
+                        ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </section>
+    <h2>Total Exámenes: <?php echo $totalFinal?></h2>
 
 
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>

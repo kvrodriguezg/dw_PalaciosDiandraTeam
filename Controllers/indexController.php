@@ -14,6 +14,12 @@ foreach ($tablas as $tabla) {
     }
 }
 
+if ($existe->comprobarTabla("usuarios")) {
+    if (!$existe->comprobarAdmin()) {
+        $validacionExistencia = false;
+    }
+}
+
 //Creacion de tablas si no existen.
 if (isset($_POST['crearTabla'])) {
     $existe->crearTablas();
@@ -21,6 +27,9 @@ if (isset($_POST['crearTabla'])) {
     $existe->crearDiagnosticos();
     $existe->crearPerfiles();
     $existe->crearEstados();
+    if (!$existe->comprobarAdmin()) {
+        $existe->crearUsuarioAdmin();
+    }
     $validacionExistencia = true;
     echo '<div class="alert alert-success d-flex aling-items-center" role="alert">Base de Dato Creada Exitosamente!!</div>';
     return ("../index.php");

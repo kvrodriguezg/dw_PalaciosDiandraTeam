@@ -37,11 +37,14 @@ require_once("../Controllers/reportesController.php"); ?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($centrosMedicos as $centroMedico) { ?>
+                <?php
+                $totalFinal = 0;
+                foreach ($centrosMedicos as $centroMedico) { ?>
                     <tr>
                         <td><?php echo $centroMedico; ?></td>
                         <?php
                         $totalDiagnosticoCentro = 0;
+
 
                         foreach ($diagnosticos as $diagnostico) {
                             $cantidad = $reporte->obtenerCantidadDiagnosticoPorCentro($centroMedico, $diagnostico);
@@ -57,15 +60,18 @@ require_once("../Controllers/reportesController.php"); ?>
                         ?>
                             <td>
                                 <?php echo $cantidad; ?>
-                                (<?php echo round($porcentaje,2); ?>%)
+                                (<?php echo round($porcentaje, 2); ?>%)
                             </td>
                         <?php } ?>
-                        <td><?php echo $totalDiagnosticoCentro; ?></td>
+                        <td><?php echo $totalDiagnosticoCentro;
+                            $totalFinal += $totalDiagnosticoCentro;
+                            ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </section>
+    <h2>Total Diagnósticos: <?php echo $totalFinal?></h2>
 
 
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
