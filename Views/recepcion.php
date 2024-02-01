@@ -101,34 +101,6 @@ verificarAcceso($perfilesPermitidos);
                                     <td><?php echo $row['CodigoDiagnosticos']; ?></td>
                                     <td><?php echo $examen->obtenerEstadoActual($row['IDEstado']); ?></td>
 
-<<<<<<< HEAD
-                                    while ($row1 = mysqli_fetch_array($resultadoEstados)) {
-                                        echo '<option value="' . $row1['IDEstado'] . '">' . $row1['NombreEstado'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                            <td>
-                            <button type="button" class="btn btn-outline-danger" 
-                            <?php if($row['IDEstado']==4) {?>                               
-                                onclick="window.open('generar_pdf.php?id=<?php echo $row['IDExamen']; ?>', '_blank');">
-                                <img src="../img/pdf.png" alt="Icono PDF">
-                                <?php } else {?>
-                                ><img src="../img/pdf.png" alt="Icono PDF">
-                                <?php
-                                }
-                                ?>
-                            </button>
-                            </td>
-                            <td>
-                                <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
-                                <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
-                                <input name="actualizarEstado" type="submit" class="btn w-100 m-1 btn-primary"></input>
-                                <input name="eliminarRegistro" type="submit" class="btn w-100 m-1 btn-danger" value="eliminar"></input>
-                            </td>
-                        </form>
-                    </tr>
-=======
                                     <td>
                                         <select class="form-select" style="width: 150px" name="estado" required>
                                             <?php
@@ -141,12 +113,16 @@ verificarAcceso($perfilesPermitidos);
                                         </select>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
-                                            <img src="../img/pdf.png" alt="Icono PDF">
-                                        </button>
->>>>>>> origin/main
-
-
+                                    <button type="button" class="btn btn-outline-danger" 
+                            <?php if($row['IDEstado']==4) {?>                               
+                                onclick="window.open('generar_pdf.php?id=<?php echo $row['IDExamen']; ?>', '_blank');">
+                                <img src="../img/pdf.png" alt="Icono PDF">
+                                <?php } else {?>
+                                ><img src="../img/pdf.png" alt="Icono PDF">
+                                <?php
+                                }
+                                ?>
+                            </button>
                                     </td>
                                     <td>
                                         <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->

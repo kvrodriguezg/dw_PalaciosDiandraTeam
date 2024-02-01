@@ -78,12 +78,6 @@ class perfiles
         return $this->perfiles;
     }
 
-<<<<<<< HEAD
-
-
-
-    
-=======
     public function vertipoPerfiles(){
         $consulta = mysqli_query($this->db, "select TipoPerfil from Perfiles");
         while ($filas = mysqli_fetch_array($consulta)) {
@@ -92,7 +86,6 @@ class perfiles
         return $this->tipoperfiles;
     }
 
->>>>>>> origin/main
     public function buscarPerfil($idPerfil) {
         $consulta = "SELECT TipoPerfil FROM Perfiles WHERE idPerfil = ?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
@@ -111,3 +104,4 @@ class perfiles
     
 
 }
+?>

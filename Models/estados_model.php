@@ -29,7 +29,7 @@ class Estados
 
     public function MostrarEstados()
     {
-        $consulta=mysqli_query($this->db,"select * from Estados");
+        $consulta=mysqli_query($this->db,"select * from estados");
         while ($filas = mysqli_fetch_assoc($consulta)) {
             $this->Estados[] = $filas;
         }
@@ -41,7 +41,7 @@ class Estados
     public function ModificarEstado($nuevoEstado,$nuevoPerfil,$idEstados)
     {
         
-        $consulta="update Estados set NombreEstado=?, IDPerfil=? where IDEstado=?";
+        $consulta="update estados set NombreEstado=?, IDPerfil=? where IDEstado=?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
             mysqli_stmt_bind_param($stmt, "ssi", $nuevoEstado,$nuevoPerfil,$idEstados);
             if (mysqli_stmt_execute($stmt)) {
@@ -56,7 +56,7 @@ class Estados
 
     public function EliminaEstado($idEstado)
     {
-        $ordenEliminar="delete from Estados where IDEstado=?;";
+        $ordenEliminar="delete from estados where IDEstado=?;";
         if ($stmt = mysqli_prepare($this->db, $ordenEliminar)) {
             mysqli_stmt_bind_param($stmt, "s", $idEstado);
             if (mysqli_stmt_execute($stmt)) {

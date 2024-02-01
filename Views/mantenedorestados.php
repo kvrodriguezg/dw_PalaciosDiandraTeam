@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include("menuadministrador.php");
     ?>
 </header>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 <body class="container">
 

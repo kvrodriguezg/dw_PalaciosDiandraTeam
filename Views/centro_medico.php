@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-<?php require_once("../Controllers/examenesController.php"); ?>
-
-=======
 <?php
 //$directorioActual = __DIR__;
 //$rutacentro = dirname($directorioActual) . "/Controllers/centroController.php";
 //require_once $rutacentro;
 require_once("../Controllers/centroController.php");
+
 ?>
->>>>>>> origin/main
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +47,7 @@ require_once("../Controllers/centroController.php");
                                 <th>Fecha de orden</th>
                                 <th>Nombre de Examne</th>
                                 <th>Estado</th>
+                                <th>Ver Diagnostico</th>
 
                             </tr>
                         </thead>
@@ -77,8 +74,17 @@ require_once("../Controllers/centroController.php");
                                     <td>
                                         <?php echo $list['NombreEstado']; ?>
                                     </td>
-                                    <td>
-
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn btn-outline-danger" 
+                                <?php if($list['IDEstado']==4) {?>                               
+                                        onclick="window.open('generar_pdf.php?id=<?php echo $list['IDExamen']; ?>', '_blank');">
+                                        <img src="../img/pdf.png" alt="Icono PDF">
+                                        <?php } else {?>
+                                        ><img src="../img/pdf.png" alt="Icono PDF">
+                                        <?php
+                                        }
+                                        ?>
+                                        </button>
                                     </td>
                                     <td>
                                     </td>

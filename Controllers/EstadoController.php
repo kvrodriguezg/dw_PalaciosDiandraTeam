@@ -3,7 +3,7 @@
 //$ruta = dirname($directorioActual) . "/Models/estados_model.php";
 //require_once $ruta;
 include("../Models/estados_model.php");
-include("../Models/perfilesmodel.php");
+include("../Models/perfilesModel.php");
 $objetoEstado = new Estados();
 $objetoPerfiles = new perfiles();
 
@@ -22,15 +22,20 @@ if  (isset($_POST['NombreEstado'])) {
 $DetalleEstados = $objetoEstado->MostrarEstados();
 $DetallePerfiles = $objetoPerfiles->verPerfiles();
 
+
 if  (isset($_POST['AgregaNEstado'])) {
     $AgregaNEstado = $_POST['AgregaNEstado'];
-    $EditarEstado = $objetoEstado->ModificarEstado($AgregaNEstado,$AgregaPerfEstado,$IDEstado);
+    $perfilSelecionado = $_POST['IDPerfil'];
+    $IDEstado = $_POST['IDEstado'];
+    $EditarEstado = $objetoEstado->ModificarEstado($AgregaNEstado,$perfilSelecionado,$IDEstado);
 
-    $mensaje="Estado Modificado Correctamente";
+
+    $mensaje="Estado Modificado Correctamente".$AgregaNEstado.' - '.$perfilSelecionado;
     
     header("Location: mantenedorestados.php?mensaje=".urlencode($mensaje));
     exit();
 }
+
 
 
 if  (isset($_POST['IDEstado'])) {

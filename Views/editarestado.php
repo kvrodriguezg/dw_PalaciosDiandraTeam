@@ -1,11 +1,9 @@
 <?php
-<<<<<<< HEAD
-require_once("../Controllers/EstadoController.php");  
-=======
 //$directorioActual = __DIR__;
 //$rutaEstado = dirname($directorioActual) . "/Controllers/EstadoController.php";
 //require_once $rutaEstado;
->>>>>>> origin/main
+
+require_once("../Controllers/EstadoController.php");  //PERMITE LLENAR EL SELECT
 
 $AgregaNEstado='';
 $AgregaPerfEstado='';
@@ -14,11 +12,14 @@ $sw = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     if(!isset($_POST['AgregaNEstado']))	    {$AgregaNEstado='';       }else{$AgregaNEstado=$_POST['AgregaNEstado'];}
     if(!isset($_POST['IDEstado']))	        {$IDEstado='';            }else{$IDEstado=$_POST['IDEstado'];}
-    if(!isset($_POST['AgregaPerfEstado']))  {$AgregaPerfEstado='';    }else{$AgregaPerfEstado=$_POST['AgregaPerfEstado'];}
+    if(!isset($_POST['IDEstado2']))	        {$IDEstado2='';            }else{$IDEstado2=$_POST['IDEstado2'];}
+    if(!isset($_POST['IDPerfil']))	        {$IDPerfil='';             }else{$IDPerfil=$_POST['IDPerfil'];}
     if(!isset($_POST['sw']))                {$sw='';                  }else{$sw=$_POST['sw'];}
-    if(isset($_POST['idPerfil']))             { $perfilSelecionado=$_POST['idPerfil'];} else {$perfilSelecionado = 1;}
+    if(isset($_POST['IDPerfil']))           { $perfilSelecionado=$_POST['IDPerfil'];} else {$perfilSelecionado = 1;}
+
 }
     $IDEstado = $_GET['IDEstado'];
+
 ?>
 
 
@@ -32,15 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     
-    <title>Mantenedor</title>
+    <title>Modificar Estados</title>
 </head>
 <body>
 <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
 <?php
 include("menuadministrador.php");
 ?>
-    </header>
+</header>
 <br><br>
+
 
 
 <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
@@ -57,6 +59,7 @@ include("menuadministrador.php");
                         $idPerfil = $opcPerfil['IDPerfil'];
                         $tipoPerfil = $opcPerfil['TipoPerfil'];
                         $selected = ($idPerfil == $perfilSelecionado) ? 'selected' : '';
+
                         echo "<option value='$idPerfil' $selected>$tipoPerfil</option>";
                     }
                     ?>
@@ -68,7 +71,7 @@ include("menuadministrador.php");
     </form>
 
     <?php
-
+    
 if ($sw == "Modificar") {
     require_once("../Controllers/EstadoController.php");       
 }

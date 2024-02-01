@@ -96,7 +96,7 @@ class CentroMedico
 
     public function buscarExamenes($IDCentroMedico)
     {
-        $query = "select p.NombrePaciente,e.NombreExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join Pacientes p on e.RutPaciente = p.RutPaciente Join Estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
+        $query = "select p.NombrePaciente,e.NombreExamen,e.IDEstado,e.IDExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join Pacientes p on e.RutPaciente = p.RutPaciente Join Estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
         $consulta = mysqli_query($this->db, $query);
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->listadoExamenesCentro[] = $filas;
