@@ -1,4 +1,9 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutausuario = dirname($directorioActual) . "/Models/usuarioModel.php";
+//$rutaModel = dirname($directorioActual) . "/Models/perfilesModel.php";
+//require_once $rutausuario;
+//require_once $rutaModel;
 require_once("../Models/usuarioModel.php");
 require_once("../Models/perfilesModel.php");
 $objusuario = new usuario();

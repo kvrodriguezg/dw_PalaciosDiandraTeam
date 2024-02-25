@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conex.php";
+//require_once $ruta;
 include '../Models/conex.php';
 if (isset($_POST['crearRegistro'])) {
     $codigo = mysqli_real_escape_string($conexion, $_POST['codigo']);

@@ -1,3 +1,9 @@
+<?php
+//$directorioActual = __DIR__;
+//$rutaacceso = $directorioActual . "/Controllers/indexController.php";
+//require_once $rutaacceso;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

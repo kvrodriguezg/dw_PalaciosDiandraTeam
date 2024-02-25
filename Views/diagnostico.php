@@ -1,22 +1,37 @@
-<?php require_once("../Controllers/examenesController.php"); ?>
-<?php include "../Views/Shared/head.php" ;
+<?php 
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaacceso;
+//
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
+////
+//$directorioActual = __DIR__;
+//$rutahead = $directorioActual . "/Shared/head.php";
+//require_once $rutahead;
+require_once("../Controllers/examenesController.php");
+ include "../Views/Shared/head.php" ;
 require_once('../Controllers/accesoController.php');
 
 $perfilesPermitidos = 1;
 verificarAcceso($perfilesPermitidos);
 ?>
 <script src="../../js/diagnostico.js"></script>
+<link rel="stylesheet" href="../css/prueba.css">
 <?php include "menudiagnostico.php" ?>
 
 
 <body>
     <div style="height: 70px"></div><br><br>
-    <h1 class="display-2 text-center">Diagnósticos</h1><br><br>
+    <div>
+        <h2 class="titulo">Diagnóstico</h2>
+    </div>
     <section>
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
-                    <th>Seleccionar</th>
+                    <th>ID Examen</th>
                     <th>Nombre Paciente</th>
                     <th>Domicilio</th>
                     <th>Laboratorio</th>
@@ -34,13 +49,7 @@ verificarAcceso($perfilesPermitidos);
                 <?php while ($row = mysqli_fetch_array($examenesDiagnostico)) { ?>
                     <tr class="table table-striped">
                         <form method="post" action="diagnostico.php">
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                    <label class="form-check-label" for="flexCheckIndeterminate">
-                                    </label>
-                                </div>
-                            </td>
+                            <td><?php echo $row['IDExamen'] ?></td>
                             <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
@@ -73,14 +82,6 @@ verificarAcceso($perfilesPermitidos);
                                     ?>
                                 </select>
                             </td>
-
-                            <td>
-                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
-                                    <img src="../img/pdf.png" alt="Icono PDF">
-                                </button>
-
-
-                            </td>
                             <td>
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                 <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
@@ -88,10 +89,8 @@ verificarAcceso($perfilesPermitidos);
                             </td>
                         </form>
                     </tr>
-
+                <?php } ?>
             </tbody>
-
-        <?php } ?>
         </table>
     </section>
 </body>

@@ -1,14 +1,17 @@
 <?php
-
+     // $directorioActual = __DIR__;
+     // $rutaestado = dirname($directorioActual) . "/Controllers/EstadoController.php";
+     // require_once $rutaestado;   
+require_once("../Controllers/EstadoController.php"); 
 $NombreEstado='';
-$Perfil='';
+$IDPerfil='';
 $sw = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     if(!isset($_POST['NombreEstado']))	    {$NombreEstado='';       }else{$NombreEstado=$_POST['NombreEstado'];}
-    if(!isset($_POST['Perfil']))	        {$Perfil='';             }else{$Perfil=$_POST['Perfil'];}
+    if(!isset($_POST['IDPerfil']))	        {$IDPerfil='';             }else{$IDPerfil=$_POST['IDPerfil'];}
     if(!isset($_POST['sw']))                {$sw='';                 }else{$sw=$_POST['sw'];}
-
+    // if(isset($_POST['Perfil']))             { $perfilSelecionado=$_POST['Perfil'];} else {$perfilSelecionado = 1;}
 }
 ?>
 
@@ -26,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-    <title>Mantenedor usuarios</title>
+    <title>Crear Estado</title>
 </head>
 
 <body>
@@ -40,24 +43,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Editar Estado</h2><br>
+        <h2 style="text-align: center;">Crear Estado</h2><br>
         <div class="row">
             <div class="col">
-                <label for="rut" style="text-align: center;">Nombre Estado:</label>
-                <input type="text" class="form-control" name="NombreEstado" value="<?php echo "$NombreEstado"; ?>"><br>
+                <label for="rut" style="text-align: center;">Estado:</label>
+                <input type="text" class="form-control" name="NombreEstado" value="<?php echo "$NombreEstado"; ?>"placeholder="Nombre Estado" Required><br>
                 <label  style="text-align: center;">Perfil:</label>
-                <input type="text" class="form-control" name="Perfil" value="<?php echo "$Perfil"; ?>">
+                <input type="text" class="form-control" name="IDPerfil" value="<?php echo "$IDPerfil"; ?>" placeholder="Id de Perfil Asignado" Required>
                 <input type="hidden" name="sw" value="Crear"><br>
                 <input type="submit" class="btn btn-primary w-100 center-block" name="CrearRegistro" value="Crear">
-        </div>
+                 
+                
+                <!-- <select name="IDPerfil" required>
+                    <?php
+                    foreach ($DetallePerfiles as $opcPerfil )
+                {
+                        $idPerfil = $opcPerfil['IDPerfil'];
+                        $tipoPerfil = $opcPerfil['TipoPerfil'];
+
+                        // Verificar si es el perfil seleccionado
+                        $selected = ($idPerfil == $perfilSelecionado) ? 'selected' : '';
+
+                        // Imprimir la opción
+                        echo "<option value='$idPerfil' $selected>$tipoPerfil</option>";
+                    }
+                    ?>
+                </select> -->
+
+        
+        
+            </div>
     </form>
 
-    <?php
+    <!-- <?php
 
     if ($sw == "Crear") {
         require_once("../Controllers/EstadoController.php");       
     }
-    ?>
+    ?> -->
 
 
 

@@ -1,4 +1,8 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Models/creacionexamenModel.php";
+//require_once $rutaexamenes;
+
 include "../Models/creacionexamenModel.php";
 //include "../Models/validacionrutModel.php";
 
@@ -43,5 +47,3 @@ if (!empty($_POST["ingreso"])) {
         echo '<script>alert("Algunos campos están vacíos");</script>';
     }
 }
-
-?>

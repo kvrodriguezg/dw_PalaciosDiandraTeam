@@ -1,4 +1,10 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutacentro;
+//require_once $rutaacceso;
+
 require_once('../Controllers/accesoController.php');
 require_once('../Controllers/centrosmedicosController.php');
 $perfilesPermitidos = 5;
@@ -62,17 +68,13 @@ if ($op == 'EDITAR') {
                 <nav class="nav">
                 <ul class="nav">
                     <div class="m-1">
-                        <form method="post" action="mantenedorlaboratorios.php">
-                            <input type="hidden" name="crearcentros" value="crear">
-                            <button class="btn w-100 m-1 btn-primary btn-sm ">CREAR CENTROS</button>
-                        </form>
                     </div>
                 </ul>
                 <ul class="nav">
                 <div class="m-1">
                     <form method="post" action="crearlaboratorio.php">
                         <input type="hidden" name="crearPerfiles" value="crear">
-                        <button class="btn w-100 m-1 btn-primary btn-sm ">INSERTAR CENTRO</button>
+                        <button class="btn w-100 m-1 btn-primary btn-sm ">CREAR CENTRO</button>
                     </form>
                 </div>
             </ul>

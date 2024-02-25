@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutacentro = dirname($directorioActual) . "/Controllers/centroController.php";
+//require_once $rutacentro;
 require_once("../Controllers/centroController.php");
 ?>
 <!DOCTYPE html>
@@ -8,7 +11,7 @@ require_once("../Controllers/centroController.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="#" />
-    <title>Tutorial DataTables</title>
+    <title>Centro Médico</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <!-- CSS personalizado -->
@@ -22,13 +25,18 @@ require_once("../Controllers/centroController.php");
 </head>
 
 <body>
-    <header>
-        <h2 class="titulo">Centro Medico</h2><br><br>
+    <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
+        <?php
+        include("menu.php");
+        ?>
     </header>
     <div style="height: 50px;">
         <div class="container">
+            <h2 class="titulo">
+                <br><br><?php echo " Centro Médico $nombreCentro"; ?>
+            </h2><br><br>
             <div class="row">
-                <div class="col-lg.12">
+                <div class="col-lg-12">
                     <table id="pruebas" class="table table-striped table-bordered table-responsive">
                         <thead>
                             <tr>
@@ -42,63 +50,36 @@ require_once("../Controllers/centroController.php");
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Alexis Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
-                            </tr>
-                            <tr>
-                                <td>Agustin Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
-                            </tr>
-                            <tr>
-                                <td>Alonso Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
+                            <?php
+                            foreach ($listExamenes as $list) {
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $list['NombrePaciente']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $list['NombreExamen']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $list['RutPaciente']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $list['FechaTomaMuestra']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $list['FechaRecepcion']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $list['NombreEstado']; ?>
+                                    </td>
+                                    <td>
 
-                            </tr>
-                            <tr>
-                                <td>Pedro Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
-                            </tr>
-                            <tr>
-                                <td>Alfonso Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
-                            </tr>
-                            <tr>
-                                <td>Ariel Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
-                            </tr>
-                            <tr>
-                                <td>Andres Tobar</td>
-                                <td>17426433-3</td>
-                                <td>12-12-2024</td>
-                                <td>12-12-2024</td>
-                                <td>glicemia</td>
-                                <td>Pendiente</td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            <?php }
+                            ?>
                         </tbody>
                     </table>
                 </div>

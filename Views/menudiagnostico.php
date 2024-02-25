@@ -5,7 +5,12 @@
         </a>
         <nav class="nav">
             <ul class="nav">
-
+            <li class="nav-item">
+                    <a class="nav-link text-blue" href="diagnostico.php"> <i class="fa-solid fa-stethoscope"></i> Listado para Diagnóstico</a>
+                </li>
+            <li class="nav-item">
+                    <a class="nav-link text-blue" href="cambiarestadodiagnostico.php"> <i class="fa-solid fa-stethoscope"></i> Cambiar Estado Masivo</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesión</a>
                 </li>

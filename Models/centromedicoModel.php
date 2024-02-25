@@ -1,5 +1,7 @@
 <?php
-
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conexion.php";
+//require_once $ruta;
 class CentroMedico
 {
     private $id;
@@ -21,7 +23,7 @@ class CentroMedico
         require_once("existetablaModel.php");
         $tablaExistente = new existetabla();
         if ($tablaExistente->comprobarTabla("CentrosMedicos") == true) {
-            $query = "INSERT INTO centrosmedicos (NombreCentro, codigo) VALUES ('MEGAMAN', 'MM'),('ULTRAMAN', 'UM'),('ULTRASEVEN', 'US');";
+            $query = "INSERT INTO CentrosMedicos (NombreCentro, codigo) VALUES ('MEGAMAN', 'MM'),('ULTRAMAN', 'UM'),('ULTRASEVEN', 'US');";
             $creacion = mysqli_query($this->db, $query);
             if (!$creacion) {
                 echo "Error al crear datos " . mysqli_error($this->db);
@@ -34,7 +36,7 @@ class CentroMedico
 
     public function verCentros()
     {
-        $consulta = mysqli_query($this->db, "select * from centrosmedicos;");
+        $consulta = mysqli_query($this->db, "select * from CentrosMedicos;");
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->centros[] = $filas;
         }
@@ -51,7 +53,7 @@ class CentroMedico
         $tablaExistente = new existetabla();
         if ($tablaExistente->comprobarTabla("CentrosMedicos") == true) {
 
-            $query = "INSERT INTO centrosmedicos (NombreCentro, codigo)  VALUES (?,?);";
+            $query = "INSERT INTO CentrosMedicos (NombreCentro, codigo)  VALUES (?,?);";
 
             if ($stmt = mysqli_prepare($this->db, $query)) {
                 mysqli_stmt_bind_param($stmt, "ss", $nombreCentro, $CodigoCentro);
@@ -66,7 +68,7 @@ class CentroMedico
 
     public function modificarCentro($IDCentroMedico, $NombreCentro, $codigo)
     {
-        $query = "UPDATE centrosmedicos SET NombreCentro = ?, codigo = ? WHERE IDCentroMedico = ?;";
+        $query = "UPDATE CentrosMedicos SET NombreCentro = ?, codigo = ? WHERE IDCentroMedico = ?;";
         if ($stmt = mysqli_prepare($this->db, $query)) {
             mysqli_stmt_bind_param($stmt, "ssi", $NombreCentro, $codigo, $IDCentroMedico);
             if (mysqli_stmt_execute($stmt)) {
@@ -81,7 +83,7 @@ class CentroMedico
 
     public function eliminarCentro($IDCentroMedico)
     {
-        $query = "DELETE FROM centrosmedicos WHERE IDCentroMedico = ?;";
+        $query = "DELETE FROM CentrosMedicos WHERE IDCentroMedico = ?;";
         if ($stmt = mysqli_prepare($this->db, $query)) {
             mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico);
             if (mysqli_stmt_execute($stmt)) {
@@ -94,7 +96,7 @@ class CentroMedico
 
     public function buscarExamenes($IDCentroMedico)
     {
-        $query = "select p.NombrePaciente,e.NombreExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join pacientes p on e.RutPaciente = p.RutPaciente Join estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
+        $query = "select p.NombrePaciente,e.NombreExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join Pacientes p on e.RutPaciente = p.RutPaciente Join Estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
         $consulta = mysqli_query($this->db, $query);
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->listadoExamenesCentro[] = $filas;
@@ -105,7 +107,7 @@ class CentroMedico
 
     public function nombreCentro($IDCentroMedico)
     {
-        $consulta = "select NombreCentro from centrosmedicos where IDCentroMedico = ?";
+        $consulta = "select NombreCentro from CentrosMedicos where IDCentroMedico = ?";
         if ($stmt = mysqli_prepare($this->db, $consulta)) {
             mysqli_stmt_bind_param($stmt, "i", $IDCentroMedico);
             if (mysqli_stmt_execute($stmt)) {

@@ -1,6 +1,6 @@
 <header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
         <div class="container">
-            <a class="navbar-brand" href="../controllers/indexController.php">
+            <a class="navbar-brand" href="../index.php">
                 <img src="../img/logo_labmuest.png" alt="" width="110" height="35">
             </a>
             <nav class="nav">
@@ -22,6 +22,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-blue" href="Registro.php"><i class="fa-solid fa-vial"></i> Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="reporteDiagnostico.php"><i class="fa-solid fa-vial"></i> reporte Diagnóstico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href="reporteExamenes.php"><i class="fa-solid fa-vial"></i> reporte Exámenes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-blue" href="cerrarsesion.php"> <i class="fa-solid fa-stethoscope"></i> Cerrar Sesi&oacuten</a>

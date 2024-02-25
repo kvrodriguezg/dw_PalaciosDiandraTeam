@@ -511,3 +511,18 @@
     align-items: center;
 }
 
+.buscador-usuario{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    gap: 20px;
+}
+.titulo-usuario h1{
+    text-align: center;
+}
+
+.tabla-usuario{
+    padding-right: 100px;
+    
+}
+

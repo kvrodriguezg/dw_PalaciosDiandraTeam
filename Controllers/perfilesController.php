@@ -1,4 +1,7 @@
 <?php
+////$directorioActual = __DIR__;
+//$rutaperfiles = dirname($directorioActual) . "/Models/perfilesModel.php";
+//require_once $rutaperfiles;
 include("../Models/perfilesModel.php");
 $objPerfil = new Perfiles();
 

@@ -1,4 +1,7 @@
 <?php
+//$directorioActual = __DIR__;
+//$ruta = dirname($directorioActual) . "/Models/conexion.php";
+//require_once $ruta;
 class ExisteTabla
 {
     private $db;
@@ -36,14 +39,14 @@ class ExisteTabla
         $this->crearTabla("Pacientes", "NombrePaciente VARCHAR(100) NOT NULL, RutPaciente VARCHAR(12) PRIMARY KEY NOT NULL, DomicilioPaciente VARCHAR(200) NOT NULL");
         $this->crearTabla("Diagnosticos", "Codigo VARCHAR(2) NOT NULL PRIMARY KEY , descripcion VARCHAR(255) NOT NULL");
         $this->crearTabla("Estados", "IDEstado INT PRIMARY KEY AUTO_INCREMENT, NombreEstado VARCHAR(100) UNIQUE NOT NULL, IDPerfil INT, FOREIGN KEY (IDPerfil) REFERENCES Perfiles(IDPerfil)");
-        $this->crearTabla("Examenes", "IDExamen INT PRIMARY KEY AUTO_INCREMENT, NombreExamen VARCHAR(100) NOT NULL, RutPaciente VARCHAR(12) NOT NULL, IDCentroSolicitante INT NOT NULL, IDEstado INT NOT NULL, CodigoDiagnosticos VARCHAR(5), FechaTomaMuestra DATE NOT NULL, FechaRecepcion DATE NOT NULL, Fechatincion DATE, Fechadiagnostico DATE, FOREIGN KEY (CodigoDiagnosticos) REFERENCES Diagnosticos(Codigo), FOREIGN KEY (IDCentroSolicitante) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (RutPaciente) REFERENCES Pacientes(RutPaciente), FOREIGN KEY (IDEstado) REFERENCES Estados(IDEstado)");
+        $this->crearTabla("Examenes", "IDExamen INT PRIMARY KEY AUTO_INCREMENT, NombreExamen VARCHAR(100) NOT NULL, RutPaciente VARCHAR(12) NOT NULL, IDCentroSolicitante INT NOT NULL, IDEstado INT NOT NULL, CodigoDiagnosticos VARCHAR(5), FechaTomaMuestra DATE NOT NULL, FechaRecepcion DATETIME NOT NULL, Fechatincion DATETIME, Fechadiagnostico DATETIME, FOREIGN KEY (CodigoDiagnosticos) REFERENCES Diagnosticos(Codigo), FOREIGN KEY (IDCentroSolicitante) REFERENCES CentrosMedicos(IDCentroMedico), FOREIGN KEY (RutPaciente) REFERENCES Pacientes(RutPaciente), FOREIGN KEY (IDEstado) REFERENCES Estados(IDEstado)");
     }
 
 
     public function crearCentros()
     {
         if ($this->comprobarTabla("CentrosMedicos") == true) {
-            $query = "INSERT IGNORE INTO centrosmedicos (NombreCentro, codigo) VALUES 
+            $query = "INSERT IGNORE INTO CentrosMedicos (NombreCentro, codigo) VALUES 
                 ('N/A', 'N/A'),
                 ('MEGAMAN', 'MM'),
                 ('ULTRAMAN', 'UM'),
@@ -63,7 +66,7 @@ class ExisteTabla
     public function crearDiagnosticos()
     {
         if ($this->comprobarTabla("Diagnosticos") == true) {
-            $query = "INSERT IGNORE INTO diagnosticos (codigo, descripcion) VALUES 
+            $query = "INSERT IGNORE INTO Diagnosticos (codigo, descripcion) VALUES 
                 ('A', 'NEGATIVO'),
                 ('B', 'MUESTRA INADECUADA, VOLVER A TOMAR'),
                 ('C', 'MUESTRA PRESENTA INFECCION'),
@@ -85,7 +88,7 @@ class ExisteTabla
     public function crearPerfiles()
     {
         if ($this->comprobarTabla("Perfiles") == true) {
-            $query = "INSERT IGNORE INTO perfiles (TipoPerfil) VALUES 
+            $query = "INSERT IGNORE INTO Perfiles (TipoPerfil) VALUES 
                 ('diagnostico'),
                 ('tincion'),
                 ('recepcion'),
@@ -107,11 +110,11 @@ class ExisteTabla
     public function crearEstados()
     {
         if ($this->comprobarTabla("Estados") == true) {
-            $query = "INSERT IGNORE INTO estados (NombreEstado, IDPerfil) VALUES 
-                ('Recepcionado', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'recepcion')),
-                ('Listo para Tinción', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'recepcion')),
-                ('Listo para Diagnóstico', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'tincion')),
-                ('Realizado', (SELECT IDPerfil FROM perfiles WHERE TipoPerfil = 'diagnostico'));";
+            $query = "INSERT IGNORE INTO Estados (NombreEstado, IDPerfil) VALUES 
+                ('Recepcionado', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
+                ('Listo para Tinción', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
+                ('Listo para Diagnóstico', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'tincion')),
+                ('Realizado', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'diagnostico'));";
             $creacion = mysqli_query($this->db, $query);
     
             if (!$creacion) {

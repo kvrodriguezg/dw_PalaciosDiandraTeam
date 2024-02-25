@@ -1,6 +1,21 @@
 <?php
+//$directorioActual = __DIR__;
+//$rutaPdf = dirname($directorioActual) . "/Controllers/PdfController.php";
+//require_once $rutaPdf;
+//
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
+//
+//$directorioActual = __DIR__;
+//$rutaTCPDF = dirname($directorioActual) . "/TCPDF-main/tcpdf.php";
+//require_once $rutaTCPDF;
+
+require_once('../Controllers/PdfController.php');
+require_once("../Controllers/examenesController.php");
 // Incluir la biblioteca TCPDF
 require_once('../TCPDF-main/tcpdf.php');
+
 
 // Crear una instancia de TCPDF
 $pdf = new TCPDF();
@@ -9,26 +24,25 @@ $pdf = new TCPDF();
 $pdf->AddPage();
 
 // Definir el contenido del PDF
-$logoPath = '../img/logo_labmuest.png';  // Ruta a tu logo
-$fechaImpresion = date('Y-m-d H:i:s');  // Fecha de impresión actual
+$logoPath       = '../img/logo_labmuest.png';  // Ruta a tu logo
+$firmaDigital   ='../img/Firma.png'; //Ruta Firma Digital Director Técnico
+$fechaImpresion = date("Y-m-d H:i:s");  // Fecha de impresión actual
 
 // Aquí deberías obtener los datos del paciente y el diagnóstico desde la base de datos
-$nombrePaciente = "Luis Yañez";
-$rutPaciente = "11111111-1";
-$descripcionDiagnostico = "Descripción del Diagnóstico desde la base de datos";
-$fechaTomaMuestra = "17-11-12023";
-$fechaRecepcionExamen = "18-11-2023";
-$fechaTincion = "19-11-2023";
-$fechaDiagnostico = "21-11-2023";
-$Diagnostico ="Diagnóstico del Examen";
+$nombrePaciente         = $detallePdf['NombreDelPaciente'];
+$rutPaciente            = $detallePdf['RutPaciente'];
+$descripcionDiagnostico = $detallePdf['DescripcionDiagnostico']; // $DetallePdf[''];  //"Descripción del Diagnóstico desde la base de datos";
+$fechaTomaMuestra       = $detallePdf['FechaTomaMuestra'];
+$fechaRecepcionExamen   = $detallePdf['FechaRecepcion'];
+$fechaTincion           = $detallePdf['Fechatincion'];
+$fechaDiagnostico       = $detallePdf['Fechadiagnostico'];
+$Diagnostico            = $detallePdf['CodigoDiagnosticos'];
 
 // Configurar el contenido del PDF
 
 
 
-$html = '
-
-    <table width="100%">
+$html = '<table width="100%">
         <tr><br>
             <td><img src="'.$logoPath.'" width="80"></td>
             <td align="right">
@@ -73,15 +87,18 @@ $html = '
     <br>
     <br>
     <div >
-       <textarea name="TextIngreso" rows="25" cols="80" >Descripción del diagnóstico</textarea>
+       <textarea name="TextIngreso" rows="20" cols="80" >'.$descripcionDiagnostico.'</textarea>
     </div>
     <br><br><br><br>
     <br><br><br><br>
     <br><br><br><br>
     <br><br><br><br>
-    <br><br><br><br>
-    <br><br><br><br>
     <br><br>
+    <div  style="width: 90%; text-align: center;">
+    <img src="'.$firmaDigital.'" width="80">
+    <h6>Luis Yañez Carreño </h6>
+    <h6>Director Técnico </h6>
+    </div>
 
     <Footer text-align="center">
     <hr>
@@ -97,7 +114,7 @@ $nombreArchivo = 'informe_diagnostico'.$rutPaciente.'.pdf';
 
 // Salida del PDF (puedes elegir descargarlo o mostrarlo en el navegador)
 $pdf->Output($nombreArchivo, 'I',);//muestra en pantalla
-$pdf->Output($nombreArchivo, 'D');//descarga automaticamente.
+//$pdf->Output($nombreArchivo, 'D');descarga automaticamente.
 
 
 ?>

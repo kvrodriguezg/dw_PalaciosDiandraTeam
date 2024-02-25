@@ -1,4 +1,12 @@
-<?php require_once("../Controllers/examenesController.php"); 
+<?php 
+//$directorioActual = __DIR__;
+//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+//require_once $rutaacceso;
+//
+//$directorioActual = __DIR__;
+//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+//require_once $rutaexamenes;
+require_once("../Controllers/examenesController.php"); 
 require_once('../Controllers/accesoController.php');
 
 $perfilesPermitidos = 2;
@@ -10,14 +18,12 @@ verificarAcceso($perfilesPermitidos);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-    <title>Document</title>
+    <title>Tinción</title>
 </head>
 
 <body class="container">
@@ -42,7 +48,7 @@ verificarAcceso($perfilesPermitidos);
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
-                    <th>Seleccionar</th>
+                    <th>ID Examen</th>
                     <th>Nombre Paciente</th>
                     <th>Domicilio</th>
                     <th>Laboratorio</th>
@@ -60,13 +66,7 @@ verificarAcceso($perfilesPermitidos);
                 <?php while ($row = mysqli_fetch_array($examenesTincion)) { ?>
                     <tr class="table table-striped">
                         <form method="post" action="tincion.php">
-                            <td>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                    <label class="form-check-label" for="flexCheckIndeterminate">
-                                    </label>
-                                </div>
-                            </td>
+                            <td><?php echo $row['IDExamen'] ?></td>
                             <td><?php echo $examen->obtenerNombrePaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerDomicilioPaciente($row['RutPaciente']) ?></td>
                             <td><?php echo $examen->obtenerCentroMedico($row['IDCentroSolicitante']) ?></td>
@@ -89,14 +89,6 @@ verificarAcceso($perfilesPermitidos);
                                     ?>
                                 </select>
                             </td>
-
-                            <td>
-                                <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
-                                    <img src="../img/pdf.png" alt="Icono PDF">
-                                </button>
-
-
-                            </td>
                             <td>
                                 <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->
                                 <input type="hidden" name="idExamen" value=<?php echo $row['IDExamen'] ?>>
@@ -104,25 +96,15 @@ verificarAcceso($perfilesPermitidos);
                             </td>
                         </form>
                     </tr>
-
+                <?php } ?>
             </tbody>
-
-        <?php } ?>
         </table>
     </section>
 
-
-
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 
