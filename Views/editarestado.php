@@ -3,6 +3,8 @@
 //$rutaEstado = dirname($directorioActual) . "/Controllers/EstadoController.php";
 //require_once $rutaEstado;
 
+require_once("../Controllers/EstadoController.php");  //PERMITE LLENAR EL SELECT
+
 $AgregaNEstado='';
 $AgregaPerfEstado='';
 $sw = "";
@@ -46,7 +48,18 @@ include("menuadministrador.php");
                 <label for="rut" style="text-align: center;">Estado:</label>
                 <input type="text" class="form-control" name="AgregaNEstado" value="<?php echo "$AgregaNEstado"; ?>"><br>
                 <label  style="text-align: center;">Perfil:</label>
-                <input type="text" class="form-control" name="AgregaPerfEstado" value="<?php echo "$AgregaPerfEstado"; ?>">
+                <select class="form-select" style="width: 150px" name="IDPerfil" required>
+                    <?php
+                    foreach ($DetallePerfiles as $opcPerfil )
+                    {
+                        $idPerfil = $opcPerfil['IDPerfil'];
+                        $tipoPerfil = $opcPerfil['TipoPerfil'];
+                        $selected = ($idPerfil == $perfilSelecionado) ? 'selected' : '';
+
+                        echo "<option value='$idPerfil' $selected>$tipoPerfil</option>";
+                    }
+                    ?>
+                </select> <br>
                 <input type="hidden" name="IDEstado" value="<?php echo $IDEstado; ?>">
                 <input type="hidden" name="sw" value="Modificar"><br>
                 <input type="submit" class="btn btn-primary w-100 center-block" name="ModificarRegistro" value="Modificar">

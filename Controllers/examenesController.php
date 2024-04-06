@@ -1,8 +1,8 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/examenesModel.php";
-//require_once $ruta;
-include("../Models/examenesModel.php");
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/examenesModel.php";
+require_once $ruta;
+//include("../Models/examenesModel.php");
 $examen = new examenesModel();
 $examenes = $examen->obtenerDatosExamenes();
 $examenesTincion = $examen->obtenerExamenesTincion();
@@ -77,3 +77,13 @@ if (isset($_POST['cambiarEstadodiagnostico'])) {
     header("Location: diagnostico.php");
     exit;
 }
+
+if (isset($_POST['Filtrar'])) {
+    $fechaInicio = $_POST['fechaInicio'];
+    $fechaFin = $_POST['fechaFin'];
+
+    header("Location: descargarexcel.php?fechaInicio=$fechaInicio&fechaFin=$fechaFin");
+
+}
+
+

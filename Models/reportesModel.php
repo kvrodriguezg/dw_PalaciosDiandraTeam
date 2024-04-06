@@ -1,13 +1,14 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
+
 class ReportesModel {
 
     private $db;
     public function __construct()
     {
-        require_once("conexion.php");
+       // require_once("conexion.php");
         $this->db = Conectarse();
     }
 
@@ -42,7 +43,7 @@ class ReportesModel {
     }
 
     public function obtenerNombresExamenes() {
-        $query = "SELECT NombreExamen FROM examenes;";
+        $query = "SELECT NombreExamen FROM Examenes;";
         $result = mysqli_query($this->db, $query);
         $nombresExamenes = [];
 
@@ -62,8 +63,8 @@ class ReportesModel {
 
     public function obtenerCantidadDiagnosticoPorCentro($centroMedico, $diagnostico) {
         $query = "SELECT COUNT(*) as cantidad FROM Examenes 
-                  WHERE IDCentroSolicitante = (SELECT IDCentroMedico FROM centrosmedicos WHERE NombreCentro = '$centroMedico') 
-                  AND CodigoDiagnosticos = (SELECT codigo FROM diagnosticos WHERE descripcion = '$diagnostico');";
+                  WHERE IDCentroSolicitante = (SELECT IDCentroMedico FROM CentrosMedicos WHERE NombreCentro = '$centroMedico') 
+                  AND CodigoDiagnosticos = (SELECT codigo FROM Diagnosticos WHERE descripcion = '$diagnostico');";
 
         $result = mysqli_query($this->db, $query);
 
@@ -76,8 +77,8 @@ class ReportesModel {
     }
 
     public function obtenerCantidadExamenesPorCentro($centroMedico, $examen) {
-        $query = "SELECT COUNT(*) as cantidad FROM examenes 
-        WHERE IDCentroSolicitante = (SELECT IDCentroMedico FROM centrosmedicos WHERE NombreCentro = '$centroMedico') 
+        $query = "SELECT COUNT(*) as cantidad FROM Examenes 
+        WHERE IDCentroSolicitante = (SELECT IDCentroMedico FROM CentrosMedicos WHERE NombreCentro = '$centroMedico') 
         AND NombreExamen = '$examen';";
 
         $result = mysqli_query($this->db, $query);

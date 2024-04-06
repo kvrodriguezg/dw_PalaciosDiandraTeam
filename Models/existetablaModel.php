@@ -1,13 +1,12 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
 class ExisteTabla
 {
     private $db;
     public function __construct()
     {
-        require_once("conexion.php");
         $this->db = Conectarse();
     }
 
@@ -47,7 +46,7 @@ class ExisteTabla
     {
         if ($this->comprobarTabla("CentrosMedicos") == true) {
             $query = "INSERT IGNORE INTO CentrosMedicos (NombreCentro, codigo) VALUES 
-                ('N/A', 'N/A'),
+                ('NA', 'NA'),
                 ('MEGAMAN', 'MM'),
                 ('ULTRAMAN', 'UM'),
                 ('ULTRASEVEN', 'US');";
@@ -88,7 +87,7 @@ class ExisteTabla
     public function crearPerfiles()
     {
         if ($this->comprobarTabla("Perfiles") == true) {
-            $query = "INSERT IGNORE INTO Perfiles (TipoPerfil) VALUES 
+            $query = "INSERT IGNORE INTO Perfiles (TipoPerfil) VALUES
                 ('diagnostico'),
                 ('tincion'),
                 ('recepcion'),
@@ -112,8 +111,8 @@ class ExisteTabla
         if ($this->comprobarTabla("Estados") == true) {
             $query = "INSERT IGNORE INTO Estados (NombreEstado, IDPerfil) VALUES 
                 ('Recepcionado', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
-                ('Listo para Tinción', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
-                ('Listo para Diagnóstico', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'tincion')),
+                ('Listo para Tincion', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'recepcion')),
+                ('Listo para Diagnostico', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'tincion')),
                 ('Realizado', (SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'diagnostico'));";
             $creacion = mysqli_query($this->db, $query);
     
@@ -122,6 +121,83 @@ class ExisteTabla
             }
     
             return true;
+        } else {
+            return false;
+        }
+    }
+    
+        private function obtenerIDCentroAdmin()
+    {
+        $query = "SELECT IDCentroMedico FROM CentrosMedicos WHERE NombreCentro = 'N/A'";
+        $result = mysqli_query($this->db, $query);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            return $row['IDCentroMedico'];
+        }
+
+        return null;
+    }
+
+    private function obtenerIDPerfilAdmin()
+    {
+        $query = "SELECT IDPerfil FROM Perfiles WHERE TipoPerfil = 'administrador'";
+        $result = mysqli_query($this->db, $query);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            return $row['IDPerfil'];
+        }
+
+        return null;
+    }
+    
+        public function comprobarAdmin()
+    {
+        $query = "SELECT * FROM Usuarios WHERE usuario = 'admin'";
+        $result = mysqli_query($this->db, $query);
+
+        if ($result) {
+            $existe = mysqli_num_rows($result);
+
+            if ($existe > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            echo "Error: " . mysqli_error($this->db);
+            return false;
+        }
+    }
+
+    public function crearUsuarioAdmin()
+    {
+        if ($this->comprobarTabla("Usuarios") == true) {
+            $usuario = "admin";
+            $nombre = "Administrador";
+            $correo = "admin@admin.cl";
+            $rut = "11111111-1";
+            $clave = password_hash("adminLuisY", PASSWORD_DEFAULT);
+            $idPerfilAdmin = $this->obtenerIDPerfilAdmin();
+            $idCentroMedico = $this->obtenerIDCentroAdmin();
+
+            $query = "INSERT IGNORE INTO Usuarios (usuario, Nombre, Correo, Rut, Clave, IDPerfil, IDCentroMedico) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            if ($stmt = mysqli_prepare($this->db, $query)) {
+                mysqli_stmt_bind_param($stmt, "ssssssi", $usuario, $nombre, $correo, $rut, $clave, $idPerfilAdmin, $idCentroMedico);
+
+                $result = mysqli_stmt_execute($stmt);
+
+                if (!$result) {
+                    echo "Error al crear el usuario admin: " . mysqli_error($this->db);
+                    return false;
+                }
+
+                echo '<div class="alert alert-success d-flex aling-items-center" role="alert">Usuario administrador creado!</div>';
+                return true;
+            } else {
+                echo "Error: " . mysqli_error($this->db);
+                return false;
+            }
         } else {
             return false;
         }

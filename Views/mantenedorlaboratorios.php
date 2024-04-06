@@ -1,12 +1,12 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
-//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
-//require_once $rutacentro;
-//require_once $rutaacceso;
+$directorioActual = __DIR__;
+$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
+$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+require_once $rutacentro;
+require_once $rutaacceso;
 
-require_once('../Controllers/accesoController.php');
-require_once('../Controllers/centrosmedicosController.php');
+//require_once('../Controllers/accesoController.php');
+//require_once('../Controllers/centrosmedicosController.php');
 $perfilesPermitidos = 5;
 verificarAcceso($perfilesPermitidos);
 if (!isset($_POST['IDCentroMedico'])) {
@@ -61,9 +61,9 @@ if ($op == 'EDITAR') {
 <br><br><br><br><br>
 
 <body class="container">
-    <h1>Mantenedor Laboratorios</h1><br>
+    <h1 style="padding-top: 20px;">Mantenedor Laboratorios</h1><br>
     <?php
-    require_once("../Controllers/centrosmedicosController.php");
+   // require_once("../Controllers/centrosmedicosController.php");
     echo '
                 <nav class="nav">
                 <ul class="nav">

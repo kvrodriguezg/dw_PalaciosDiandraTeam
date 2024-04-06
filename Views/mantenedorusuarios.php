@@ -1,12 +1,14 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
-//require_once $rutausuarios;
+$directorioActual = __DIR__;
+$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
+require_once $rutausuarios;
+$rutaaccesso = dirname($directorioActual) . "/Controllers/accesoController.php";
+require_once $rutaaccesso;
 
-require_once("../Controllers/usuariosController.php");
+//require_once("../Controllers/usuariosController.php");
 //require_once('../Controllers/accesoController.php');
-//$perfilesPermitidos = 5;
-//verificarAcceso($perfilesPermitidos);
+$perfilesPermitidos = 5;
+verificarAcceso($perfilesPermitidos);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!isset($_POST['IDUsuario'])) {
@@ -54,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="titulo-usuario">
         <br>
-        <h1>Listado de Usuarios</h1><br>
+        <h1 style="padding-top: 20px;">Listado de Usuarios</h1><br>
         <div class="buscador-usuario">
             <?php
             echo '

@@ -1,11 +1,11 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutaacceso = dirname($directorioActual) . "/Controllers/usuariosController.php";
-//require_once $rutaacceso;
+$directorioActual = __DIR__;
+$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
+require_once $rutausuarios;
 
 $IDUsuario = $_GET['IDUsuario'] ?? '';
 
-require_once("../Controllers/usuariosController.php");
+//require_once("../Controllers/usuariosController.php");
 
 $resultUsuario = $objusuario->buscarUsuario($IDUsuario);
 foreach ($resultUsuario as $res) {
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombrePerfil = '';
 
     if ($op == "Modificar") {
-        require_once("../Controllers/usuariosController.php");
+       // require_once("../Controllers/usuariosController.php");
         exit();
     }
 
@@ -130,6 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <select class="form-select" style="width: 100%" aria-label="Default select example" id="centro"
                         name="centro">
                         <option>Seleccionar</option>
+                                                <option <?php echo ($nombreCentro == 'N/A') ? 'selected' : ''; ?>>N/A</option>
                         <option <?php echo ($nombreCentro == 'Ultraman') ? 'selected' : ''; ?>>Ultraman</option>
                         <option <?php echo ($nombreCentro == 'Megaman') ? 'selected' : ''; ?>>Megaman</option>
                         <option <?php echo ($nombreCentro == 'ultramegaman') ? 'selected' : ''; ?>>ultramegaman</option>

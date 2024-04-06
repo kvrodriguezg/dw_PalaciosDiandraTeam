@@ -1,7 +1,8 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
+
 class CentroMedico
 {
     private $id;
@@ -12,7 +13,7 @@ class CentroMedico
     private $listadoExamenesCentro;
     public function __construct()
     {
-        require_once("conexion.php");
+        //require_once("conexion.php");
         $this->db = Conectarse();
         $this->centros = array();
         $this->listadoExamenesCentro = array();
@@ -20,18 +21,14 @@ class CentroMedico
 
     public function crearCentros()
     {
-        require_once("existetablaModel.php");
-        $tablaExistente = new existetabla();
-        if ($tablaExistente->comprobarTabla("CentrosMedicos") == true) {
+
             $query = "INSERT INTO CentrosMedicos (NombreCentro, codigo) VALUES ('MEGAMAN', 'MM'),('ULTRAMAN', 'UM'),('ULTRASEVEN', 'US');";
             $creacion = mysqli_query($this->db, $query);
             if (!$creacion) {
                 echo "Error al crear datos " . mysqli_error($this->db);
             }
             return true;
-        } else {
-            return false;
-        }
+        
     }
 
     public function verCentros()
@@ -49,9 +46,7 @@ class CentroMedico
 
     public function insertarCentro($nombreCentro, $CodigoCentro)
     {
-        require_once("existetablaModel.php");
-        $tablaExistente = new existetabla();
-        if ($tablaExistente->comprobarTabla("CentrosMedicos") == true) {
+
 
             $query = "INSERT INTO CentrosMedicos (NombreCentro, codigo)  VALUES (?,?);";
 
@@ -59,11 +54,8 @@ class CentroMedico
                 mysqli_stmt_bind_param($stmt, "ss", $nombreCentro, $CodigoCentro);
                 if (mysqli_stmt_execute($stmt)) {
                     return true;
-                } else {
-                    return false;
                 }
             }
-        }
     }
 
     public function modificarCentro($IDCentroMedico, $NombreCentro, $codigo)
@@ -96,7 +88,7 @@ class CentroMedico
 
     public function buscarExamenes($IDCentroMedico)
     {
-        $query = "select p.NombrePaciente,e.NombreExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join Pacientes p on e.RutPaciente = p.RutPaciente Join Estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
+        $query = "select p.NombrePaciente,e.NombreExamen,e.IDEstado,e.IDExamen,e.RutPaciente,e.FechaTomaMuestra,e.FechaRecepcion,es.NombreEstado from Examenes e  Join Pacientes p on e.RutPaciente = p.RutPaciente Join Estados es on es.IDEstado = e.IDEstado where IDCentroSolicitante = $IDCentroMedico";
         $consulta = mysqli_query($this->db, $query);
         while ($filas = mysqli_fetch_array($consulta)) {
             $this->listadoExamenesCentro[] = $filas;

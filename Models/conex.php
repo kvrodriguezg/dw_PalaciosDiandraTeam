@@ -1,5 +1,6 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "bdddiandraPalacios");
+
+$conexion = mysqli_connect("localhost", "bddgenomapro", "root", "");
 
 //AQUI PROBAMOS LA CONEXION A LA BASE DE DATO
 if (mysqli_connect_errno()) {

@@ -1,14 +1,8 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
-////require_once $ruta;
-//
-//$rutaperfiles = dirname($directorioActual) . "/Controllers/perfilesController.php";
-//require_once $rutaperfiles;
+$directorioActual = __DIR__;
+$rutaperfiles = dirname($directorioActual) . "/Controllers/perfilesController.php";
+require_once $rutaperfiles;
 
-require_once('../Controllers/accesoController.php');
-$perfilesPermitidos = 5;
-verificarAcceso($perfilesPermitidos);
 $op = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -44,9 +38,9 @@ if ($op == 'EDITAR') {
 <br><br><br><br><br>
 
 <body class="container">
-    <h1>Listado de Perfiles</h1><br>
+    <h1 style="padding-top: 30px;">Listado de Perfiles</h1><br>
     <?php
-    require_once("../Controllers/perfilesController.php");
+    //require_once("../Controllers/perfilesController.php");
 
         echo '
                 <nav class="nav">
@@ -112,8 +106,7 @@ if ($op == 'EDITAR') {
                     <?php
                 }
                 if ($op == "ELIMINAR") {
-
-                    require_once("../Controllers/perfilesController.php");
+                    //require_once("../Controllers/perfilesController.php");
                 }
 
                 ?>

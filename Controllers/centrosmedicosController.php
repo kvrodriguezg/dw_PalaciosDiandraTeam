@@ -1,8 +1,8 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/centromedicoModel.php";
-//require_once $ruta;
-include("../Models/centromedicoModel.php");
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/centromedicoModel.php";
+require_once $ruta;
+//include("../Models/centromedicoModel.php");
 $objCentros = new centromedico();
 
 // Creación de CENTRO si no existe

@@ -1,13 +1,13 @@
 <?php 
+$directorioActual = __DIR__;
+$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+require_once $rutaacceso;
 //$directorioActual = __DIR__;
-//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
-//require_once $rutaacceso;
-//$directorioActual = __DIR__;
-//$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
-//require_once $rutaexamenes;
+$rutaexamenes = dirname($directorioActual) . "/Controllers/examenesController.php";
+require_once $rutaexamenes;
 
-require_once("../Controllers/examenesController.php");
-require_once('../Controllers/accesoController.php');
+//require_once("../Controllers/examenesController.php");
+//require_once('../Controllers/accesoController.php');
 session_start();
 $perfilesPermitidos = 3;
 verificarAcceso($perfilesPermitidos);
@@ -112,12 +112,17 @@ verificarAcceso($perfilesPermitidos);
                                             ?>
                                         </select>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-danger" onclick="window.open('generar_pdf.php', '_blank');">
-                                            <img src="../img/pdf.png" alt="Icono PDF">
-                                        </button>
-
-
+                                   <td>
+                                    <button type="button" class="btn btn-outline-danger" 
+                            <?php if($row['IDEstado']==4) {?>                               
+                                onclick="window.open('generar_pdf.php?id=<?php echo $row['IDExamen']; ?>', '_blank');">
+                                <img src="../img/pdf.png" alt="Icono PDF">
+                                <?php } else {?>
+                                ><img src="../img/pdf.png" alt="Icono PDF">
+                                <?php
+                                }
+                                ?>
+                            </button>
                                     </td>
                                     <td>
                                         <!-- <a href="generar_pdf.php" class="btn w-100 m-1 btn-danger" >Ver PDF</a>  -->

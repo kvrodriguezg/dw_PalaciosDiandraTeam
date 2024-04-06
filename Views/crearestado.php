@@ -42,36 +42,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <br><br>
 
 
-    <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+     <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
         <h2 style="text-align: center;">Crear Estado</h2><br>
         <div class="row">
             <div class="col">
                 <label for="rut" style="text-align: center;">Estado:</label>
                 <input type="text" class="form-control" name="NombreEstado" value="<?php echo "$NombreEstado"; ?>"placeholder="Nombre Estado" Required><br>
-                <label  style="text-align: center;">Perfil:</label>
-                <input type="text" class="form-control" name="IDPerfil" value="<?php echo "$IDPerfil"; ?>" placeholder="Id de Perfil Asignado" Required>
-                <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearRegistro" value="Crear">
-                 
-                
-                <!-- <select name="IDPerfil" required>
+                <label  style="text-align: center;">Perfil:</label><br>
+                <select class="form-select" style="width: 150px" name="IDPerfil" required>
                     <?php
                     foreach ($DetallePerfiles as $opcPerfil )
-                {
+                    {
                         $idPerfil = $opcPerfil['IDPerfil'];
                         $tipoPerfil = $opcPerfil['TipoPerfil'];
-
-                        // Verificar si es el perfil seleccionado
                         $selected = ($idPerfil == $perfilSelecionado) ? 'selected' : '';
-
-                        // Imprimir la opción
                         echo "<option value='$idPerfil' $selected>$tipoPerfil</option>";
                     }
                     ?>
-                </select> -->
-
-        
-        
+                </select> <br>
+                <input type="hidden" name="sw" value="Crear"><br>
+                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearRegistro" value="Crear">
+                          
             </div>
     </form>
 

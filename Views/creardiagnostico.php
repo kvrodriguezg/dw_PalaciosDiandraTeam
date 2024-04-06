@@ -1,8 +1,9 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conex.php";
-//require_once $ruta;
-include '../Models/conex.php';
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conex.php";
+require_once $ruta;
+
+//include '../Models/conex.php';
 if (isset($_POST['crearRegistro'])) {
     $codigo = mysqli_real_escape_string($conexion, $_POST['codigo']);
     $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
@@ -10,13 +11,13 @@ if (isset($_POST['crearRegistro'])) {
     if (!isset($codigo) || $codigo == '' || !isset($descripcion) || $descripcion == '') {
         $error = "Algunos Campos Estan Vacios";
     } else {
-        $query = "INSERT INTO diagnosticos(Codigo, Descripcion)VALUES('$codigo', '$descripcion')";
+        $query = "INSERT INTO Diagnosticos(Codigo, descripcion)VALUES('$codigo', '$descripcion')";
         if (!mysqli_query($conexion, $query)) {
             die('Error: ' . mysqli_error($conexion));
             $error = "No se Pudo Crear el Registro";
         } else {
             $mensaje = "Registro Creardo Exitosamente";
-            header('Location:../Views/mantenedordiagnostico.php?mensaje=' . urldecode($mensaje));
+            //header('Location:../Views/mantenedordiagnostico.php?mensaje=' . urldecode($mensaje));
             exit();
         }
     }

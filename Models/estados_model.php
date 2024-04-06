@@ -1,14 +1,14 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
+
 class Estados
 {
     private $db;
     private $Estados;
     public function __construct()
     {
-        require_once("conexion.php");
         $this->db = Conectarse();
         $this->Estados = array();
     }
@@ -68,4 +68,3 @@ class Estados
         }
     }
 }
-    ?>

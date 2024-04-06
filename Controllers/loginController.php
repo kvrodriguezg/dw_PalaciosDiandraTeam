@@ -1,9 +1,10 @@
 
 <?php
-//$directorioActual = __DIR__;
-//$usuarioModel = dirname($directorioActual) . "/Models/usuarioModel.php";
-//require_once $usuarioModel;
-include("../Models/usuarioModel.php");
+$directorioActual = __DIR__;
+$rutausuario = dirname($directorioActual) . "/Models/usuarioModel.php";
+require_once $rutausuario;
+
+//include("../Models/usuarioModel.php");
 $objlogin = new usuario();
 
 if (isset($_POST['op']) && $_POST['op'] == "LOGIN") {
@@ -30,7 +31,7 @@ if (isset($_POST['op']) && $_POST['op'] == "LOGIN") {
                 header('Location: ../Views/recepcion.php');
                 break;
             case 4:
-                header('Location: ../Views/registro.php');
+                header('Location: ../Views/Registro.php');
                 break;
             case 5:
                 header('Location: ../Views/mantenedorusuarios.php');

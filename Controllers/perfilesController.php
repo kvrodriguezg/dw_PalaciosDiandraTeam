@@ -1,6 +1,6 @@
 <?php
-////$directorioActual = __DIR__;
-//$rutaperfiles = dirname($directorioActual) . "/Models/perfilesModel.php";
+$directorioActual = __DIR__;
+$rutaperfiles = dirname($directorioActual) . "/Models/perfilesModel.php";
 //require_once $rutaperfiles;
 include("../Models/perfilesModel.php");
 $objPerfil = new Perfiles();
@@ -37,7 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
     }else{
         echo '<div class="alert alert-danger" role="alert"> El perfil no puede ser eliminado, ya que se encuentra anclado a un usuario existente. </div>';
     }
-        
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "mantenedorPerfiles.php";
+            }, 100);
+          </script>';
+    exit();
 }
 
 //EDITAR PERFILES
@@ -49,5 +54,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
 }
 
 
-require_once '../Views/mantenedorPerfiles.php';
+//require_once '../Views/mantenedorPerfiles.php';
 ?>

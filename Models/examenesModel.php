@@ -1,13 +1,13 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
 class examenesModel
 {
     private $db;
     public function __construct()
     {
-        require_once("conexion.php");
+        //require_once("conexion.php");
         $this->db = Conectarse();
     }
 
@@ -22,7 +22,7 @@ class examenesModel
 
     public function obtenerExamenesDiagnosticos()
     {
-        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Listo para Diagnóstico')";
+        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Listo para Diagnostico')";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;
@@ -40,7 +40,7 @@ class examenesModel
 
     public function obtenerExamenesTincion()
     {
-        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Listo para Tinción')";
+        $query = "SELECT * FROM Examenes WHERE IDEstado = (SELECT IDEstado FROM Estados WHERE NombreEstado = 'Listo para Tincion')";
         $result = mysqli_query($this->db, $query);
         if ($result) {
             return $result;
@@ -188,4 +188,6 @@ class examenesModel
             return false;
         }
     }
+    
+
 }

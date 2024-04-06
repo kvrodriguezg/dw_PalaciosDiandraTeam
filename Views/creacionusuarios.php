@@ -1,12 +1,12 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
-//require_once $rutausuarios;
+$directorioActual = __DIR__;
+$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
+require_once $rutausuarios;
 $op = "";
 
-require_once("../Controllers/usuariosController.php");
+//require_once("../Controllers/usuariosController.php");
 //require_once("../Controllers/perfilesController.php");
-require_once("../Controllers/centrosmedicosController.php");
+//require_once("../Controllers/centrosmedicosController.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'] ?? '';

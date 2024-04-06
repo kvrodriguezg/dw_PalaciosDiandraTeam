@@ -39,37 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a class="navbar-brand" href="../index.php">
                 <img src="../img/logo_labmuest.png" alt="" width="110" height="35">
             </a>
-            <nav class="nav">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="recepcion.php"><i class="fa-solid fa-receipt"></i>
-                            Recepción</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="tincion.php"><i class="fa-solid fa-bacteria"></i>
-                            Tinción</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="diagnostico.php"><i class="fa-solid fa-user"></i>
-                            Diagnósticos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="Registro.php"><i class="fa-solid fa-receipt"></i>
-                            Registro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="centro_medico.php"><i class="fa-solid fa-house-chimney-medical"></i> Centro Médico</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-blue" href="mantenedorusuarios.php"><i class="fa-solid fa-user"></i>
-                            Administrador</a>
-                    </li>
-
-
-
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -108,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row">
                     <div class="col-lg-12">
                         <label for="rut" style="text-align: center;">Usuario:</label>
-                        <input type="text" class="form-control" name="usuario" placeholder="Insgrese su usuario"><br>
+                        <input type="text" class="form-control" name="usuario" placeholder="Ingrese su usuario"><br>
                         <label style="text-align: center;">Clave:</label>
                         <input type="password" class="form-control" name="clave" placeholder="Ingrese su clave">
                         <input type="hidden" name="op" value="LOGIN"><br>

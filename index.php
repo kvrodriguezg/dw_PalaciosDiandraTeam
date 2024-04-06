@@ -1,10 +1,13 @@
-<?php
-//$directorioActual = __DIR__;
-//$rutaacceso = $directorioActual . "/Controllers/indexController.php";
-//require_once $rutaacceso;
-
-?>
 <!DOCTYPE html>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$directorioActual = __DIR__;
+$rutaacceso = $directorioActual . "/Controllers/indexController.php";
+require_once $rutaacceso;
+ //require_once("Controllers/indexController.php");
+            
+            ?>
 <html lang="en">
 
 <head>
@@ -35,7 +38,7 @@
                 </ul>
             </nav>
             <?php
-            require_once("Controllers/indexController.php");
+
             if (!$validacionExistencia) {
                 echo '
                 <nav class="nav">

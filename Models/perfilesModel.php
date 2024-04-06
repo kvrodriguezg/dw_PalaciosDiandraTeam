@@ -1,7 +1,7 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
 class perfiles
 {
     private $db;
@@ -9,7 +9,7 @@ class perfiles
     private $tipoperfiles;
     public function __construct()
     {
-        require_once("conexion.php");
+        //require_once("conexion.php");
         $this->db = Conectarse();
         $this->perfiles = array();
         $this->tipoperfiles = array();
@@ -104,3 +104,4 @@ class perfiles
     
 
 }
+?>

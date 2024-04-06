@@ -1,7 +1,7 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Models/conexion.php";
-//require_once $ruta;
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Models/conexion.php";
+require_once $ruta;
 class usuario
 {
     private $db;
@@ -15,7 +15,7 @@ class usuario
     public function __construct()
     {
         //sacar aqui
-        require_once("conexion.php");
+        //require_once("conexion.php");
         $this->db = Conectarse();
         $this->usuario = array();
         $this->user = array();
@@ -54,16 +54,18 @@ class usuario
         }
         return $this->centrosarray;
     }
-    public function insertarUsuario($usuario, $nombre,  $correo, $rut, $clave, $perfil, $centro)
+    public function insertarUsuario($usuario, $nombre, $correo, $rut, $clave, $perfil, $centro)
     {
         $idperfil = $this->buscarPerfil($perfil);
         $idcentro = $this->buscarcentro($centro);
         $clavehash = password_hash($clave, PASSWORD_DEFAULT);
 
-        require_once("existetablaModel.php");
-        $tablaExistente = new existetabla();
-        if ($tablaExistente->comprobarTabla("Perfiles") == true) {
-            $query = "INSERT INTO Usuarios (usuario,Nombre, Correo, Rut, Clave, IDPerfil, IDCentroMedico) VALUES (?, ?, ?, ?, ?, ?,?);";
+        // Verificar si ya existe un usuario con la misma llave foránea
+        $existingUser = $this->buscarUsuarioPorLlaveForanea($rut);
+        if ($existingUser) {
+            return false;
+        } else {
+            $query = "INSERT INTO Usuarios (usuario, Nombre, Correo, Rut, Clave, IDPerfil, IDCentroMedico) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
             if ($stmt = mysqli_prepare($this->db, $query)) {
                 mysqli_stmt_bind_param($stmt, "sssssii", $usuario, $nombre, $correo, $rut, $clavehash, $idperfil['IDPerfil'], $idcentro['IDCentroMedico']);
@@ -73,6 +75,24 @@ class usuario
                 } else {
                     return false;
                 }
+            }
+        }
+
+    }
+
+    private function buscarUsuarioPorLlaveForanea($rut)
+    {
+        $query = "SELECT * FROM Usuarios WHERE Rut = ?";
+
+        if ($stmt = mysqli_prepare($this->db, $query)) {
+            mysqli_stmt_bind_param($stmt, "s", $rut);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
+
+            if (mysqli_stmt_num_rows($stmt) > 0) {
+                return true; 
+            } else {
+                return false; 
             }
         }
     }

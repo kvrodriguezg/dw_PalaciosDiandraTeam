@@ -6,6 +6,7 @@
 //$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
 //require_once $rutaacceso;
 
+
 include("../Controllers/diagnosticoController.php");
 require_once('../Controllers/accesoController.php');
 $perfilesPermitidos = 5;
@@ -35,7 +36,7 @@ verificarAcceso($perfilesPermitidos);?>
 
 
 <body class="container">
-    <br><br><br><br><br>
+    <br><br><br><br><br><br>
     <?php if (!isset($mensaje)) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 15px;">
             <strong><?php echo $_GET['mensaje'] ?></strong>
@@ -43,7 +44,7 @@ verificarAcceso($perfilesPermitidos);?>
         </div>
     <?php endif ?>
 
-    <h1>Listado de Diagnosticos</h1><br>
+    <h1 style="padding-top: 20px;">Listado de Diagnósticos</h1><br>
     <a href="creardiagnostico.php" class="btn  btn-primary">Crear Diagnóstico</a>
     <br><br><br>
     <div class="seccion_mantenedor">

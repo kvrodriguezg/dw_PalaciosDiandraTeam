@@ -1,8 +1,10 @@
 <?php
-//$directorioActual = __DIR__;
-//$ruta = dirname($directorioActual) . "/Controllers/reportesController.php";
-//require_once $ruta;
-require_once("../Controllers/reportesController.php"); ?>
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$directorioActual = __DIR__;
+$ruta = dirname($directorioActual) . "/Controllers/reportesController.php";
+require_once $ruta;
+//require_once("../Controllers/reportesController.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +15,7 @@ require_once("../Controllers/reportesController.php"); ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <title>Diagnosticos por Centro Médico</title>
+    <title>Diagnósticos por Centro Médico</title>
 </head>
 
 <body class="container">
@@ -25,7 +27,7 @@ require_once("../Controllers/reportesController.php"); ?>
 
     <br><br><br><br><br>
     <section class="tablas_mantenedor">
-        <h1 class='text-center'>Diagnósticos por Centro Médico</h1><br>
+        <h1 class='text-center' style="padding-top: 20px;">Diagnósticos por Centro Médico</h1><br>
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
@@ -37,11 +39,14 @@ require_once("../Controllers/reportesController.php"); ?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($centrosMedicos as $centroMedico) { ?>
+                <?php
+                $totalFinal = 0;
+                foreach ($centrosMedicos as $centroMedico) { ?>
                     <tr>
                         <td><?php echo $centroMedico; ?></td>
                         <?php
                         $totalDiagnosticoCentro = 0;
+
 
                         foreach ($diagnosticos as $diagnostico) {
                             $cantidad = $reporte->obtenerCantidadDiagnosticoPorCentro($centroMedico, $diagnostico);
@@ -57,15 +62,18 @@ require_once("../Controllers/reportesController.php"); ?>
                         ?>
                             <td>
                                 <?php echo $cantidad; ?>
-                                (<?php echo round($porcentaje,2); ?>%)
+                                (<?php echo round($porcentaje, 2); ?>%)
                             </td>
                         <?php } ?>
-                        <td><?php echo $totalDiagnosticoCentro; ?></td>
+                        <td><?php echo $totalDiagnosticoCentro;
+                            $totalFinal += $totalDiagnosticoCentro;
+                            ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </section>
+    <h2>Total Diagnósticos: <?php echo $totalFinal?></h2>
 
 
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
@@ -82,6 +90,10 @@ require_once("../Controllers/reportesController.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+</body>
+
+</html>
+  
 </body>
 
 </html>

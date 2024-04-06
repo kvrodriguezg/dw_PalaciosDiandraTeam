@@ -7,7 +7,7 @@ function Conectarse()
         exit();
     }
 
-    $db_nombre = "bdddiandraPalacios";
+    $db_nombre = "bddgenomapro";
 
     //Validamos si existe.
     $db_existe = mysqli_select_db($link, $db_nombre);

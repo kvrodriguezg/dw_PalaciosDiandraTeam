@@ -1,7 +1,8 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
-//require_once $rutacentro;
+$directorioActual = __DIR__;
+$rutacentro = dirname($directorioActual) . "/Controllers/centrosmedicosController.php";
+
+
 $IDCentroMedico = $_GET['IDCentroMedico'] ?? '';
 $NombreCentro = $_GET['NombreCentro'] ?? '';
 $codigo = $_GET['codigo'] ?? '';
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($op == "Modificar") {
-        require_once("../Controllers/centrosmedicosController.php");
+        require_once $rutacentro;
         exit();
     }
 }
@@ -46,11 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Editar Perfil</h2><br>
+        <h2 style="text-align: center;">Editar Centro médico</h2><br>
         <div class="row">
             <div class="col">
             <label for="NombreCentro"> IDCentroMedico</label><br>
-            <input type="text" class="form-control" name="IDCentroMedico" value="<?php echo $IDCentroMedico ?>">
+            <input type="text" class="form-control" name="IDCentroMedico" value="<?php echo $IDCentroMedico ?>" readonly>
                 <label for="NombreCentro"> Nombre Centro</label><br>
                 <input type="text" class="form-control" name="NombreCentro" value="<?php echo $NombreCentro ?>">
                 <label for="TipoPerfil">Nombre codigo</label><br>

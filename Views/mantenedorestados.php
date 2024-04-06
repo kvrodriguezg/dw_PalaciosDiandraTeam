@@ -1,14 +1,14 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutaestado = dirname($directorioActual) . "/Controllers/EstadoController.php";
-//$rutausuarios = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
-//$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
-//require_once $rutaestado;
-//require_once $rutausuarios;
-//require_once $rutaacceso;
-require_once("../Controllers/EstadoController.php");
-require_once("../Controllers/usuariosController.php");
-require_once('../Controllers/accesoController.php');
+$directorioActual = __DIR__;
+$rutaacceso = dirname($directorioActual) . "/Controllers/accesoController.php";
+require_once $rutaacceso;
+
+$rutaestado = dirname($directorioActual) . "/Controllers/EstadoController.php";
+require_once $rutaestado;
+
+$rutausuario = dirname($directorioActual) . "/Controllers/usuarioscontroller.php";
+require_once $rutausuario;
+
 $perfilesPermitidos = 5;
 verificarAcceso($perfilesPermitidos);
 $IDEstado = '';
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include("menuadministrador.php");
     ?>
 </header>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 <body class="container">
 
@@ -66,10 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endif ?>
 
 
-    <h1>Listado de Estados</h1><br>
+    <h1 style="padding-top: 20px;">Listado de Estados</h1><br>
     <a href="crearestado.php" class="btn  btn-primary">Crear Estados</a>
     <br><br><br>
-    <section style="margin: 10px;">
+        <section style="margin: 10px;">
 
 
         <table id="tableUsers" class="tabla table">
@@ -81,10 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <thead>
                 <tr>
-                    <th>ID Diagnóstico</th>
+                    <th>ID Diagn&oacute;stico</th>
                     <th>Estado </th>
                     <th>Perfil </th>
-                    <th>Acción </th>
+                    <th>Acci&oacute;n </th>
                 </tr>
             </thead>
 
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             if ($sw == "eliminar") {
 
-                                require_once("../Controllers/EstadoController.php");
+                               require_once $rutaestado;
                             }
                             ?>
                         </td>

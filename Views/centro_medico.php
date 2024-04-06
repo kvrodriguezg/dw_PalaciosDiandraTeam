@@ -1,8 +1,8 @@
 <?php
-//$directorioActual = __DIR__;
-//$rutacentro = dirname($directorioActual) . "/Controllers/centroController.php";
-//require_once $rutacentro;
-require_once("../Controllers/centroController.php");
+$directorioActual = __DIR__;
+$rutacentro = dirname($directorioActual) . "/Controllers/centroController.php";
+require_once $rutacentro;
+//require_once("../Controllers/centroController.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +30,12 @@ require_once("../Controllers/centroController.php");
         include("menu.php");
         ?>
     </header>
+
+
     <div style="height: 50px;">
         <div class="container">
             <h2 class="titulo">
-                <br><br><?php echo " Centro Médico $nombreCentro"; ?>
+                <br><br><?php echo " Centro M&eacute;dico $nombreCentro"; ?>
             </h2><br><br>
             <div class="row">
                 <div class="col-lg-12">
@@ -44,8 +46,9 @@ require_once("../Controllers/centroController.php");
                                 <th>Rut</th>
                                 <th>Fecha de Toma</th>
                                 <th>Fecha de orden</th>
-                                <th>Nombre de Examne</th>
+                                <th>Nombre de Ex&aacute;men</th>
                                 <th>Estado</th>
+                                <th>Ver Diagn&oacute;stico</th>
 
                             </tr>
                         </thead>
@@ -72,11 +75,19 @@ require_once("../Controllers/centroController.php");
                                     <td>
                                         <?php echo $list['NombreEstado']; ?>
                                     </td>
-                                    <td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn btn-outline-danger" 
+                                <?php if($list['IDEstado']==4) {?>                               
+                                        onclick="window.open('generar_pdf.php?id=<?php echo $list['IDExamen']; ?>', '_blank');">
+                                        <img src="../img/pdf.png" alt="Icono PDF">
+                                        <?php } else {?>
+                                        ><img src="../img/pdf.png" alt="Icono PDF">
+                                        <?php
+                                        }
+                                        ?>
+                                        </button>
+                                    </td>
 
-                                    </td>
-                                    <td>
-                                    </td>
                                 </tr>
                             <?php }
                             ?>
